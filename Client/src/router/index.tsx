@@ -1,10 +1,10 @@
-import App from '@/App';
+import HomeContainer from '@/pages/home/Home.container';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: < HomeContainer/>,
     },
 ]);
 
