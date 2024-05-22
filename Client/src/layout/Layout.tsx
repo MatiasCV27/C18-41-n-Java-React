@@ -7,7 +7,7 @@ interface Props {
 export const Layout = ({ children }: Props) => {
     return (
         <>
-            <h1>Layout</h1>
+            {/* <h1>Layout</h1> */}
             <div>{children}</div>
         </>
     );
