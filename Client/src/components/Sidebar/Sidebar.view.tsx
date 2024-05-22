@@ -24,7 +24,7 @@ const SidebarView: React.FC = () => {
   ];
 
   return (
-    <div className="fixed top-[120px] bottom-[24px] left-[24px] h-[876] w-[329.5px] bg-accent text-black p-4 rounded-lg space-y-20">
+    <div className="fixed top-[120px] bottom-[24px] left-[24px] h-[876] w-[329px] bg-accent text-black p-4 rounded-lg space-y-20">
       <div>
         <h1 className="text-xl font-bold mb-2 ml-2 tracking-wide">
           <span className="text-blue-500">Swap</span> It Up
