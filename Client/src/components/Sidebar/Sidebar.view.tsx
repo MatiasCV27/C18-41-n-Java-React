@@ -10,7 +10,7 @@ import {
   Globe,
   ArrowRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 
 const SidebarView: React.FC = () => {
   const menuItems = [
