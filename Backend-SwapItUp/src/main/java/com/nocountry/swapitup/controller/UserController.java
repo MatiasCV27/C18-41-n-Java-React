@@ -11,17 +11,4 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @GetMapping("/users")
-    public List<User> listarUsuarios() {
-        return userRepository.findAll();
-    }
-
-    @PostMapping("/users")
-    public User agregarUsuario(@RequestBody User user) {
-        return userRepository.save(user);
-    }
-
 }
