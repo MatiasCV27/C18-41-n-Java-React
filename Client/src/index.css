@@ -4,8 +4,9 @@
 
 
 body{
-    background-color: black;
+    background-color: #F6F4FD;
 }
+
 @layer base {
     :root {
         --background: 0 0% 100%;
