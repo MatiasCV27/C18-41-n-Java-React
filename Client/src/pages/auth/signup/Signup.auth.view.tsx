@@ -8,31 +8,21 @@ import {
     FormMessage,
     Input,
 } from '@/components/ui';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import * as z from 'zod';
 
-interface Props {}
+interface Props {
+    form: any;
+    onSubmit: (data: {
+        email: string;
+        name: string;
+        lastName: string;
+        password: string;
+        confirmPassword: string;
+    }) => void;
+}
 
-const FormSchema = z.object({
-    email: z.string(),
-    name: z.string(),
-    lastName: z.string(),
-    password: z.string(),
-    confirmPassword: z.string(),
-});
-
-const SignupView: FC<Props> = () => {
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-    });
-
-    const onSubmit = () => {
-        console.log('submit');
-    };
-
+const SignupView: FC<Props> = ({ form, onSubmit }) => {
     return (
         <section>
             <div className="container container-lg w-full mx-auto flex justify-center items-center min-h-screen">
@@ -47,9 +37,13 @@ const SignupView: FC<Props> = () => {
                             render={({ field }) => (
                                 <FormItem>
                                     <div className="md:my-5 my-3">
-                                        <FormLabel className="text-gray-700 text-xs font-semibold block my-1">Email</FormLabel>
+                                        <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
+                                            Email
+                                        </FormLabel>
                                         <FormControl>
                                             <Input
+                                                required
+                                                type="email"
                                                 placeholder="email@email.com"
                                                 {...field}
                                             />
@@ -67,9 +61,13 @@ const SignupView: FC<Props> = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">Nombre</FormLabel>
+                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
+                                                Nombre
+                                            </FormLabel>
                                             <FormControl>
                                                 <Input
+                                                    required
+                                                    type="text"
                                                     placeholder="Ingresa tu nombre"
                                                     {...field}
                                                 />
@@ -85,9 +83,13 @@ const SignupView: FC<Props> = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">Apellido</FormLabel>
+                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
+                                                Apellido
+                                            </FormLabel>
                                             <FormControl>
                                                 <Input
+                                                    required
+                                                    type="text"
                                                     placeholder="Ingresa tu apellido"
                                                     {...field}
                                                 />
@@ -106,9 +108,13 @@ const SignupView: FC<Props> = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">Contraseña</FormLabel>
+                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
+                                                Contraseña
+                                            </FormLabel>
                                             <FormControl>
                                                 <Input
+                                                    required
+                                                    type="password"
                                                     placeholder="Ingresa tu contraseña"
                                                     {...field}
                                                 />
@@ -129,6 +135,8 @@ const SignupView: FC<Props> = () => {
                                             </FormLabel>
                                             <FormControl>
                                                 <Input
+                                                    required
+                                                    type="password"
                                                     placeholder="Ingresa tu contraseña"
                                                     {...field}
                                                 />
