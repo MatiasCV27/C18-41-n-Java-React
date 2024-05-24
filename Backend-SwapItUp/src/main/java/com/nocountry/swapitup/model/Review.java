@@ -24,7 +24,7 @@ public class Review {
     @Column(length = 450)
     private String description;
 
-    @Min(value = 1)
+    @Min(value = 0)
     @Max(value = 10)
     private Integer score;
 

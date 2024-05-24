@@ -1,5 +1,6 @@
 package com.nocountry.swapitup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -19,10 +20,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUser;
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private String lastname;
 
     @Email
@@ -46,6 +47,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "idRol", referencedColumnName = "idRol")
+    @JsonIgnore
     private Rol rol;
 
     @OneToMany(mappedBy = "user")
