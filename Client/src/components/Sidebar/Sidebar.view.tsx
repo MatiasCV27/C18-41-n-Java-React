@@ -1,58 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Home,
-  UserRound,
-  Users,
-  FolderHeart,
-  CalendarCheck,
-  BookmarkCheck,
-  Globe,
-  ArrowRight,
-} from "lucide-react";
-import { Button } from "@/components/ui";
+import { Zap, BellDot } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const SidebarView: React.FC = () => {
-  const menuItems = [
-    { name: "Inicio", path: "/inicio", icon: <Home /> },
-    { name: "Estudiantes", path: "/estudiantes", icon: <UserRound /> },
-    { name: "Tutores", path: "/tutores", icon: <Users /> },
-    { name: "Explorar", path: "/explorar", icon: <Globe /> },
-    { name: "Recursos", path: "/recursos", icon: <FolderHeart /> },
-    { name: "Guardado", path: "/guardado", icon: <BookmarkCheck /> },
-    { name: "Evaluaciones", path: "/evaluaciones", icon: <CalendarCheck /> },
-  ];
-
   return (
-    <div className="fixed top-[120px] bottom-[24px] left-[24px] h-[876] w-[329px] bg-accent text-black p-4 rounded-lg space-y-20">
-      <div>
-        <h1 className="text-xl font-bold mb-2 ml-2 tracking-wide">
-          <span className="text-blue-500">Swap</span> It Up
-        </h1>
-        <ul>
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <Link
-                to={item.path}
-                className="flex items-center space-y-1 p-2 hover:bg-gray-700 hover:bg-accent-foreground text-black hover:text-white rounded-lg"
-              >
-                {item.icon}
-                <span className="ml-4 text-lg font-semibold">{item.name}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <aside className="fixed top-6 bottom-6 right-6 w-[329.5px] flex flex-col justify-start">
+      <div className="flex items-center justify-between p-2">
+        <div className="flex-1 flex items-center justify-end space-x-6">
+          <div className="flex space-x-2">
+            <span className="text-black font-medium text-xl">1</span>
+            <div className="bg-accent rounded-full p-1 border border-black">
+              <Zap size={25} strokeWidth={2} color="black" fill="yellow" />
+            </div>
+          </div>
+          <BellDot size={30} color="black" />
+          <Avatar className="h-[50px] w-[50px] border-2 border-black">
+            <AvatarImage
+              src="https://github.com/shadcn.png"
+              alt="Avatar de usuario"
+            />
+            <AvatarFallback>Usuario</AvatarFallback>
+          </Avatar>
+        </div>
       </div>
-      <div>
-        <p className="text-black hover:underline">
-          Obtén más puntos para canjear en clases y mucho más
-        </p>
-        <Button variant="default" className="bg-accent-foreground rounded-lg">
-          Actualizar <ArrowRight className="ml-2 h-6 w-6" />
-        </Button>
+      <div className="bg-transparent overflow-y-auto bg-red-700">
+        {/* Elementos de Notificaciones */}
       </div>
-    </div>
+    </aside>
   );
 };
 
 export default SidebarView;
+
+

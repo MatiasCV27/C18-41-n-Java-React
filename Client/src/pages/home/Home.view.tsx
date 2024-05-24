@@ -1,6 +1,5 @@
 import Layout from '@/layout/Layout';
-import SidebarContainer from '@/components/Sidebar/Sidebar.container';
-// import { FC } from 'react';
+import UserHomeBannerContainer from '@/components/UserHomeBanner/UserHomeBanner.container';
 
 // interface Props {}
 
@@ -8,8 +7,7 @@ const HomeView = () => {
     return (
         <>
             <Layout>
-                {/* <div>HomeView</div> */}
-                <SidebarContainer />
+                <UserHomeBannerContainer />
             </Layout>
         </>
     );

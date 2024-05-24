@@ -8,6 +8,12 @@ body {
     background-color: #f6f4fd;
 }
 
+/* body {
+    background-color: black;
+    color: white;
+} */
+
+
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -25,7 +31,7 @@ body {
         --secondary: 210 40% 96.1%;
         --secondary-foreground: 222.2 47.4% 11.2%;
 
-        --muted: 210 40% 96.1%;
+        --muted: 213.33 9.89% 17.84%; /* Gris neutro */
         --muted-foreground: 215.4 16.3% 46.9%;
 
         --accent: 194.39 100% 61.57%; /* turqueza accent */
