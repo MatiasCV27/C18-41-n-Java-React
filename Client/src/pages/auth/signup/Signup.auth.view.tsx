@@ -8,38 +8,28 @@ import {
     FormMessage,
     Input,
 } from '@/components/ui';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import * as z from 'zod';
 
-interface Props {}
+interface Props {
+    form: any;
+    onSubmit: (data: {
+        email: string;
+        name: string;
+        lastName: string;
+        password: string;
+        confirmPassword: string;
+    }) => void;
+}
 
-const FormSchema = z.object({
-    email: z.string(),
-    name: z.string(),
-    lastName: z.string(),
-    password: z.string(),
-    confirmPassword: z.string(),
-});
-
-const SignupView: FC<Props> = () => {
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-    });
-
-    const onSubmit = () => {
-        console.log('submit');
-    };
-
+const SignupView: FC<Props> = ({ form, onSubmit }) => {
     return (
         <section>
             <div className="container container-lg w-full mx-auto flex justify-center items-center min-h-screen">
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
-                        className="max-w-md md:min-w-[350px] w-full"
+                        className="max-w-xl md:min-w-[350px] w-full"
                     >
                         <FormField
                             control={form.control}
@@ -47,13 +37,22 @@ const SignupView: FC<Props> = () => {
                             render={({ field }) => (
                                 <FormItem>
                                     <div className="md:my-5 my-3">
-                                        <FormLabel className="text-gray-700 text-xs font-semibold block my-1">Email</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                placeholder="email@email.com"
-                                                {...field}
-                                            />
-                                        </FormControl>
+                                        <div className="relative">
+                                            <div className="absolute -top-3.5 left-3">
+                                                <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                    Email
+                                                </FormLabel>
+                                            </div>
+                                            <FormControl>
+                                                <Input
+                                                    className="rounded-xl h-14 text-base font-medium"
+                                                    required
+                                                    type="email"
+                                                    placeholder="email@email.com"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                        </div>
                                         <FormMessage />
                                     </div>
                                 </FormItem>
@@ -67,13 +66,22 @@ const SignupView: FC<Props> = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">Nombre</FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="Ingresa tu nombre"
-                                                    {...field}
-                                                />
-                                            </FormControl>
+                                            <div className="relative">
+                                                <div className="absolute -top-3.5 left-3">
+                                                    <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                        Nombre
+                                                    </FormLabel>
+                                                </div>
+                                                <FormControl>
+                                                    <Input
+                                                        className="rounded-xl h-14 text-base font-medium"
+                                                        required
+                                                        type="text"
+                                                        placeholder="Ingresa tu nombre"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                            </div>
                                             <FormMessage />
                                         </div>
                                     </FormItem>
@@ -85,13 +93,22 @@ const SignupView: FC<Props> = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">Apellido</FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="Ingresa tu apellido"
-                                                    {...field}
-                                                />
-                                            </FormControl>
+                                            <div className="relative">
+                                                <div className="absolute -top-3.5 left-3">
+                                                    <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                        Apellido
+                                                    </FormLabel>
+                                                </div>
+                                                <FormControl>
+                                                    <Input
+                                                        className="rounded-xl h-14 text-base font-medium"
+                                                        required
+                                                        type="text"
+                                                        placeholder="Ingresa tu apellido"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                            </div>
                                             <FormMessage />
                                         </div>
                                     </FormItem>
@@ -106,13 +123,22 @@ const SignupView: FC<Props> = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">Contraseña</FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="Ingresa tu contraseña"
-                                                    {...field}
-                                                />
-                                            </FormControl>
+                                            <div className="relative">
+                                                <div className="absolute -top-3.5 left-3">
+                                                    <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                        Contraseña
+                                                    </FormLabel>
+                                                </div>
+                                                <FormControl>
+                                                    <Input
+                                                        className="rounded-xl h-14 text-base font-medium"
+                                                        required
+                                                        type="password"
+                                                        placeholder="Ingresa tu contraseña"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                            </div>
                                             <FormMessage />
                                         </div>
                                     </FormItem>
@@ -124,15 +150,22 @@ const SignupView: FC<Props> = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
-                                                Confirmar contraseña
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="Ingresa tu contraseña"
-                                                    {...field}
-                                                />
-                                            </FormControl>
+                                            <div className="relative">
+                                                <div className="absolute -top-3.5 left-3">
+                                                    <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                        Confirmar contraseña
+                                                    </FormLabel>
+                                                </div>
+                                                <FormControl>
+                                                    <Input
+                                                        className="rounded-xl h-14 text-base font-medium"   
+                                                        required
+                                                        type="password"
+                                                        placeholder="Ingresa tu contraseña"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                            </div>
                                             <FormMessage />
                                         </div>
                                     </FormItem>
@@ -142,7 +175,7 @@ const SignupView: FC<Props> = () => {
                         <Button
                             type="submit"
                             variant="default"
-                            className="w-full"
+                            className="w-full mt-4 drop-shadow-lg rounded-xl h-16 bg-accent text-base text-black hover:bg-accent-foreground hover:text-white"
                         >
                             Registrarse
                         </Button>
