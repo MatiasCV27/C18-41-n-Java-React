@@ -29,7 +29,7 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
-                        className="max-w-md md:min-w-[350px] w-full"
+                        className="max-w-xl md:min-w-[350px] w-full"
                     >
                         <FormField
                             control={form.control}
@@ -37,17 +37,22 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                             render={({ field }) => (
                                 <FormItem>
                                     <div className="md:my-5 my-3">
-                                        <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
-                                            Email
-                                        </FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                required
-                                                type="email"
-                                                placeholder="email@email.com"
-                                                {...field}
-                                            />
-                                        </FormControl>
+                                        <div className="relative">
+                                            <div className="absolute -top-3.5 left-3">
+                                                <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                    Email
+                                                </FormLabel>
+                                            </div>
+                                            <FormControl>
+                                                <Input
+                                                    className="rounded-xl h-14 text-base font-medium"
+                                                    required
+                                                    type="email"
+                                                    placeholder="email@email.com"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                        </div>
                                         <FormMessage />
                                     </div>
                                 </FormItem>
@@ -61,17 +66,22 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
-                                                Nombre
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    required
-                                                    type="text"
-                                                    placeholder="Ingresa tu nombre"
-                                                    {...field}
-                                                />
-                                            </FormControl>
+                                            <div className="relative">
+                                                <div className="absolute -top-3.5 left-3">
+                                                    <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                        Nombre
+                                                    </FormLabel>
+                                                </div>
+                                                <FormControl>
+                                                    <Input
+                                                        className="rounded-xl h-14 text-base font-medium"
+                                                        required
+                                                        type="text"
+                                                        placeholder="Ingresa tu nombre"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                            </div>
                                             <FormMessage />
                                         </div>
                                     </FormItem>
@@ -83,17 +93,22 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
-                                                Apellido
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    required
-                                                    type="text"
-                                                    placeholder="Ingresa tu apellido"
-                                                    {...field}
-                                                />
-                                            </FormControl>
+                                            <div className="relative">
+                                                <div className="absolute -top-3.5 left-3">
+                                                    <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                        Apellido
+                                                    </FormLabel>
+                                                </div>
+                                                <FormControl>
+                                                    <Input
+                                                        className="rounded-xl h-14 text-base font-medium"
+                                                        required
+                                                        type="text"
+                                                        placeholder="Ingresa tu apellido"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                            </div>
                                             <FormMessage />
                                         </div>
                                     </FormItem>
@@ -108,17 +123,22 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
-                                                Contraseña
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    required
-                                                    type="password"
-                                                    placeholder="Ingresa tu contraseña"
-                                                    {...field}
-                                                />
-                                            </FormControl>
+                                            <div className="relative">
+                                                <div className="absolute -top-3.5 left-3">
+                                                    <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                        Contraseña
+                                                    </FormLabel>
+                                                </div>
+                                                <FormControl>
+                                                    <Input
+                                                        className="rounded-xl h-14 text-base font-medium"
+                                                        required
+                                                        type="password"
+                                                        placeholder="Ingresa tu contraseña"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                            </div>
                                             <FormMessage />
                                         </div>
                                     </FormItem>
@@ -130,17 +150,22 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className="md:my-5 my-3">
-                                            <FormLabel className="text-gray-700 text-xs font-semibold block my-1">
-                                                Confirmar contraseña
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    required
-                                                    type="password"
-                                                    placeholder="Ingresa tu contraseña"
-                                                    {...field}
-                                                />
-                                            </FormControl>
+                                            <div className="relative">
+                                                <div className="absolute -top-3.5 left-3">
+                                                    <FormLabel className="text-gray-700 text-sm font-medium block my-1">
+                                                        Confirmar contraseña
+                                                    </FormLabel>
+                                                </div>
+                                                <FormControl>
+                                                    <Input
+                                                        className="rounded-xl h-14 text-base font-medium"   
+                                                        required
+                                                        type="password"
+                                                        placeholder="Ingresa tu contraseña"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                            </div>
                                             <FormMessage />
                                         </div>
                                     </FormItem>
@@ -150,7 +175,7 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                         <Button
                             type="submit"
                             variant="default"
-                            className="w-full"
+                            className="w-full mt-4 drop-shadow-lg rounded-xl h-16 bg-accent text-base text-black hover:bg-accent-foreground hover:text-white"
                         >
                             Registrarse
                         </Button>
