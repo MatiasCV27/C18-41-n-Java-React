@@ -8,15 +8,11 @@ body {
     background-color: #f6f4fd;
 }
 
-/* body {
-    background-color: black;
-    color: white;
-} */
 
 
 @layer base {
     :root {
-        --background: 0 0% 100%;
+        --background: 253.33 69.23% 97.45%; /*  mismo bg del body */
         --foreground: 222.2 84% 4.9%;
 
         --card: 0 0% 100%;

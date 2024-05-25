@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Zap, BellDot } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import NotificationCardContainer from "../NotificationCard/NotificationCard.container";
 
 const SidebarView: React.FC = () => {
   return (
@@ -24,13 +24,25 @@ const SidebarView: React.FC = () => {
           </Avatar>
         </div>
       </div>
-      <div className="bg-transparent overflow-y-auto bg-red-700">
-        {/* Elementos de Notificaciones */}
+      <div className="bg-transparent overflow-x-hidden overflow-y-auto bg-red-700 flex flex-col space-y-4">
+        <NotificationCardContainer
+          title="Imparte tu primera clase"
+          description="Desbloquea esta misión y gana puntos"
+          pendingEvaluations={3}
+          totalEvaluations={10}
+          iconType="zap"
+        />
+        <NotificationCardContainer
+          title="Evaluaciones pendientes"
+          description="Certifica tus conocimientos realizando tus evaluaciones"
+          pendingEvaluations={3}
+          totalEvaluations={10}
+          iconType="calendarCheck"
+        />
+        
       </div>
     </aside>
   );
 };
 
 export default SidebarView;
-
-
