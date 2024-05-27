@@ -8,8 +8,6 @@ body {
     background-color: #f6f4fd;
 }
 
-
-
 @layer base {
     :root {
         --background: 253.33 69.23% 97.45%; /*  mismo bg del body */
@@ -76,7 +74,7 @@ body {
 
 @layer base {
     body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter';
     }
 
     * {
