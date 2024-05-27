@@ -14,13 +14,13 @@ import { Link } from 'react-router-dom';
 
 interface Props {
     form: any;
-    onSubmit: (data: { email: string; password: string }) => void;
+    onSubmit: (data: { username: string; password: string }) => void;
 }
 
 const SigninView: FC<Props> = ({ form, onSubmit }) => {
     return (
-        <section className="relative">
-            <h1 className="text-3xl absolute top-6 left-6 font-bold mb-2 ml-2 tracking-wide bg-transparent">
+        <section className="flex flex-col">
+            <h1 className="text-3xl font-bold mt-6  mb-2 ml-6 tracking-wide bg-transparent">
                 <span className="text-blue-500">Swap</span> It Up
             </h1>
             <div className="container container-lg w-full mx-auto flex justify-center items-center min-h-screen gap-x-6">
@@ -41,22 +41,22 @@ const SigninView: FC<Props> = ({ form, onSubmit }) => {
                             <div className=" flex flex-col ">
                                 <FormField
                                     control={form.control}
-                                    name="email"
+                                    name="username"
                                     render={({ field }) => (
                                         <FormItem>
                                             <div className="md:my-3 my-2">
                                                 <div className="relative">
                                                     <div className="absolute -top-3.5 left-3">
                                                         <FormLabel className="text-gray-700 bg-background text-sm font-normal block my-1">
-                                                            Correo
+                                                            Nombre de usuario
                                                         </FormLabel>
                                                     </div>
                                                     <FormControl>
                                                         <Input
                                                             className="rounded border text-gray-700 border-gray-400 h-14 text-base font-normal placeholder:text-gray-400"
                                                             
-                                                            type="email"
-                                                            placeholder="email@email.com"
+                                                            type="texts"
+                                                            placeholder="Ingresa nombre de usuario"
                                                             {...field}
                                                         />
                                                     </FormControl>

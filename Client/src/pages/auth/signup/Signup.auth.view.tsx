@@ -28,8 +28,8 @@ interface Props {
 
 const SignupView: FC<Props> = ({ form, onSubmit }) => {
     return (
-        <section className="relative">
-            <h1 className="text-3xl absolute top-6 left-6 font-bold mb-2 ml-2 tracking-wide bg-transparent">
+        <section className="flex flex-col">
+        <h1 className="text-3xl font-bold mt-6  mb-2 ml-6 tracking-wide bg-transparent">
                 <span className="text-blue-500">Swap</span> It Up
             </h1>
             <div className="container container-lg w-full mx-auto flex justify-center items-center min-h-screen gap-x-6">
