@@ -1,20 +1,26 @@
 package com.nocountry.swapitup.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nocountry.swapitup.enums.Rolename;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,15 +32,21 @@ public class User {
     @Column(nullable = false, length = 50)
     private String lastname;
 
+    @Column(nullable = false, length = 50)
+    private String username;
+
     @Email
     @Column(nullable = false, unique = true, length = 50)
     private String email;
 
     @Size(min = 8)
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 200)
     private String password;
 
-    private boolean status;
+    private boolean isActive;
+
+    @Min(value = 0)
+    private Integer points;
 
     private String image;
 
@@ -45,10 +57,8 @@ public class User {
     @Column(updatable = false)
     private LocalDateTime createAt;
 
-    @ManyToOne
-    @JoinColumn(name = "idRol", referencedColumnName = "idRol")
-    @JsonIgnore
-    private Rol rol;
+    @Enumerated(EnumType.STRING)
+    private Rolename role;
 
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
@@ -57,8 +67,33 @@ public class User {
     private List<Post> posts;
 
     @ManyToMany
-    @JoinTable(name = "UserInterest",
+    @JoinTable(name = "user_interest",
             joinColumns = @JoinColumn(name = "idUser"),
             inverseJoinColumns = @JoinColumn(name = "idInterest"))
     private List<Interest> interests;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
