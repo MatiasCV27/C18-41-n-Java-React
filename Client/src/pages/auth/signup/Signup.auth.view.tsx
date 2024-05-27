@@ -20,14 +20,18 @@ interface Props {
         lastName: string;
         password: string;
         confirmPassword: string;
+        username: string;
     }) => void;
 }
 
 const SignupView: FC<Props> = ({ form, onSubmit }) => {
     return (
-        <section>
+        <section className='relative'>
+            <h1 className="text-3xl absolute top-6 left-6 font-bold mb-2 ml-2 tracking-wide bg-transparent">
+                <span className="text-blue-500">Swap</span> It Up
+            </h1>
             <div className="container container-lg w-full mx-auto flex justify-center items-center min-h-screen gap-x-6">
-                <div className="flex flex-col lg:flex-1 items-center justify-center">
+                <div className="flex flex-col min-w-full md:min-w-[600px] lg:flex-1 items-center justify-center">
                     <div className="mb-6 w-full flex flex-col gap-4">
                         <h2 className="text-4xl font-semibold max-w-md">
                             Regístrate
@@ -42,33 +46,63 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                             className="max-w-4xl md:min-w-[350px] w-full"
                         >
                             <div className=" flex flex-col ">
-                                <FormField
-                                    control={form.control}
-                                    name="email"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <div className="md:my-3 my-2">
-                                                <div className="relative">
-                                                    <div className="absolute -top-3.5 left-3">
-                                                        <FormLabel className="text-gray-700 bg-background text-sm font-normal block my-1">
-                                                            Email
-                                                        </FormLabel>
+                                <div className="grid md:grid-cols-2 md:gap-x-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="email"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <div className="md:my-3 my-2">
+                                                    <div className="relative">
+                                                        <div className="absolute -top-3.5 left-3">
+                                                            <FormLabel className="text-gray-700 bg-background text-sm font-normal block my-1">
+                                                                Correo
+                                                            </FormLabel>
+                                                        </div>
+                                                        <FormControl>
+                                                            <Input
+                                                                className="rounded border text-gray-700 border-gray-400 h-14 text-base font-normal placeholder:text-gray-400"
+                                                                required
+                                                                type="email"
+                                                                placeholder="email@email.com"
+                                                                {...field}
+                                                            />
+                                                        </FormControl>
                                                     </div>
-                                                    <FormControl>
-                                                        <Input
-                                                            className="rounded border text-gray-700 border-gray-400 h-14 text-base font-normal placeholder:text-gray-400"
-                                                            required
-                                                            type="email"
-                                                            placeholder="email@email.com"
-                                                            {...field}
-                                                        />
-                                                    </FormControl>
+                                                    <FormMessage className="mt-1 ml-3 text-sm font-normal" />
                                                 </div>
-                                                <FormMessage className="mt-1 ml-3 text-sm font-normal" />
-                                            </div>
-                                        </FormItem>
-                                    )}
-                                />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="username"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <div className="md:my-3 my-2">
+                                                    <div className="relative">
+                                                        <div className="absolute -top-3.5 left-3">
+                                                            <FormLabel className="text-gray-700 bg-background text-sm font-normal block my-1">
+                                                                Nombre de
+                                                                usuario
+                                                            </FormLabel>
+                                                        </div>
+                                                        <FormControl>
+                                                            <Input
+                                                                className="rounded border text-gray-700 border-gray-400 h-14 text-base font-normal placeholder:text-gray-400"
+                                                                required
+                                                                type="text"
+                                                                placeholder="Ingresa tu nombre de usuario"
+                                                                {...field}
+                                                            />
+                                                        </FormControl>
+                                                    </div>
+                                                    <FormMessage className="mt-1 ml-3 text-sm font-normal" />
+                                                </div>
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
 
                                 <div className="grid md:grid-cols-2 md:gap-x-6">
                                     <FormField
@@ -215,7 +249,7 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                 </div>
                 <div className="flex-1 hidden min-h-[700px] rounded-3xl overflow-hidden lg:flex items-center bg-zinc-200 justify-center my-10">
                     <img
-                        className="h-3/5 w-3/5 object-scale-down "
+                        className="h-3/5 w-3/5 object-cover"
                         src="src/assets/signup.png"
                     />
                 </div>
