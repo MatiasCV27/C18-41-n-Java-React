@@ -1,6 +1,6 @@
 import UserHomeSearchView from './UserHomeSearch.view';
 
-const UserHomeSearchrContainer = () => {
+const UserHomeSearchContainer = () => {
     return (
         <>
             <UserHomeSearchView />
@@ -8,4 +8,4 @@ const UserHomeSearchrContainer = () => {
     );
 };
 
-export default UserHomeSearchrContainer;
+export default UserHomeSearchContainer;

@@ -27,8 +27,8 @@ const NotificationCardView: React.FC<NotificationCardViewProps> = ({
   renderIcon,
 }) => {
   return (
-    <Card className="border border-black rounded-lg shadow-md bg-background w-[330px] h-[146px]">
-      <CardHeader className="w-full p-2">
+    <Card className="border border-black rounded-lg shadow-md bg-background w-[291px] h-[147px]">
+      <CardHeader className="w-full p-2 text-center">
         <div className="flex justify-between items-center">
           <CardTitle className="text-lg font-medium">{title}</CardTitle>
           <ChevronRight />
@@ -40,12 +40,15 @@ const NotificationCardView: React.FC<NotificationCardViewProps> = ({
         </div>
         <div className="w-3/4 flex flex-col justify-between pl-2">
           <div>
-            <CardDescription className="text-muted text-md text-left text-balance">
+            <CardDescription className="text-muted text-md">
               {description}
             </CardDescription>
           </div>
           <div className="flex items-center space-x-1 mt-2">
-            <Progress value={progressPercentage} className="w-full border border-muted" />
+            <Progress
+              value={progressPercentage}
+              className="w-full border border-muted"
+            />
             <p className="text-sm text-muted">
               {pendingEvaluations}/{totalEvaluations}
             </p>
