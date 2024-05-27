@@ -5,10 +5,10 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 console.log(apiURL);
 export class AuthRepository {
-    private httpClient: HttpClient = new HttpClient(`${apiURL}/users`);
+    private httpClient: HttpClient = new HttpClient(`${apiURL}/auth`);
     constructor() {}
 
     async signUp(signUpDto: SignupDto) {
-        return await this.httpClient.post('/signup', signUpDto);
+        return await this.httpClient.post('/register', signUpDto);
     }
 }
