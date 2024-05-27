@@ -9,38 +9,46 @@ const authController = new AuthController();
 
 const SignupContainer = () => {
     const navigate = useNavigate();
-    const FormSchema = z.object({
-        email: z.string().email({ message: 'Email invalido' }),
-        username: z
-            .string()
-            .min(2, {
-                message:
-                    'El nombre de usuario debe tener al menos 2 caracteres',
-            })
-            .max(25, {
-                message:
-                    'El nombre de usuario debe tener un maximo de 25 caracteres',
+    const FormSchema = z
+        .object({
+            email: z.string().email({ message: 'Email invalido' }),
+            username: z
+                .string()
+                .min(2, {
+                    message:
+                        'El nombre de usuario debe tener al menos 2 caracteres',
+                })
+                .max(25, {
+                    message:
+                        'El nombre de usuario debe tener un maximo de 25 caracteres',
+                }),
+            name: z
+                .string()
+                .min(2, {
+                    message: 'El nombre debe tener al menos 2 caracteres',
+                })
+                .max(60, {
+                    message: 'El nombre debe tener un maximo de 60 caracteres',
+                }),
+            lastName: z
+                .string()
+                .min(2, {
+                    message: 'El apellido debe tener al menos 2 caracteres',
+                })
+                .max(60, {
+                    message:
+                        'El apellido debe tener un maximo de 60 caracteres',
+                }),
+            password: z.string().min(8, {
+                message: 'La contraseña debe tener al menos 8 caracteres',
             }),
-        name: z
-            .string()
-            .min(2, { message: 'El nombre debe tener al menos 2 caracteres' })
-            .max(60, {
-                message: 'El nombre debe tener un maximo de 60 caracteres',
-            }),
-        lastName: z
-            .string()
-            .min(2, { message: 'El apellido debe tener al menos 2 caracteres' })
-            .max(60, {
-                message: 'El apellido debe tener un maximo de 60 caracteres',
-            }),
-        password: z.string().min(8, {
-            message: 'La contraseña debe tener al menos 8 caracteres',
-        }),
-        confirmPassword: z.string(),
-    }).refine(data => data.password === data.confirmPassword, {
-        message: 'Las contraseñas no coinciden',
-        path: ['confirmPassword'],
-    });
+            confirmPassword: z.string(),
+            terms: z.boolean(),
+        })
+        .refine((data) => data.password === data.confirmPassword, {
+            message: 'Las contraseñas no coinciden',
+            path: ['confirmPassword'],
+        });
 
     type FormSchemaType = z.infer<typeof FormSchema>;
 
@@ -53,17 +61,19 @@ const SignupContainer = () => {
             password: '',
             confirmPassword: '',
             username: '',
+            terms: false,
         },
     });
 
     const handleSignup: SubmitHandler<FormSchemaType> = async (data) => {
-        const { email, name, lastName, password, username } = data;
+        const { email, name, lastName, password, username, terms } = data;
         const signnupDto = {
             email,
             name,
             lastName,
             password,
             username,
+            terms,
         };
 
         try {

@@ -8,6 +8,7 @@ import {
     FormMessage,
     Input,
 } from '@/components/ui';
+import { Checkbox } from '@/components/ui/checkbox';
 import GoogleIcon from '@/components/ui/google-icon';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
@@ -21,12 +22,13 @@ interface Props {
         password: string;
         confirmPassword: string;
         username: string;
+        terms: boolean;
     }) => void;
 }
 
 const SignupView: FC<Props> = ({ form, onSubmit }) => {
     return (
-        <section className='relative'>
+        <section className="relative">
             <h1 className="text-3xl absolute top-6 left-6 font-bold mb-2 ml-2 tracking-wide bg-transparent">
                 <span className="text-blue-500">Swap</span> It Up
             </h1>
@@ -215,6 +217,29 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                                         </FormItem>
                                     )}
                                 />
+                                <FormField
+                                    control={form.control}
+                                    name="terms"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md p-4 ">
+                                            <FormControl>
+                                                <Checkbox
+                                                    checked={field.value}
+                                                    required
+                                                    onCheckedChange={
+                                                        field.onChange
+                                                    }
+                                                />
+                                            </FormControl>
+                                            <div className="space-y-1 leading-none">
+                                                <FormLabel className="text-gray-700 bg-background text-sm font-normal block ">
+                                                    Estoy de acuerdo con los
+                                                    términos y condiciones
+                                                </FormLabel>
+                                            </div>
+                                        </FormItem>
+                                    )}
+                                />
                             </div>
 
                             <Button
@@ -233,7 +258,7 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                             <div className="flex items-center justify-center gap-4 my-5">
                                 <span className="h-[2px] w-full bg-gray-200 my-1" />
                                 <p className="text-gray-400 text-xs text-nowrap">
-                                    O inicia sesión con:
+                                    O regístrate con:
                                 </p>
                                 <span className="h-[2px] w-full bg-gray-200 my-1" />
                             </div>
