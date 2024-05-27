@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 const SigninContainer = () => {
     const FormSchema = z.object({
-        email: z.string().email({ message: 'Email invalido' }),
+        username: z.string().min( 2, { message: 'Debe ingresar un usuario' }),
         password: z.string().min(8, {
             message: 'La contraseña debe tener al menos 8 caracteres',
         }),
@@ -15,14 +15,14 @@ const SigninContainer = () => {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            email: '',
+            username: '',
             password: '',
         },
     });
 
     const handleSignin: SubmitHandler<FormSchemaType> = async (data) => {
-        const { email, password } = data;
-        console.log(email, password);
+        const { username, password } = data;
+        console.log(username, password);
     };
 
     return <SigninView onSubmit={handleSignin} form={form} />;
