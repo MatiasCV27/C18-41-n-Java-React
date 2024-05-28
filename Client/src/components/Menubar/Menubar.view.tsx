@@ -24,7 +24,7 @@ const MenubarView: React.FC = () => {
   ];
 
   return (
-    <div className="fixed top-6 bottom-6 left-6 right-6 flex flex-col space-y-4 w-[329.5px]">
+    <div className="fixed top-6 bottom-6 left-6 right-6 flex flex-col space-y-4 w-[316px]">
       <h1 className="text-3xl font-bold mb-2 ml-2 tracking-wide bg-transparent">
         <span className="text-blue-500">Swap</span> It Up
       </h1>

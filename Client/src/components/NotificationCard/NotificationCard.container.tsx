@@ -28,7 +28,7 @@ const NotificationCardContainer: React.FC<NotificationCardContainerProps> = ({
           </div>
         );
       case "calendarCheck":
-        return <CalendarCheck size={30} strokeWidth={2} color="black" fill="yellow" />;
+        return <CalendarCheck size={35} strokeWidth={2} color="black" fill="yellow" />;
       default:
         return null;
     }
