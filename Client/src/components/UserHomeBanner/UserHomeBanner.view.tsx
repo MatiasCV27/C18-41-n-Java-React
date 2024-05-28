@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const UserHomeBannerView: React.FC = () => {
   return (
-      <div className="w-full h-[264px] bg-muted relative rounded-lg">
+      <div className="w-full h-[212px] bg-muted relative rounded-lg">
         <div className="w-2/3 flex flex-col justify-center items-start p-6 z-10 ">
           <h1 className="text-3xl font-bold mb-2 text-accent">
             ¡Hola, Usuario!

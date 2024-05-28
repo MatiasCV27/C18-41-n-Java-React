@@ -1,24 +1,56 @@
+import React from "react";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
+import { LightbulbIcon, ChevronRight } from "lucide-react"; // Suponiendo que los iconos están importados aquí
+
+interface NewsProps {
+  icon: React.ReactNode;
+  title: string;
+}
+
+const News: React.FC<NewsProps> = ({ icon, title }) => (
+  <div className="flex items-center w-[259px] h-[57px] bg-white rounded-lg p-2">
+    {icon}
+    <div className="ml-4">
+      <span className="text-md font-medium text-pretty">{title}</span>
+    </div>
+    <ChevronRight size={40} className="ml-4 text-muted" />
+  </div>
+);
 
 const UserHomeNewsView: React.FC = () => {
   return (
-    <Card className="w-[291px] h-full bg-blue-800">
+    <Card className="w-[291px] h-full bg-secondary rounded-lg">
       <CardHeader>
-        <CardTitle>Novedades</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle  className="text-xl">
+          Novedades
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <div className="flex flex-col space-y-4">
+          <News
+            icon={<LightbulbIcon size={40} />}
+            title="Nuevas clases que puedes tomar"
+          />
+          <News
+            icon={<LightbulbIcon size={40} />}
+            title="Scrum master, primer vistazo"
+          />
+          <News
+            icon={<LightbulbIcon size={40} />}
+            title="Herramientas para el diseño UI/UX"
+          />
+        </div>
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <div className="flex justify-between items-center">
+          <p className="cursor-pointer hover:underline">Ver más</p>
+        </div>
       </CardFooter>
     </Card>
   );

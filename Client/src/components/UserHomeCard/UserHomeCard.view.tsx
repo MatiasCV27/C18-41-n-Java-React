@@ -3,7 +3,7 @@
 
 import * as React from "react";
 import { Progress } from "@/components/ui/progress";
-import UserHomeCard from "@/assets/UserHomeCard.jpg"
+import UserHomeCard from "@/assets/UserHomeCard.jpg";
 
 import {
   Card,
@@ -20,10 +20,13 @@ interface UserHomeCardProps {
   totalClasses: number;
 }
 
-const UserHomeCardView: React.FC<UserHomeCardProps> = ({title,completedClasses,totalClasses }) => {
-  
+const UserHomeCardView: React.FC<UserHomeCardProps> = ({
+  title,
+  completedClasses,
+  totalClasses,
+}) => {
   const progressPercentage = (completedClasses / totalClasses) * 100;
-  
+
   return (
     <Card className="w-[214px] h-[250px] justify-start">
       <img
@@ -33,7 +36,7 @@ const UserHomeCardView: React.FC<UserHomeCardProps> = ({title,completedClasses,t
       />
       <CardHeader>
         <div className="flex justify-between items-center">
-          <CardTitle className="">{title}</CardTitle>
+          <CardTitle>{title}</CardTitle>
           <div className="flex items-center space-x-1">
             <span className="text-black font-medium text-md">1</span>
             <div className="bg-accent rounded-full p-1 border border-black">
@@ -43,7 +46,7 @@ const UserHomeCardView: React.FC<UserHomeCardProps> = ({title,completedClasses,t
         </div>
       </CardHeader>
       <CardContent className="flex items-center space-x-2">
-        <Progress value={progressPercentage} className="w-[60%]" />
+        <Progress value={progressPercentage} className="w-full" />
       </CardContent>
       <CardFooter>
         <p className="text-sm">
