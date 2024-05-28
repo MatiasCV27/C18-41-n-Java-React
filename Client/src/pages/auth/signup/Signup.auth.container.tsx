@@ -85,14 +85,20 @@ const SignupContainer = () => {
             // } else {
             //     console.log(`Error al crear el usuario ${username}`);
             // }
+
+            navigate('/signin');
         } catch (error) {
             console.log(error);
         }
     };
 
+    const handleGoogleSignin = () => {
+        console.log('Signin with Google');
+    }
+
     return (
         <>
-            <SignupView form={form} onSubmit={handleSignup} />
+            <SignupView form={form} onSubmit={handleSignup} onGoogleSignin={handleGoogleSignin} />
         </>
     );
 };
