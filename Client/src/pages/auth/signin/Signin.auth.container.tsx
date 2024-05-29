@@ -2,13 +2,12 @@ import { z } from 'zod';
 import SigninView from './Signin.auth.view';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { useAuthStore } from '@/stores/auth/auth.store';
 
+
 const SigninContainer = () => {
-    const checkingCredentials = useAuthStore(
-        (state) => state.checkingCredentials
-    );
+    const signinUser = useAuthStore((state) => state.signinUser);
+
     const FormSchema = z.object({
         username: z.string().min(2, { message: 'Debe ingresar un usuario' }),
         password: z.string().min(8, {
@@ -27,35 +26,37 @@ const SigninContainer = () => {
 
     const handleSignin: SubmitHandler<FormSchemaType> = async (data) => {
         const { username, password } = data;
-        checkingCredentials();
+        
         console.log(username, password);
+
+        signinUser(username, password);
     };
 
     const handleGoogleSignin = async () => {
         console.log('Signin with Google');
-        checkingCredentials();
+        
 
-        async function simulateGoogleAuthentication() {
-            // Simulamos una conexión a la API de autenticación de Google
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // Simulamos una respuesta exitosa de la API
-                    const accessToken = '1234567890';
-                    const response = { accessToken : accessToken };
-                    console.log(
-                        'Respuesta exitosa de la API de autenticación de Google'
-                    );
-                    resolve(response);
-                }, 3000);
-            });
-        }
+        // async function simulateGoogleAuthentication() {
+        //     // Simulamos una conexión a la API de autenticación de Google
+        //     return new Promise((resolve) => {
+        //         setTimeout(() => {
+        //             // Simulamos una respuesta exitosa de la API
+        //             const accessToken = '1234567890';
+        //             const response = { accessToken: accessToken };
+        //             console.log(
+        //                 'Respuesta exitosa de la API de autenticación de Google'
+        //             );
+        //             resolve(response);
+        //         }, 3000);
+        //     });
+        // }
 
-        try {
-           const  credentials =     await simulateGoogleAuthentication();
-            console.log('Autenticación de Google exitosa', credentials);
-        } catch (error) {
-            console.error('Error en la autenticación de Google:', error);
-        }
+        // try {
+        //     const credentials = await simulateGoogleAuthentication();
+        //     console.log('Autenticación de Google exitosa', credentials);
+        // } catch (error) {
+        //     console.error('Error en la autenticación de Google:', error);
+        // }
     };
 
     return (
