@@ -1,3 +1,4 @@
+// Menubar.view.tsx
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -13,8 +14,9 @@ import {
 import { Button } from "@/components/ui";
 
 const MenubarView: React.FC = () => {
+  
   const menuItems = [
-    { name: "Inicio", path: "/", icon: <Home /> },
+    { name: "Inicio", path: "/inicio", icon: <Home /> },
     { name: "Estudiantes", path: "/estudiantes", icon: <UserRound /> },
     { name: "Tutores", path: "/tutores", icon: <Users /> },
     { name: "Explorar", path: "/explorar", icon: <Globe /> },
@@ -37,8 +39,8 @@ const MenubarView: React.FC = () => {
                 className={({ isActive }) =>
                   `flex items-center space-x-2 p-2 rounded-lg ${
                     isActive
-                      ? "bg-accent-foreground text-white"
-                      : "text-black hover:bg-accent-foreground hover:text-white"
+                      ? 'bg-accent-foreground text-white'
+                      : 'text-black hover:bg-accent-foreground hover:text-white'
                   }`
                 }
               >

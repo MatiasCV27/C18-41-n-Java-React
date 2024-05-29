@@ -1,4 +1,3 @@
-import Layout from "@/layout/Layout";
 import UserHomeBannerContainer from "@/components/UserHomeBanner/UserHomeBanner.container";
 import UserHomeSearchContainer from "@/components/UserHomeSearch/UserHomeSearch.container";
 import UserHomeCardContainer from "@/components/UserHomeCard/UserHomeCard.container";
@@ -30,25 +29,23 @@ const HomeView = () => {
   }, []);
 
   return (
-    <Layout>
-      <main className="flex flex-col mt-[24px] w-[1174px] mx-auto">
-        <UserHomeSearchContainer />
-        <UserHomeBannerContainer />
-        <section className="w-full mt-[34px] flex justify-between">
-          {cardsData.map((card) => (
-            <UserHomeCardContainer
-              key={card.id}
-              title={card.title}
-              completedClasses={card.completedClasses}
-              totalClasses={card.totalClasses}
-            />
-          ))}
-        </section>
-        <div className="mt-[34px] flex justify-center">
-          <CronogramaContainer />
-        </div>
-      </main>
-    </Layout>
+    <main className="flex flex-col mt-[24px] w-[1174px] mx-auto">
+      <UserHomeSearchContainer />
+      <UserHomeBannerContainer />
+      <section className="w-full mt-[34px] flex justify-between">
+        {cardsData.map((card) => (
+          <UserHomeCardContainer
+            key={card.id}
+            title={card.title}
+            completedClasses={card.completedClasses}
+            totalClasses={card.totalClasses}
+          />
+        ))}
+      </section>
+      <div className="absolute bottom-[24px] flex justify-center">
+        <CronogramaContainer />
+      </div>
+    </main>
   );
 };
 

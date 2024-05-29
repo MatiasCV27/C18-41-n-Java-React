@@ -17,10 +17,10 @@ const horas = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00"];
 
 const CronogramaView: React.FC<CronogramaViewProps> = ({ clases }) => {
   return (
-    <div className="w-[1174px] h-auto bg-white border-2 border-secondary rounded-lg p-[24px] text-muted">
+    <div className="w-[1174px] h-auto bg-white border-2 border-secondary rounded-lg p-[24px] text-black text-lg">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-bold">Cronograma</h2>
-        <div className="flex items-center">
+        <div className="flex items-center ">
           <span className="mr-2 cursor-pointer hover:underline">Ver todo</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const CronogramaView: React.FC<CronogramaViewProps> = ({ clases }) => {
       <div className="grid grid-cols-8 gap-2">
         <div className="col-span-1"></div>
         {horas.map((hora) => (
-          <div key={hora} className="text-center text-sm">
+          <div key={hora} className="text-center text-lg">
             {hora}
           </div>
         ))}
@@ -52,17 +52,17 @@ const CronogramaView: React.FC<CronogramaViewProps> = ({ clases }) => {
           {horas.map((hora) => {
             const clase = clases.find((c) => c.dia === dia && c.hora === hora);
             return (
-              <div key={hora} className="col-span-1">
+              <div key={hora} className="col-span-1 ">
                 {clase ? (
-                  <div className="bg-purple-200 p-2 rounded-lg flex items-center">
+                  <div className="bg-purple-200 p-2 rounded-lg flex items-center ">
                     <img
                       src={clase.img}
                       alt={clase.nombre}
                       className="h-6 w-6 rounded-full mr-2"
                     />
                     <div>
-                      <div className="font-bold text-xs">{clase.nombre}</div>
-                      <div className="text-xs">{clase.clase}</div>
+                      <div className="font-bold text-sm">{clase.nombre}</div>
+                      <div className="text-sm">{clase.clase}</div>
                     </div>
                   </div>
                 ) : (
