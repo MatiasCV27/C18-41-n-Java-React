@@ -1,3 +1,4 @@
+import { SignInDto } from '@/dtos/signin.dto';
 import { SignupDto } from '@/dtos/signup.dto';
 import HttpClient from '@/utils/HttpClient/HttpClient.utils';
 
@@ -10,5 +11,9 @@ export class AuthRepository {
 
     async signUp(signUpDto: SignupDto) {
         return await this.httpClient.post('/register', signUpDto);
+    }
+
+    async signIn(signInDto: SignInDto) {
+        return await this.httpClient.post('/login', signInDto);
     }
 }

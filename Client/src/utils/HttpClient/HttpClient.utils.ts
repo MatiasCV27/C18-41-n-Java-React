@@ -1,71 +1,61 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, {
+    AxiosInstance,
+    AxiosRequestConfig,
+    InternalAxiosRequestConfig,
+} from 'axios';
+import { useAuthStore } from '@/stores/auth/auth.store';
 
 export default class HttpClient {
     private http: AxiosInstance;
-    private token: string | null = null;
+
     constructor(baseURL: string) {
         this.http = axios.create({
             baseURL,
-            headers: {
-                'Content-Type': 'application/json',
-            },
         });
+
+        this.addTokenToRequestHeader();
     }
 
-    setToken(token: string) {
-        this.token = token;
-    }
+    private addTokenToRequestHeader() {
+        this.http.interceptors.request.use(
+            (config: InternalAxiosRequestConfig) => {
+                const token = useAuthStore.getState().token;
+                console.log(token);
 
-    getAuthHeader() {
-        return this.token ? { Authorization: `Bearer ${this.token}` } : {};
-    }
+                if (token) {
+                    config.headers['Authorization'] = `Bearer ${token}`;
+                }
 
+                return config;
+            }
+        );
+    }
     async get(url: string, config: AxiosRequestConfig = {}) {
         return this.http.get(url, {
             ...config,
-            headers: {
-                ...this.getAuthHeader(),
-                ...config.headers,
-            },
         });
     }
     async post(url: string, data: {}, config: AxiosRequestConfig = {}) {
         return this.http.post(url, data, {
             ...config,
-            headers: {
-                ...this.getAuthHeader(),
-                ...config.headers,
-            },
         });
     }
 
     async put(url: string, data: {}, config: AxiosRequestConfig = {}) {
         return this.http.put(url, data, {
             ...config,
-            headers: {
-                ...this.getAuthHeader(),
-                ...config.headers,
-            },
         });
     }
 
     async delete(url: string, config: AxiosRequestConfig = {}) {
         return this.http.delete(url, {
             ...config,
-            headers: {
-                ...this.getAuthHeader(),
-                ...config.headers,
-            },
         });
     }
 
     async patch(url: string, data: {}, config: AxiosRequestConfig = {}) {
         return this.http.patch(url, data, {
             ...config,
-            headers: {
-                ...this.getAuthHeader(),
-                ...config.headers,
-            },
         });
     }
 }
