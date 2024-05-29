@@ -22,14 +22,14 @@ body {
         --primary: 222.2 47.4% 11.2%;
         --primary-foreground: 210 40% 98%;
 
-        --secondary: 210 40% 96.1%;
+        --secondary: 248.57 71.43% 90.39%; /* lila accent */
         --secondary-foreground: 222.2 47.4% 11.2%;
 
         --muted: 213.33 9.89% 17.84%; /* Gris neutro */
         --muted-foreground: 215.4 16.3% 46.9%;
 
         --accent: 194.39 100% 61.57%; /* turqueza accent */
-        --accent-foreground: 0 0% 20%; /* turqueza principal */
+        --accent-foreground: 213.33 9.89% 17.84%; /* negro azulado */
 
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 210 40% 98%;

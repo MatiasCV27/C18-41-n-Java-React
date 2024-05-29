@@ -1,16 +1,20 @@
-import React from "react";
-import MenubarContainer from "@/components/Menubar/Menubar.container";
+// Layout.tsx
+import { Outlet } from "react-router-dom";
+import MenuBarContainer from "@/components/Menubar/Menubar.container";
 import SidebarContainer from "@/components/Sidebar/Sidebar.container";
+import React, { ReactNode } from "react";
 
-interface Props {
-  children: React.ReactNode;
+interface LayoutProps {
+  children?: ReactNode;
 }
-
-export const Layout = ({ children }: Props) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex justify-center">
-      <MenubarContainer />
-      <div>{children}</div>
+    <div className="flex">
+      <MenuBarContainer />
+      <div className="flex-grow p-6">
+        {children}
+        <Outlet />
+      </div>
       <SidebarContainer />
     </div>
   );

@@ -27,7 +27,7 @@ const SignupContainer = () => {
                 .min(2, {
                     message: 'El nombre debe tener al menos 2 caracteres',
                 })
-                .max(60, {
+                .max(50, {
                     message: 'El nombre debe tener un maximo de 60 caracteres',
                 }),
             lastName: z
@@ -35,12 +35,14 @@ const SignupContainer = () => {
                 .min(2, {
                     message: 'El apellido debe tener al menos 2 caracteres',
                 })
-                .max(60, {
+                .max(50, {
                     message:
                         'El apellido debe tener un maximo de 60 caracteres',
                 }),
             password: z.string().min(8, {
                 message: 'La contraseña debe tener al menos 8 caracteres',
+            }).max(50, {
+                message: 'La contraseña debe tener un maximo de 50 caracteres',
             }),
             confirmPassword: z.string(),
             terms: z.boolean(),
@@ -85,14 +87,20 @@ const SignupContainer = () => {
             // } else {
             //     console.log(`Error al crear el usuario ${username}`);
             // }
+
+            navigate('/signin');
         } catch (error) {
             console.log(error);
         }
     };
 
+    const handleGoogleSignin = () => {
+        console.log('Signin with Google');
+    }
+
     return (
         <>
-            <SignupView form={form} onSubmit={handleSignup} />
+            <SignupView form={form} onSubmit={handleSignup} onGoogleSignin={handleGoogleSignin} />
         </>
     );
 };
