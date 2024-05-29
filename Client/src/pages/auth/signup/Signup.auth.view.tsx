@@ -24,9 +24,10 @@ interface Props {
         username: string;
         terms: boolean;
     }) => void;
+    onGoogleSignin: () => void;
 }
 
-const SignupView: FC<Props> = ({ form, onSubmit }) => {
+const SignupView: FC<Props> = ({ form, onSubmit , onGoogleSignin }) => {
     return (
         <section className="flex flex-col">
         <h1 className="text-3xl font-bold mt-6  mb-2 ml-6 tracking-wide bg-transparent">
@@ -266,6 +267,7 @@ const SignupView: FC<Props> = ({ form, onSubmit }) => {
                                 type="button"
                                 className="w-full border-accent  text-base  h-14 bg-background text-black hover:bg-accent-foreground hover:text-white"
                                 variant={'outline'}
+                                onClick={onGoogleSignin}
                             >
                                 <GoogleIcon />
                             </Button>

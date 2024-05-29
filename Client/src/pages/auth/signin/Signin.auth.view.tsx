@@ -15,9 +15,10 @@ import { Link } from 'react-router-dom';
 interface Props {
     form: any;
     onSubmit: (data: { username: string; password: string }) => void;
+    onGoogleSignin: () => void;
 }
 
-const SigninView: FC<Props> = ({ form, onSubmit }) => {
+const SigninView: FC<Props> = ({ form, onSubmit, onGoogleSignin }) => {
     return (
         <section className="flex flex-col">
             <h1 className="text-3xl font-bold mt-6  mb-2 ml-6 tracking-wide bg-transparent">
@@ -54,7 +55,6 @@ const SigninView: FC<Props> = ({ form, onSubmit }) => {
                                                     <FormControl>
                                                         <Input
                                                             className="rounded border text-gray-700 border-gray-400 h-14 text-base font-normal placeholder:text-gray-400"
-                                                            
                                                             type="texts"
                                                             placeholder="Ingresa nombre de usuario"
                                                             {...field}
@@ -117,6 +117,7 @@ const SigninView: FC<Props> = ({ form, onSubmit }) => {
                                 <span className="h-[2px] w-full bg-gray-200 my-1" />
                             </div>
                             <Button
+                                onClick={onGoogleSignin}
                                 type="button"
                                 className="w-full border-accent  text-base  h-14 bg-background text-black hover:bg-accent-foreground hover:text-white"
                                 variant={'outline'}
