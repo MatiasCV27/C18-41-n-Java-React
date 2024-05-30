@@ -30,7 +30,7 @@ const SignupContainer = () => {
                 .max(50, {
                     message: 'El nombre debe tener un maximo de 60 caracteres',
                 }),
-            lastName: z
+            lastname: z
                 .string()
                 .min(2, {
                     message: 'El apellido debe tener al menos 2 caracteres',
@@ -39,11 +39,15 @@ const SignupContainer = () => {
                     message:
                         'El apellido debe tener un maximo de 60 caracteres',
                 }),
-            password: z.string().min(8, {
-                message: 'La contraseña debe tener al menos 8 caracteres',
-            }).max(50, {
-                message: 'La contraseña debe tener un maximo de 50 caracteres',
-            }),
+            password: z
+                .string()
+                .min(8, {
+                    message: 'La contraseña debe tener al menos 8 caracteres',
+                })
+                .max(50, {
+                    message:
+                        'La contraseña debe tener un maximo de 50 caracteres',
+                }),
             confirmPassword: z.string(),
             terms: z.boolean(),
         })
@@ -59,7 +63,7 @@ const SignupContainer = () => {
         defaultValues: {
             email: '',
             name: '',
-            lastName: '',
+            lastname: '',
             password: '',
             confirmPassword: '',
             username: '',
@@ -68,25 +72,26 @@ const SignupContainer = () => {
     });
 
     const handleSignup: SubmitHandler<FormSchemaType> = async (data) => {
-        const { email, name, lastName, password, username, terms } = data;
+        const { email, name, lastname, password, username, terms } = data;
         const signnupDto = {
             email,
             name,
-            lastName,
+            lastname,
             password,
             username,
             terms,
         };
 
         try {
-            console.log(signnupDto);
-            // const response = await authController.signUp(signnupDto);
-            // if (response.data.status) {
-            //     console.log(`Usuario creado exitosamente ${username}`);
-            //     navigate('/signin');
-            // } else {
-            //     console.log(`Error al crear el usuario ${username}`);
-            // }
+            console.log('Pasados por dto', signnupDto);
+            const response = await authController.signUp(signnupDto);
+            console.log(response);
+            if (response.status === 200) {
+                console.log(`Usuario creado exitosamente ${username}`);
+                navigate('/signin');
+            } else {
+                console.log(`Error al crear el usuario ${username}`);
+            }
 
             navigate('/signin');
         } catch (error) {
@@ -96,11 +101,15 @@ const SignupContainer = () => {
 
     const handleGoogleSignin = () => {
         console.log('Signin with Google');
-    }
+    };
 
     return (
         <>
-            <SignupView form={form} onSubmit={handleSignup} onGoogleSignin={handleGoogleSignin} />
+            <SignupView
+                form={form}
+                onSubmit={handleSignup}
+                onGoogleSignin={handleGoogleSignin}
+            />
         </>
     );
 };

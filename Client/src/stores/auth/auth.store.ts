@@ -32,6 +32,8 @@ export const storeApi: StateCreator<AuthState> = (set) => ({
                 username,
                 password,
             });
+
+            
             set({ status: 'authorized', token, user });
         } catch (error) {
             set({ status: 'unauthorized', token: undefined, user: undefined });
