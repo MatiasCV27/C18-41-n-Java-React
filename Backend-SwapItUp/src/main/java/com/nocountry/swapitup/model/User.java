@@ -32,11 +32,11 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 50)
     private String lastname;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, unique = true, length = 50)
     private String username;
 
     @Email
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, length = 50)
     private String email;
 
     @Size(min = 8)
@@ -45,20 +45,15 @@ public class User implements UserDetails {
 
     private boolean isActive;
 
-    @Min(value = 0)
-    private Integer points;
-
-    private String image;
-
-    @Column(length = 450)
-    private String aboutMe;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false)
     private LocalDateTime createAt;
 
     @Enumerated(EnumType.STRING)
     private Rolename role;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Profile profile;
 
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;

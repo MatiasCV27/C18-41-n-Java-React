@@ -19,9 +19,6 @@ public class RegisterRequest {
     String email;
     String password;
     boolean isActive;
-    Integer points;
-    String image;
-    String aboutMe;
     LocalDateTime createAt;
 
 }

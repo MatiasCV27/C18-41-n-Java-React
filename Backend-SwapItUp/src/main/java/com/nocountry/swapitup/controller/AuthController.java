@@ -1,9 +1,6 @@
 package com.nocountry.swapitup.controller;
 
-import com.nocountry.swapitup.auth.AuthResponse;
-import com.nocountry.swapitup.auth.AuthService;
-import com.nocountry.swapitup.auth.LoginRequest;
-import com.nocountry.swapitup.auth.RegisterRequest;
+import com.nocountry.swapitup.auth.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +21,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
 

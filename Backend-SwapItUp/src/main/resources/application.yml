@@ -10,7 +10,6 @@ spring:
   logging:
     level:
       org.springframework.security: TRACE
-
   jpa:
     hibernate:
       ddl-auto: update
