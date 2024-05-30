@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex">
       <MenuBarContainer />
-      <div className="flex-grow p-6">
+      <div className="flex-grow px-[24px] py-[24px]">
         {children}
         <Outlet />
       </div>

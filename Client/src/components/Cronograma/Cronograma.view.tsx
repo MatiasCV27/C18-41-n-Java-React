@@ -17,7 +17,7 @@ const horas = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00"];
 
 const CronogramaView: React.FC<CronogramaViewProps> = ({ clases }) => {
   return (
-    <div className="w-[1174px] h-auto bg-white border-2 border-secondary rounded-lg p-[24px] text-black text-lg">
+    <div className="lg:w-[476px] xl:w-[683px] 2xl:w-[1174px] h-auto bg-white border-2 border-secondary rounded-lg p-[24px] text-black text-lg">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-bold">Cronograma</h2>
         <div className="flex items-center ">

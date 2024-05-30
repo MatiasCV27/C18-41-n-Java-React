@@ -5,7 +5,7 @@ import Layout from "@/layout/Layout";
 import SigninContainer from "@/pages/auth/signin/Signin.auth.container";
 import SignupContainer from "@/pages/auth/signup/Signup.auth.container";
 import HomeContainer from "@/pages/home/Home.container";
-import EstudiantesContainer from "@/pages/students/Estudiantes.container";
+import EstudiantesContainer from "@/pages/estudiantes/Estudiantes.container";
 import TutoresContainer from "@/pages/tutores/Tutores.container";
 import ExplorarContainer from "@/pages/explorar/Explorar.container";
 import RecursosContainer from "@/pages/recursos/Recursos.container";

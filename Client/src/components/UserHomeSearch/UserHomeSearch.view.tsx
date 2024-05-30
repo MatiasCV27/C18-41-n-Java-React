@@ -12,7 +12,7 @@ import SearchInputContainer from "@/components/SearchInput/SearchInput.container
 
 const UserHomeSearchView: React.FC = () => {
   return (
-    <div className="flex space-x-4 mb-[24px]">
+    <div className="flex space-x-4">
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center space-x-2 p-2 cursor-pointer">
           <span>Áreas</span>

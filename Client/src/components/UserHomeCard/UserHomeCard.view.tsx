@@ -28,7 +28,7 @@ const UserHomeCardView: React.FC<UserHomeCardProps> = ({
   const progressPercentage = (completedClasses / totalClasses) * 100;
 
   return (
-    <Card className="w-[214px] h-[250px] justify-start">
+    <Card className="lg:w-[226px] xl:w-[214px] 2xl:w-[214px] lg:h-[236px] xl:h-[236px] 2xl:h-[250px] justify-start">
       <img
         src={UserHomeCard}
         alt=""
@@ -45,17 +45,17 @@ const UserHomeCardView: React.FC<UserHomeCardProps> = ({
           </div>
         </div>
       </CardHeader>
-      <CardContent className="flex items-center space-x-2">
+      <CardContent className="flex flex-col">
         <Progress value={progressPercentage} className="w-full" />
+        <div className="flex items-center space-x-2 mt-1">
+          <p className="text-sm">
+            {completedClasses} de {totalClasses} clases completadas
+          </p>
+          <span>
+            {completedClasses}/{totalClasses}
+          </span>
+        </div>
       </CardContent>
-      <CardFooter>
-        <p className="text-sm">
-          {completedClasses} de {totalClasses} clases completadas
-        </p>
-        <span>
-          {completedClasses}/{totalClasses}
-        </span>
-      </CardFooter>
     </Card>
   );
 };
