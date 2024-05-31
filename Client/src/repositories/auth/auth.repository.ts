@@ -5,6 +5,8 @@ import HttpClient from '@/utils/HttpClient/HttpClient.utils';
 const apiURL = import.meta.env.VITE_API_URL;
 
 console.log(apiURL);
+//
+
 export class AuthRepository {
     private httpClient: HttpClient = new HttpClient(`${apiURL}/auth`);
     constructor() {}
@@ -16,4 +18,6 @@ export class AuthRepository {
     async signIn(signInDto: SignInDto) {
         return await this.httpClient.post('/login', signInDto);
     }
+
+    // Se simula la llamada al endpoint /check-status
 }
