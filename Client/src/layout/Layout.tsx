@@ -9,23 +9,23 @@ interface LayoutProps {
     children?: ReactNode;
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-    const status = useAuthStore((state) => state.status);
+
+         const status = useAuthStore((state) => state.status);
 
     if (status === 'unauthorized') {
         return <Navigate to="/signin" />;
     }
+  return (
+    <div className="flex">
+      <MenuBarContainer />
+      <div className="flex-grow px-[24px] py-[24px]">
+        {children}
+        <Outlet />
+      </div>
+      <SidebarContainer />
+    </div>
+  );
 
-    console.log(status);
-    return (
-        <div className="flex">
-            <MenuBarContainer />
-            <div className="flex-grow p-6">
-                {children}
-                <Outlet />
-            </div>
-            <SidebarContainer />
-        </div>
-    );
 };
 
 export default Layout;

@@ -16,7 +16,7 @@ import UserHomeNewsContainer from "@/components/UserHomeNews/UserHomeNews.contai
 
 const SidebarView: React.FC = () => {
   return (
-    <aside className="fixed top-6 bottom-6 right-6 w-[291px] flex flex-col justify-start">
+    <aside className="fixed top-[24px] bottom-[24px] right-[24px] lg:w-[226px] xl:w-[291px] 2xl:w-[291px] flex flex-col justify-start">
       {/* Iconos de punto, notificacion y avatar */}
       <div className="flex items-center justify-between p-2">
         <div className="flex-1 flex items-center justify-end space-x-6">
