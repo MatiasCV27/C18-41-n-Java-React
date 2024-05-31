@@ -18,7 +18,7 @@ interface Props {
     onSubmit: (data: {
         email: string;
         name: string;
-        lastName: string;
+        lastname: string;
         password: string;
         confirmPassword: string;
         username: string;
@@ -27,10 +27,10 @@ interface Props {
     onGoogleSignin: () => void;
 }
 
-const SignupView: FC<Props> = ({ form, onSubmit , onGoogleSignin }) => {
+const SignupView: FC<Props> = ({ form, onSubmit, onGoogleSignin }) => {
     return (
         <section className="flex flex-col">
-        <h1 className="text-3xl font-bold mt-6  mb-2 ml-6 tracking-wide bg-transparent">
+            <h1 className="text-3xl font-bold mt-6  mb-2 ml-6 tracking-wide bg-transparent">
                 <span className="text-blue-500">Swap</span> It Up
             </h1>
             <div className="container container-lg w-full mx-auto flex justify-center items-center min-h-screen gap-x-6">
@@ -137,7 +137,7 @@ const SignupView: FC<Props> = ({ form, onSubmit , onGoogleSignin }) => {
                                     />
                                     <FormField
                                         control={form.control}
-                                        name="lastName"
+                                        name="lastname"
                                         render={({ field }) => (
                                             <FormItem>
                                                 <div className="md:my-3 my-2">

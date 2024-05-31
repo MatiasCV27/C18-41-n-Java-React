@@ -3,9 +3,10 @@ import SigninView from './Signin.auth.view';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuthStore } from '@/stores/auth/auth.store';
-
+import { useNavigate } from 'react-router-dom';
 
 const SigninContainer = () => {
+    const navigate = useNavigate();
     const signinUser = useAuthStore((state) => state.signinUser);
 
     const FormSchema = z.object({
@@ -26,15 +27,19 @@ const SigninContainer = () => {
 
     const handleSignin: SubmitHandler<FormSchemaType> = async (data) => {
         const { username, password } = data;
-        
+
         console.log(username, password);
 
-        signinUser(username, password);
+        try {
+            await signinUser(username, password);
+            navigate('/inicio');
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleGoogleSignin = async () => {
         console.log('Signin with Google');
-        
 
         // async function simulateGoogleAuthentication() {
         //     // Simulamos una conexión a la API de autenticación de Google

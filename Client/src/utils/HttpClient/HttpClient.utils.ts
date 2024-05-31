@@ -20,7 +20,7 @@ export default class HttpClient {
         this.http.interceptors.request.use(
             (config: InternalAxiosRequestConfig) => {
                 const token = useAuthStore.getState().token;
-                console.log(token);
+                console.log('token desde interceptor:', token);
 
                 if (token) {
                     config.headers['Authorization'] = `Bearer ${token}`;
