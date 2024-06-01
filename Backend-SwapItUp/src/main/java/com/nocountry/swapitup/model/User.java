@@ -1,5 +1,6 @@
 package com.nocountry.swapitup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nocountry.swapitup.enums.Rolename;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -53,6 +54,7 @@ public class User implements UserDetails {
     private Rolename role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Profile profile;
 
     @OneToMany(mappedBy = "user")
