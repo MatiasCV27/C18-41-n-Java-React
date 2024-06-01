@@ -17,7 +17,7 @@ export class AuthService {
     async signIn(signInDto: SignInDto): Promise<LoginResponse> {
         try {
             const { data } = await this.authRepository.signIn(signInDto);
-            console.log(data);
+            console.log('Desde servicio: ', data);
             return data;
         } catch (error) {
             if (error instanceof AxiosError) {
@@ -25,7 +25,7 @@ export class AuthService {
                 throw new Error(error.response?.data);
             }
             console.log(error);
-            throw new Error('Unable to sign in');
+            throw new Error('Unable to signIn');
         }
     }
 }

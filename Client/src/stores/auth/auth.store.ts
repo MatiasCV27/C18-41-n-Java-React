@@ -17,12 +17,13 @@ interface AuthState {
     status: AuthStatus;
     user?: User;
     token?: string;
-
+    
     signinUser: (username: string, password: string) => Promise<void>;
+    logoutUser: () => void;
 }
 
 export const storeApi: StateCreator<AuthState> = (set) => ({
-    status: 'pending',
+    status: 'unauthorized',
     token: undefined,
     user: undefined,
 
@@ -38,6 +39,10 @@ export const storeApi: StateCreator<AuthState> = (set) => ({
             set({ status: 'unauthorized', token: undefined, user: undefined });
             throw 'Unauthorized';
         }
+    },
+
+    logoutUser: () => {
+        set({ status: 'unauthorized', token: undefined, user: undefined });
     },
 });
 

@@ -4,10 +4,18 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuthStore } from '@/stores/auth/auth.store';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const SigninContainer = () => {
     const navigate = useNavigate();
     const signinUser = useAuthStore((state) => state.signinUser);
+    const status = useAuthStore((state) => state.status);
+
+    useEffect(() => {
+        if (status === 'authorized') {
+            navigate('/inicio');
+        }
+    }, [status]);
 
     const FormSchema = z.object({
         username: z.string().min(2, { message: 'Debe ingresar un usuario' }),
@@ -28,7 +36,7 @@ const SigninContainer = () => {
     const handleSignin: SubmitHandler<FormSchemaType> = async (data) => {
         const { username, password } = data;
 
-        console.log(username, password);
+        console.log('desde signin en container', username, password);
 
         try {
             await signinUser(username, password);

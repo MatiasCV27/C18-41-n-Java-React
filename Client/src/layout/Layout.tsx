@@ -8,24 +8,21 @@ import { useAuthStore } from '@/stores/auth/auth.store';
 interface LayoutProps {
     children?: ReactNode;
 }
-const Layout: React.FC<LayoutProps> = ({ children }) => {
-
-         const status = useAuthStore((state) => state.status);
+const Layout: React.FC<LayoutProps> = () => {
+    const status = useAuthStore((state) => state.status);
 
     if (status === 'unauthorized') {
         return <Navigate to="/signin" />;
     }
-  return (
-    <div className="flex">
-      <MenuBarContainer />
-      <div className="flex-grow px-[24px] py-[24px]">
-        {children}
-        <Outlet />
-      </div>
-      <SidebarContainer />
-    </div>
-  );
-
+    return (
+        <div className="flex">
+            <MenuBarContainer />
+            <div className="flex-grow px-[24px] py-[24px]">                
+                <Outlet />
+            </div>
+            <SidebarContainer />
+        </div>
+    );
 };
 
 export default Layout;
