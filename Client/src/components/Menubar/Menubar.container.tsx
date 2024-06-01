@@ -1,6 +1,6 @@
 import MenubarView from './Menubar.view';
 
-const SidebarContainer = () => {
+const MenuBarContainer = () => {
     return (
         <>
             <MenubarView />
@@ -8,4 +8,4 @@ const SidebarContainer = () => {
     );
 };
 
-export default SidebarContainer;
+export default MenuBarContainer;

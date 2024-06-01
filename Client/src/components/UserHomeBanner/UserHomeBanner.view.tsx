@@ -1,21 +1,22 @@
-import React from "react";
-import Book from "../../assets/bookBanner.png";
-import { Button } from "@/components/ui";
-import { ArrowRight } from "lucide-react";
+import React from 'react';
+import Book from '../../assets/bookBanner.png';
+import { Button } from '@/components/ui';
+import { ArrowRight } from 'lucide-react';
 
-const UserHomeBannerView: React.FC = () => {
+
+const UserHomeBannerView: React.FC = ({ name }) => {
   return (
-    <div className="w-full h-[212px] bg-muted relative rounded-lg  overflow-hidden">
+    <div className="w-full h-auto bg-muted relative rounded-lg overflow-hidden">
       <div className="w-2/3 flex flex-col justify-center items-start p-6 z-10">
         <h1 className="text-3xl font-bold mb-2 text-accent z-10">
-          ¡Hola, Usuario!
+          {name ? `Hola, ${name}` : 'Hola Usuario'}
         </h1>
         <p className="text-xl text-white text-pretty mb-4 z-10">
           Bienvenido, activa tu agenda para impartir clases Quiero ser tutor
         </p>
         <Button className="bg-white text-black hover:bg-white border border-muted rounded-lg mt-8 z-10 hover:translate-x-1 transition-transform">
-          <span className="flex items-center">
-            Quiero ser tutor <ArrowRight className="ml-2 h-6 w-6" />
+          <span className="flex items-center ">
+            Quiero ser tutor <ArrowRight size={18} className="ml-4" />
           </span>
         </Button>
       </div>
@@ -33,6 +34,7 @@ const UserHomeBannerView: React.FC = () => {
       <img src={Book} alt="Books" className="absolute right-10 bottom-5 z-10" />
     </div>
   );
+
 };
 
 export default UserHomeBannerView;
