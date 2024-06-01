@@ -1,29 +1,18 @@
 import React from 'react';
 import { Zap, BellDot } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+
 import NotificationCardContainer from '../NotificationCard/NotificationCard.container';
 import CalendarContainer from '../Calendar/Calendar.container';
 import UserHomeNewsContainer from '@/components/UserHomeNews/UserHomeNews.container';
-import { NavLink } from 'react-router-dom';
+import DropdownUserContainer from '../DropdownUser/DropdownUser.container';
 
-interface Props {
-    onLogout: () => void;
-}
+interface Props {}
 
-const SidebarView: React.FC<Props> = ({ onLogout }) => {
+const SidebarView: React.FC<Props> = () => {
     return (
         <aside className="fixed top-[24px] bottom-[24px] right-[24px] lg:w-[226px] xl:w-[291px] 2xl:w-[291px] flex flex-col justify-start">
             {/* Iconos de punto, notificacion y avatar */}
-            <div className="flex items-center justify-between p-2">
+            <div className="flex items-center justify-between p-2 ">
                 <div className="flex-1 flex items-center justify-end space-x-6">
                     <div className="flex space-x-2">
                         <span className="text-black font-medium text-xl">
@@ -39,37 +28,8 @@ const SidebarView: React.FC<Props> = ({ onLogout }) => {
                         </div>
                     </div>
                     <BellDot size={30} color="black" />
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Avatar className="h-[50px] w-[50px] border-2 border-black cursor-pointer">
-                                <AvatarImage
-                                    src="https://github.com/shadcn.png"
-                                    alt="Avatar de usuario"
-                                />
-                                <AvatarFallback>Usuario</AvatarFallback>
-                            </Avatar>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-56">
-                            <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuGroup>
-                                <DropdownMenuItem>Mis datos</DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    Mi suscripción
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    Configuración
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>Ayuda</DropdownMenuItem>
-                            </DropdownMenuGroup>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem className="text-red-600">
-                                <NavLink onClick={onLogout} to="/signin">
-                                    Cerrar sesión
-                                </NavLink>
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+
+                    <DropdownUserContainer />
                 </div>
             </div>
             {/* Contenido restante del Sidebar: Calendario, notificaciones, etc */}
