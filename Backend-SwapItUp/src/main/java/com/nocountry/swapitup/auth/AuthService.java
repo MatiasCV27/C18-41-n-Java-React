@@ -2,7 +2,9 @@ package com.nocountry.swapitup.auth;
 
 import com.nocountry.swapitup.enums.Rolename;
 import com.nocountry.swapitup.jwt.JwtService;
+import com.nocountry.swapitup.model.Profile;
 import com.nocountry.swapitup.model.User;
+import com.nocountry.swapitup.repository.ProfileRepository;
 import com.nocountry.swapitup.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +20,7 @@ import java.time.LocalDateTime;
 public class AuthService {
 
     private final UserRepository userRepository;
+    private final ProfileRepository profileRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -38,7 +41,7 @@ public class AuthService {
                 .build();
     }
 
-    public AuthResponse register(RegisterRequest request) {
+    public String register(RegisterRequest request) {
         User user = User.builder()
                 .name(request.getName())
                 .lastname(request.getLastname())
@@ -46,18 +49,17 @@ public class AuthService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .username(request.getUsername())
                 .isActive(true)
-                .points(0)
-                .image("")
-                .aboutMe("")
                 .createAt(LocalDateTime.now())
                 .role(Rolename.ROLE_USER)
                 .build();
-
         userRepository.save(user);
 
-        return AuthResponse.builder()
-                .token(jwtService.getToken(user))
+        Profile profile = Profile.builder()
+                .user(user)
                 .build();
+        profileRepository.save(profile);
+
+        return "El usuario " + request.getUsername() + " se registró exitosamente";
     }
 
 }
