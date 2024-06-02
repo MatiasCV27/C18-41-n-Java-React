@@ -57,6 +57,10 @@ public class User implements UserDetails {
     @JsonIgnore
     private Profile profile;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Tutor tutor;
+
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
