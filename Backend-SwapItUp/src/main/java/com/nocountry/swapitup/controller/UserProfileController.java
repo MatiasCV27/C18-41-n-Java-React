@@ -5,8 +5,13 @@ import com.nocountry.swapitup.model.Profile;
 import com.nocountry.swapitup.model.User;
 import com.nocountry.swapitup.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/profile")
@@ -33,6 +38,34 @@ public class UserProfileController {
     @DeleteMapping(value = "{username}")
     public ResponseEntity<String> deleteUser(@PathVariable(value = "username") String username) {
         return ResponseEntity.ok(userService.eliminarUsuario(username));
+    }
+
+    //IMAGEN
+
+    @PostMapping(value = "/{id}/image")
+    public ResponseEntity<Profile> uploadImage(@PathVariable Integer id, @RequestParam MultipartFile imageFile){
+        try{
+            Profile profile = userService.saveImage(id,imageFile);
+            return ResponseEntity.ok(profile);
+        }catch (IOException e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping(value = "/{id}/image")
+    public ResponseEntity<Void> deleteImage(@PathVariable Integer id){
+        userService.deleteImage(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/{id}/image")
+    public ResponseEntity<byte[]> getImage(@PathVariable String userName){
+        Optional<UserProfileDto> profile = Optional.ofNullable(userService.getProfile(userName));
+        if(profile.isPresent() && profile.get().getImage() != null){
+            return ResponseEntity.ok(profile.get().getImage());
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

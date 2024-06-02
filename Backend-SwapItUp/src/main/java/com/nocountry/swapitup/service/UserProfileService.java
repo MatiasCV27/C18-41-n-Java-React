@@ -8,6 +8,10 @@ import com.nocountry.swapitup.repository.ProfileRepository;
 import com.nocountry.swapitup.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Optional;
 
 import static com.nocountry.swapitup.utils.infoTokenUtils.getUsernameToken;
 
@@ -81,4 +85,25 @@ public class UserProfileService {
         }
     }
 
+    public Profile saveImage(Integer profileId, MultipartFile imageFile) throws IOException {
+        Optional<Profile> profileOptional = profileRepository.findById(profileId);
+        if(profileOptional.isPresent()){
+            Profile profile = profileOptional.get();
+            profile.setImage(imageFile.getBytes());
+            return profileRepository.save(profile);
+        } else {
+            throw new IllegalArgumentException("Profile not found");
+        }
+    }
+
+    public void deleteImage(Integer profileId) {
+        Optional<Profile> profileOptional = profileRepository.findById(profileId);
+        if (profileOptional.isPresent()) {
+            Profile profile = profileOptional.get();
+            profile.setImage(null);
+            profileRepository.save(profile);
+        } else {
+            throw new IllegalArgumentException("Profile not found");
+        }
+    }
 }

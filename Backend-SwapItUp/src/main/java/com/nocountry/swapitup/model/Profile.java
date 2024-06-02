@@ -51,8 +51,8 @@ public class Profile {
     @Min(value = 0)
     private Integer points;
 
-    @Column(length = 450)
-    private String image;
+    @Column(name = "image")
+    private byte[] image;
 
     @OneToOne
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")

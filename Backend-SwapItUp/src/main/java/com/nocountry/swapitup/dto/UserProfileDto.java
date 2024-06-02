@@ -24,6 +24,6 @@ public class UserProfileDto {
     String experience;
     String link_linkedin;
     String link_portfolio;
-    String image;
+    byte[] image;
 
 }
