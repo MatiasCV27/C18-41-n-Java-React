@@ -18,11 +18,11 @@ interface AuthState {
     user?: User;
     token?: string;
 
-    signinUser: (email: string, password: string) => Promise<void>;
+    signinUser: (username: string, password: string) => Promise<void>;
 }
 
 export const storeApi: StateCreator<AuthState> = (set) => ({
-    status: 'unauthorized',
+    status: 'pending',
     token: undefined,
     user: undefined,
 
@@ -32,9 +32,11 @@ export const storeApi: StateCreator<AuthState> = (set) => ({
                 username,
                 password,
             });
+
             set({ status: 'authorized', token, user });
         } catch (error) {
             set({ status: 'unauthorized', token: undefined, user: undefined });
+            throw 'Unauthorized';
         }
     },
 });

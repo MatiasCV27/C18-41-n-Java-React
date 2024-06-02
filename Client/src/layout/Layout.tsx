@@ -1,13 +1,20 @@
 // Layout.tsx
-import { Outlet } from "react-router-dom";
-import MenuBarContainer from "@/components/Menubar/Menubar.container";
-import SidebarContainer from "@/components/Sidebar/Sidebar.container";
-import React, { ReactNode } from "react";
+import { Navigate, Outlet } from 'react-router-dom';
+import MenuBarContainer from '@/components/Menubar/Menubar.container';
+import SidebarContainer from '@/components/Sidebar/Sidebar.container';
+import React, { ReactNode } from 'react';
+import { useAuthStore } from '@/stores/auth/auth.store';
 
 interface LayoutProps {
-  children?: ReactNode;
+    children?: ReactNode;
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+
+         const status = useAuthStore((state) => state.status);
+
+    if (status === 'unauthorized') {
+        return <Navigate to="/signin" />;
+    }
   return (
     <div className="flex">
       <MenuBarContainer />
@@ -18,6 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <SidebarContainer />
     </div>
   );
+
 };
 
 export default Layout;
