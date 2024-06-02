@@ -75,9 +75,9 @@ const EstudiantesHomeView: React.FC = () => {
         {activeTab === "proximos" && (
           <div>
             <p className="text-gray-600 mb-4">
-              No tienes mentorías próximas: empieza a aprender con un mentor.
+              No tienes mentorías próximas: empieza a aprender con un mentor
             </p>
-            <Button className="bg-white text-black hover:bg-accent hover:text-white rounded-lg mt-2 shadow-md">
+            <Button className="bg-muted text-white  hover:bg-accent hover:text-white rounded-lg mt-2 shadow-md">
               <span className="font-semibold">Explora mentores</span>{" "}
               <ArrowRight size={18} className="ml-4" />
             </Button>
