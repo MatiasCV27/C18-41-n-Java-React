@@ -7,6 +7,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import EstudiantesHomeCardContainer from "../EstudiantesHomeCard/EstudiantesHomeCard.container";
+import TutoresHomeCardContainer from "../TutoresHomeCard/TutoresHomeCard.container";
 
 const EstudiantesHomeView: React.FC = () => {
   const [calendarios, setCalendarios] = useState<string[]>([
@@ -45,6 +47,7 @@ const EstudiantesHomeView: React.FC = () => {
           ))}
         </div>
       </div>
+      
       <div className="mt-6">
         <div className="flex w-full space-x-20">
           <h3
@@ -72,11 +75,17 @@ const EstudiantesHomeView: React.FC = () => {
             Historial
           </h3>
         </div>
+
         {activeTab === "proximos" && (
-          <div>
-            <p className="text-gray-600 mb-4">
-              No tienes mentorías próximas: empieza a aprender con un mentor.
-            </p>
+          <div className="mt-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+              <EstudiantesHomeCardContainer />
+              <EstudiantesHomeCardContainer />
+              <EstudiantesHomeCardContainer />
+              <EstudiantesHomeCardContainer />
+              <EstudiantesHomeCardContainer />
+              <EstudiantesHomeCardContainer />
+            </div>
             <Button className="bg-white text-black hover:bg-accent hover:text-white rounded-lg mt-2 shadow-md">
               <span className="font-semibold">Explora mentores</span>{" "}
               <ArrowRight size={18} className="ml-4" />
