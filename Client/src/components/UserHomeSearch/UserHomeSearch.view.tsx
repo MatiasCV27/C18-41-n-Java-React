@@ -14,7 +14,7 @@ const UserHomeSearchView: React.FC = () => {
   return (
     <div className="flex space-x-4">
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex items-center space-x-2 p-2 cursor-pointer">
+        <DropdownMenuTrigger className="flex items-center space-x-2 cursor-pointer">
           <span>Áreas</span>
           <ChevronDown />
         </DropdownMenuTrigger>

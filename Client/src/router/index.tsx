@@ -12,7 +12,7 @@ import ExplorarContainer from '@/pages/explorar/Explorar.container';
 import RecursosContainer from '@/pages/recursos/Recursos.container';
 import GuardadoContainer from '@/pages/guardado/Guardado.container';
 import EvaluacionesContainer from '@/pages/evaluaciones/Evaluaciones.container';
-
+import ConfiguracionPerfilContainer from '@/pages/configuracionPerfil/layout/ConfiguracionPerfil.container';
 
 const router = createBrowserRouter([
     {
@@ -46,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: '/evaluaciones',
                 element: <EvaluacionesContainer />,
+            },
+            {
+                path: '/configurar-perfil',
+                element: <ConfiguracionPerfilContainer />,
             },
         ],
     },
