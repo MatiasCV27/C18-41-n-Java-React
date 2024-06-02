@@ -1,5 +1,9 @@
 const InformacionPersonalView = () => {
-    return <div>InformacionPersonalViewS</div>;
+    return (
+        <>
+            
+        </>
+    );
 };
 
 export default InformacionPersonalView;

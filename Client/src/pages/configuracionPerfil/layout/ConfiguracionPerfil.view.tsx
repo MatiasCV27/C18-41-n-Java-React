@@ -13,20 +13,28 @@ const ConfiguracionPerfilView: React.FC<Props> = () => {
                 <nav className="flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 border-b-[1px] border-b-zinc-200">
                     <NavLink
                         to="/configurar-perfil/mentor"
-                        className=" text-base font-bold  hover:border-b-[3px] hover:border-accent "
+                        className={({isActive}) => {
+                            return isActive
+                                ? 'text-base font-bold  border-b-[3px] border-accent'
+                                : 'text-base font-bold  hover:border-b-[3px] hover:border-accent';
+                        }}
                     >
                         Perfil como mentor
                     </NavLink>
                     <NavLink
                         to={'/configurar-perfil/personal'}
-                        className="text-base font-bold  hover:border-b-[3px] hover:border-accent "
+                        className={({isActive}) => {
+                            return isActive
+                                ? 'text-base font-bold  border-b-[3px] border-accent'
+                                : 'text-base font-bold  hover:border-b-[3px] hover:border-accent';
+                        }}
                     >
                         Informacion personal
                     </NavLink>
                 </nav>
             </header>
             <main>
-                <Outlet/>
+                <Outlet />
             </main>
         </>
     );

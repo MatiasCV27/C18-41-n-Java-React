@@ -1,7 +1,7 @@
 // routes.tsx
 
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import Layout from '@/layout/Layout';
 import SigninContainer from '@/pages/auth/signin/Signin.auth.container';
 import SignupContainer from '@/pages/auth/signup/Signup.auth.container';
@@ -51,17 +51,23 @@ const router = createBrowserRouter([
             },
             {
                 path: '/configurar-perfil',
+
                 element: <ConfiguracionPerfilContainer />,
+
                 children: [
                     {
                         path: 'mentor',
-                        element: <PerfilMentorContainer/>,
+                        element: <PerfilMentorContainer />,
                     },
                     {
-                        path: 'personal',
-                        element: <InformacionPersonalContainer/>,
+                        path: 'personal',                        
+                        element: <InformacionPersonalContainer />,
                     },
-                ]
+                    {
+                        index: true,                        
+                        element: <Navigate to='personal' replace/>,
+                    },
+                ],
             },
         ],
     },
