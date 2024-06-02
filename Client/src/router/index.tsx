@@ -1,7 +1,7 @@
 // routes.tsx
 
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import Layout from '@/layout/Layout';
 import SigninContainer from '@/pages/auth/signin/Signin.auth.container';
 import SignupContainer from '@/pages/auth/signup/Signup.auth.container';
@@ -12,7 +12,9 @@ import ExplorarContainer from '@/pages/explorar/Explorar.container';
 import RecursosContainer from '@/pages/recursos/Recursos.container';
 import GuardadoContainer from '@/pages/guardado/Guardado.container';
 import EvaluacionesContainer from '@/pages/evaluaciones/Evaluaciones.container';
-
+import ConfiguracionPerfilContainer from '@/pages/configuracionPerfil/layout/ConfiguracionPerfil.container';
+import { PerfilMentorContainer } from '@/pages/configuracionPerfil/perfiMentor/PerfilMentor.container';
+import { InformacionPersonalContainer } from '@/pages/configuracionPerfil/informacionPersonal/InformacionPersonal.container';
 
 const router = createBrowserRouter([
     {
@@ -46,6 +48,26 @@ const router = createBrowserRouter([
             {
                 path: '/evaluaciones',
                 element: <EvaluacionesContainer />,
+            },
+            {
+                path: '/configurar-perfil',
+
+                element: <ConfiguracionPerfilContainer />,
+
+                children: [
+                    {
+                        path: 'mentor',
+                        element: <PerfilMentorContainer />,
+                    },
+                    {
+                        path: 'personal',                        
+                        element: <InformacionPersonalContainer />,
+                    },
+                    {
+                        index: true,                        
+                        element: <Navigate to='personal' replace/>,
+                    },
+                ],
             },
         ],
     },

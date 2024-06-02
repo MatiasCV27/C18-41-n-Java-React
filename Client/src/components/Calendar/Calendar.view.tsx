@@ -9,7 +9,7 @@ const CalendarView: React.FC = () => {
       mode="single"
       selected={date}
       onSelect={setDate}
-      className="rounded-lg border shadow"
+      className="rounded-lg border shadow min-w-[330px] max-w-full p-6"
     />
   )
 }

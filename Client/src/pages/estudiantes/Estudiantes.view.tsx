@@ -1,14 +1,12 @@
 // EstudiantesView.tsx
 
-import EstudiantesHomeContainer from "@/components/EstudiantesHome/EstudiantesHome.container";
-import SearchInputContainer from "@/components/SearchInput/SearchInput.container";
+import EstudiantesHomeContainer from '@/components/EstudiantesHome/EstudiantesHome.container';
 const EstudiantesView = () => {
-  return (
-    <main className="flex flex-col space-y-[24px] w-auto lg:w-[476px] xl:w-[683px] 2xl:w-[1174px] mx-auto">
-      <SearchInputContainer />
-      <EstudiantesHomeContainer />
-    </main>
-  );
+    return (
+        <main className="flex flex-col space-y-[24px] w-auto  mx-auto">
+            <EstudiantesHomeContainer />
+        </main>
+    );
 };
 
 export default EstudiantesView;
