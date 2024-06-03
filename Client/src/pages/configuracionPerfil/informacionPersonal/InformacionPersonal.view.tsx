@@ -19,7 +19,7 @@ interface Props {
 
 const InformacionPersonalView: FC<Props> = ({ form, onSubmit }) => {
     const [inputStates, setInputStates] = useState<{ [key: string]: boolean }>({
-        input1: false,
+        input1: true,
         input2: false,
         input3: false,
     });
@@ -45,9 +45,11 @@ const InformacionPersonalView: FC<Props> = ({ form, onSubmit }) => {
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <div className="relative ">
-                                            <div className="absolute -top-3.5 left-3">
-                                                <FormLabel>Nombre</FormLabel>
+                                        <div className=" my-2 ">
+                                            <div className="  px-1 ">
+                                                <FormLabel className="text-gray-700 text-base font-bold">
+                                                    Nombre
+                                                </FormLabel>
                                             </div>
 
                                             <FormControl>
@@ -56,7 +58,7 @@ const InformacionPersonalView: FC<Props> = ({ form, onSubmit }) => {
                                                     disabled={
                                                         inputStates.input1
                                                     }
-                                                    className="disabled:border-0 rounded border text-gray-700 border-gray-400 h-14 text-sm font-normal placeholder:text-gray-400"
+                                                    className="disabled:border-0 disabeled:tex-zinc-800 disabled:bg-background  rounded border px-1 text-gray-700 border-gray-400 h-10 text-base font-medium placeholder:text-gray-400"
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -70,15 +72,24 @@ const InformacionPersonalView: FC<Props> = ({ form, onSubmit }) => {
                                 name="lastname"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Apellido</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                placeholder="shadcn"
-                                                disabled={inputStates.input1}
-                                                className="disabled:border-0 rounded border text-gray-700 border-gray-400 h-14 text-base font-normal placeholder:text-gray-400"
-                                                {...field}
-                                            />
-                                        </FormControl>
+                                        <div className=" my-2 ">
+                                            <div className="  px-1 ">
+                                                <FormLabel className="text-gray-700 text-base font-bold">
+                                                    Apellido
+                                                </FormLabel>
+                                            </div>
+
+                                            <FormControl>
+                                                <Input
+                                                    placeholder="Apellido"
+                                                    disabled={
+                                                        inputStates.input1
+                                                    }
+                                                    className="disabled:border-0 disabeled:tex-zinc-800 disabled:bg-background  rounded border px-1 text-gray-700 border-gray-400 h-10 text-base font-medium placeholder:text-gray-400"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                        </div>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -88,6 +99,7 @@ const InformacionPersonalView: FC<Props> = ({ form, onSubmit }) => {
                             type="button"
                             variant={'ghost'}
                             onClick={() => handleToggleInput('input1')}
+                            className="text-zinc-600 text-base font-medium"
                         >
                             Editar
                         </Button>
