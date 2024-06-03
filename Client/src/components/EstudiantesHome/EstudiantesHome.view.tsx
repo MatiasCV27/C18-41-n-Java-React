@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import EstudiantesHomeCardContainer from "../EstudiantesHomeCard/EstudiantesHomeCard.container";
 import TutoresHomeCardContainer from "../TutoresHomeCard/TutoresHomeCard.container";
+import EstudianteHomeSolicitudContainer from "../EstudiantesHomeSolicitud/EstudianteHomeSolicitud.container";
 
 const EstudiantesHomeView: React.FC = () => {
   const [calendarios, setCalendarios] = useState<string[]>([
@@ -97,7 +98,7 @@ const EstudiantesHomeView: React.FC = () => {
             <p className="text-gray-600 mb-4">
               No tienes mentorías pendientes en este momento.
             </p>
-            {/* Aquí puedes mostrar otro contenido relacionado con las mentorías pendientes */}
+            <EstudianteHomeSolicitudContainer />
           </div>
         )}
         {activeTab === "historial" && (

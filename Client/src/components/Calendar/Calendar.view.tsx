@@ -10,6 +10,7 @@ const CalendarView: React.FC = () => {
       selected={date}
       onSelect={setDate}
       className="rounded-lg border shadow"
+      numberOfMonths={1}
     />
   )
 }
