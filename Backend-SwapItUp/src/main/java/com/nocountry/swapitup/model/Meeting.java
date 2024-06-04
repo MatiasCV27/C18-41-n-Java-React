@@ -40,7 +40,7 @@ public class Meeting {
 
     @Min(0)
     @Max(5)
-    private Integer meetingScore;
+    private double meetingScore;
 
     @Enumerated(EnumType.STRING)
     private StatusName status;

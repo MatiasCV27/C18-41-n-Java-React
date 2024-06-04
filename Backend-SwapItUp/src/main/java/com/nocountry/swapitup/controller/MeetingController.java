@@ -1,9 +1,6 @@
 package com.nocountry.swapitup.controller;
 
-import com.nocountry.swapitup.dto.HistoryMeetingDto;
-import com.nocountry.swapitup.dto.LinkMeetDto;
-import com.nocountry.swapitup.dto.PendingMeetingDto;
-import com.nocountry.swapitup.dto.UpcomingMeetingDto;
+import com.nocountry.swapitup.dto.*;
 import com.nocountry.swapitup.model.Meeting;
 import com.nocountry.swapitup.service.MeetingService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,6 +32,13 @@ public class MeetingController {
             description = "Con el ID de la reunion y se agrega el Link. Si se acepta la solicitud su status se modifica a PROXIMOS y si se rechaza se elimina la solicitud")
     public ResponseEntity<Meeting> acceptOrRejectMeetingRequest(@PathVariable(value = "idMeeting") Integer idMeeting, @RequestBody LinkMeetDto linkDto, @RequestParam("response") boolean response) {
         return ResponseEntity.ok(meetingService.acceptOrRejectRequest(idMeeting, linkDto, response));
+    }
+
+    @PostMapping(value = "/history/{idMeeting}")
+    @Operation(summary = "Finalizar reunión",
+            description = "Con el ID de la reunion y el estudiante agrega la puntuación de la reunión. El status se modificara automaticamente en HISTORY")
+    public ResponseEntity<Meeting> endMeetingToHistory(@PathVariable(value = "idMeeting") Integer idMeeting, @RequestBody ScoreMeeting scoreDto) {
+        return ResponseEntity.ok(meetingService.endMeeting(idMeeting, scoreDto));
     }
 
     //Todo: Listados de reuniones

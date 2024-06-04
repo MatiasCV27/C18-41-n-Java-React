@@ -1,9 +1,6 @@
 package com.nocountry.swapitup.service;
 
-import com.nocountry.swapitup.dto.HistoryMeetingDto;
-import com.nocountry.swapitup.dto.LinkMeetDto;
-import com.nocountry.swapitup.dto.PendingMeetingDto;
-import com.nocountry.swapitup.dto.UpcomingMeetingDto;
+import com.nocountry.swapitup.dto.*;
 import com.nocountry.swapitup.enums.StatusName;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Meeting;
@@ -50,7 +47,7 @@ public class MeetingService {
     public Meeting acceptOrRejectRequest(Integer idMeeting, LinkMeetDto linkDto, boolean response) {
         Meeting meeting = meetingRepository.findById(idMeeting)
                 .orElseThrow(() -> new NotFoundDataException("Reunión con " + idMeeting + " no ha sido encontrado"));
-        if (response) {
+        if (response && meeting.getStatus().equals(StatusName.PENDIENTES)) {
             meeting.setStatus(StatusName.PROXIMAS);
             meeting.setLink(linkDto.getLink());
             meetingRepository.save(meeting);
@@ -59,6 +56,18 @@ public class MeetingService {
             meetingRepository.deleteById(idMeeting);
             return null;
         }
+    }
+
+    public Meeting endMeeting(Integer idMeeting, ScoreMeeting scoreMeeting) {
+        Meeting meeting = meetingRepository.findById(idMeeting)
+                .orElseThrow(() -> new NotFoundDataException("Reunión con " + idMeeting + " no ha sido encontrado"));
+        if (meeting.getStatus().equals(StatusName.PROXIMAS)) {
+            meeting.setStatus(StatusName.HISTORIAL);
+            meeting.setMeetingScore(scoreMeeting.getMeetingScore());
+            meetingRepository.save(meeting);
+            return meeting;
+        }
+        return null;
     }
 
     //TODO: Listado de Proximas Reuniones
