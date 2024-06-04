@@ -1,5 +1,6 @@
 package com.nocountry.swapitup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nocountry.swapitup.enums.StatusName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,9 @@ public class Meeting {
 
     private byte[] image;
 
+    @Column(unique = true, length = 450)
+    private String message;
+
     @Column(length = 75)
     private String schule;
 
@@ -39,7 +43,8 @@ public class Meeting {
     private String link;
 
     @ManyToOne
-    @JoinColumn(name = "tutor_id")
+    @JoinColumn(name = "idTutor")
+    @JsonIgnore
     private Tutor tutor;
 
 }
