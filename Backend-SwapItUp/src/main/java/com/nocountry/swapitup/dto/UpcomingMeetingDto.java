@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PendingMeetingDTO {
+public class UpcomingMeetingDto {
 
     String fullname;
     byte[] image;
-    String message;
     String schule;
     String date;
+    String link;
 
 }

@@ -31,7 +31,7 @@ public class Tutor {
 
     private String industry;
 
-    private double stars;
+    private double score;
 
     private Integer swapPoints;
 

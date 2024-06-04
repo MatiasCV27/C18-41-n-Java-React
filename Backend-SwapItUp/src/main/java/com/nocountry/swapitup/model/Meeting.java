@@ -3,6 +3,8 @@ package com.nocountry.swapitup.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nocountry.swapitup.enums.StatusName;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +37,10 @@ public class Meeting {
     private String date;
 
     private boolean active;
+
+    @Min(0)
+    @Max(5)
+    private Integer meetingScore;
 
     @Enumerated(EnumType.STRING)
     private StatusName status;

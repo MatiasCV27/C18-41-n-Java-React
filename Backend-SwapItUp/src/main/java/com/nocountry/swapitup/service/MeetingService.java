@@ -1,6 +1,9 @@
 package com.nocountry.swapitup.service;
 
-import com.nocountry.swapitup.dto.PendingMeetingDTO;
+import com.nocountry.swapitup.dto.HistoryMeetingDto;
+import com.nocountry.swapitup.dto.LinkMeetDto;
+import com.nocountry.swapitup.dto.PendingMeetingDto;
+import com.nocountry.swapitup.dto.UpcomingMeetingDto;
 import com.nocountry.swapitup.enums.StatusName;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Meeting;
@@ -25,7 +28,7 @@ public class MeetingService {
     private final TutorRepository tutorRepository;
     private final MeetingRepository meetingRepository;
 
-    public Meeting requestExchange(Integer idTutor, PendingMeetingDTO meetingDTO) {
+    public Meeting requestExchange(Integer idTutor, PendingMeetingDto meetingDTO) {
         Profile profile = profileRepository.findByUser_Username(getUsernameToken())
                 .orElseThrow(() -> new NotFoundDataException("Usuario " + getUsernameToken() + "no ha sido encontrado"));
         Tutor tutor = tutorRepository.findById(idTutor)
@@ -44,7 +47,43 @@ public class MeetingService {
         return meeting;
     }
 
-    public List<PendingMeetingDTO> getPendingMeetingsByTutorId(Integer tutorId) {
+    public Meeting acceptOrRejectRequest(Integer idMeeting, LinkMeetDto linkDto, boolean response) {
+        Meeting meeting = meetingRepository.findById(idMeeting)
+                .orElseThrow(() -> new NotFoundDataException("Reunión con " + idMeeting + " no ha sido encontrado"));
+        if (response) {
+            meeting.setStatus(StatusName.PROXIMAS);
+            meeting.setLink(linkDto.getLink());
+            meetingRepository.save(meeting);
+            return meeting;
+        } else {
+            meetingRepository.deleteById(idMeeting);
+            return null;
+        }
+    }
+
+    //TODO: Listado de Proximas Reuniones
+
+    public List<UpcomingMeetingDto> getUpcomingMeetingsByTutorId(Integer tutorId) {
+        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+        return allMeetings.stream()
+                .filter(meeting -> meeting.getStatus() == StatusName.PROXIMAS)
+                .map(this::mapToUpcomingMeetingDTO)
+                .collect(Collectors.toList());
+    }
+
+    private UpcomingMeetingDto mapToUpcomingMeetingDTO(Meeting meeting) {
+        return UpcomingMeetingDto.builder()
+                .fullname(meeting.getFullname())
+                .image(meeting.getImage())
+                .schule(meeting.getSchule())
+                .date(meeting.getDate())
+                .link(meeting.getLink())
+                .build();
+    }
+
+    //TODO: Listado de Reuniones Pendientes
+
+    public List<PendingMeetingDto> getPendingMeetingsByTutorId(Integer tutorId) {
         List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PENDIENTES)
@@ -52,13 +91,32 @@ public class MeetingService {
                 .collect(Collectors.toList());
     }
 
-    private PendingMeetingDTO mapToPendingMeetingDTO(Meeting meeting) {
-        return PendingMeetingDTO.builder()
+    private PendingMeetingDto mapToPendingMeetingDTO(Meeting meeting) {
+        return PendingMeetingDto.builder()
                 .fullname(meeting.getFullname())
                 .image(meeting.getImage())
                 .message(meeting.getMessage())
                 .schule(meeting.getSchule())
                 .date(meeting.getDate())
+                .build();
+    }
+
+    //TODO: Listado de Historial Reuniones
+
+    public List<HistoryMeetingDto> getHistoryMeetingsByTutorId(Integer tutorId) {
+        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+        return allMeetings.stream()
+                .filter(meeting -> meeting.getStatus() == StatusName.HISTORIAL)
+                .map(this::mapToHistoryMeetingDTO)
+                .collect(Collectors.toList());
+    }
+
+    private HistoryMeetingDto mapToHistoryMeetingDTO(Meeting meeting) {
+        return HistoryMeetingDto.builder()
+                .fullname(meeting.getFullname())
+                .image(meeting.getImage())
+                .date(meeting.getDate())
+                .meetingScore(meeting.getMeetingScore())
                 .build();
     }
 }
