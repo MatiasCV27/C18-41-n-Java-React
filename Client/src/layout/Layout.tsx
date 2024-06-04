@@ -10,7 +10,7 @@ interface LayoutProps {
   children?: ReactNode;
 }
 const Layout: React.FC<LayoutProps> = () => {
-  const status = useAuthStore((state) => state.status);
+  // const status = useAuthStore((state) => state.status)
 
   // if (status === 'unauthorized') {
   //     return <Navigate to="/signin" />;
