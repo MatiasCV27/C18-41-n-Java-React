@@ -11,6 +11,7 @@ const FormSchema = z.object({
     lenguages: z.string(),
     industry: z.string(),
     about: z.string(),
+    timezone: z.string(),
 });
 type FormSchemaType = z.infer<typeof FormSchema>;
 const InformacionPersonalContainer = () => {
@@ -24,6 +25,7 @@ const InformacionPersonalContainer = () => {
             lenguages: '',
             industry: '',
             about: '',
+            timezone: '',
         },
     });
 

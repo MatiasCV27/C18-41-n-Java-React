@@ -9,7 +9,7 @@ interface Props {}
 const SidebarView: React.FC<Props> = () => {
     return (
         // <aside className="fixed top-[24px] bottom-[24px] right-[24px] lg:w-[226px] xl:w-[291px] 2xl:w-[291px] flex flex-col justify-start">
-        <aside className="  flex flex-col items-end mx-6 gap-y-4 min-w-[226px] max-w-[330px]">
+        <aside className="  flex flex-col w-full items-end mx-6 gap-y-4 min-w-[226px] max-w-[330px]">
             {/* Contenido restante del Sidebar: Calendario, notificaciones, etc */}
             <CalendarContainer />
             <div className="bg-transparent overflow-x-hidden overflow-y-auto bg-red-700 flex flex-col gap-y-3   h-full">

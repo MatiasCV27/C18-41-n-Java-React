@@ -1,5 +1,4 @@
 import {
-    Select,
     SelectContent,
     SelectGroup,
     SelectItem,
@@ -7,18 +6,21 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { FormControl } from '../ui';
 
 interface Props {
-    selectIsActive:boolean
+    selectIsActive: boolean;
+    // recive field.onChange
 }
-
-export const TimeZoneSelectView: React.FC<Props> = ({selectIsActive}) => {
+//Este componete es para ser usado dentro del formItem
+export const TimeZoneSelectView: React.FC<Props> = ({ selectIsActive }) => {
     return (
-        <Select>
-            
-            <SelectTrigger disabled={selectIsActive} className="w-[280px]">
-                <SelectValue placeholder="Selecciona una zona horaria" />
-            </SelectTrigger>
+        <>
+            <FormControl>
+                <SelectTrigger disabled={selectIsActive} className="w-[280px]  disabled:border-0 disabeled:tex-zinc-800 disabled:bg-background  rounded border px-1 text-gray-700 border-gray-400 h-10 text-base font-medium placeholder:text-gray-400">
+                    <SelectValue placeholder="Selecciona una zona horaria" />
+                </SelectTrigger>
+            </FormControl>
             <SelectContent>
                 <SelectGroup>
                     <SelectLabel>North America</SelectLabel>
@@ -105,6 +107,6 @@ export const TimeZoneSelectView: React.FC<Props> = ({selectIsActive}) => {
                     </SelectItem>
                 </SelectGroup>
             </SelectContent>
-        </Select>
+        </>
     );
 };

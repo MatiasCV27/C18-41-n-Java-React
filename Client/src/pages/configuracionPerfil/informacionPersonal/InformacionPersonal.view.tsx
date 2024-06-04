@@ -14,6 +14,8 @@ import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui';
 import { FormSchemaType } from './InformacionPersonal.container';
 import TimeZoneSelectContainer from '@/components/TimeZoneSelect/TimeZoneSelect.container';
+import { Select } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 interface Props {
     form: any;
@@ -25,6 +27,9 @@ const InformacionPersonalView: FC<Props> = ({ form, onSubmit }) => {
         input1: true,
         input2: true,
         input3: true,
+        input4: true,
+        input5: true,
+        input6: true,
     });
 
     const handleToggleInput = (input: string) => {
@@ -158,11 +163,136 @@ const InformacionPersonalView: FC<Props> = ({ form, onSubmit }) => {
                         </div>
 
                         <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
-                            <TimeZoneSelectContainer selectIsActive={inputStates.input3}/>
+                            <FormField
+                                control={form.control}
+                                name="timezone"
+                                render={({ field }) => (
+                                    <FormItem className="py-2">
+                                        <FormLabel className="text-gray-700 text-base font-bold px-1">
+                                            Zona horaria
+                                        </FormLabel>
+                                        <Select
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                        >
+                                            <TimeZoneSelectContainer
+                                                selectIsActive={
+                                                    inputStates.input3
+                                                }
+                                            />
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                             <Button
                                 type="button"
                                 variant={'ghost'}
                                 onClick={() => handleToggleInput('input3')}
+                                className="text-zinc-600 text-base font-medium"
+                            >
+                                Editar
+                            </Button>
+                        </div>
+                        <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
+                            <FormField
+                                control={form.control}
+                                name="languages"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <div className=" my-2 ">
+                                            <div className="  px-1 ">
+                                                <FormLabel className="text-gray-700 text-base font-bold">
+                                                    Idiomas
+                                                </FormLabel>
+                                            </div>
+
+                                            <FormControl>
+                                                <Input
+                                                    placeholder="Idiomas"
+                                                    disabled={
+                                                        inputStates.input4
+                                                    }
+                                                    className="disabled:border-0 disabeled:tex-zinc-800 disabled:bg-background  rounded border px-1 text-gray-700 border-gray-400 h-10 text-base font-medium placeholder:text-gray-400"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                        </div>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button
+                                type="button"
+                                variant={'ghost'}
+                                onClick={() => handleToggleInput('input4')}
+                                className="text-zinc-600 text-base font-medium"
+                            >
+                                Editar
+                            </Button>
+                        </div>
+                        <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
+                            <FormField
+                                control={form.control}
+                                name="industry"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <div className=" my-2 ">
+                                            <div className="  px-1 ">
+                                                <FormLabel className="text-gray-700 text-base font-bold">
+                                                    Industria
+                                                </FormLabel>
+                                            </div>
+
+                                            <FormControl>
+                                                <Input
+                                                    placeholder="Industria"
+                                                    disabled={
+                                                        inputStates.input5
+                                                    }
+                                                    className="disabled:border-0 disabeled:tex-zinc-800 disabled:bg-background  rounded border px-1 text-gray-700 border-gray-400 h-10 text-base font-medium placeholder:text-gray-400"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                        </div>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button
+                                type="button"
+                                variant={'ghost'}
+                                onClick={() => handleToggleInput('input5')}
+                                className="text-zinc-600 text-base font-medium"
+                            >
+                                Editar
+                            </Button>
+                        </div>
+                        <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
+                            <FormField
+                                control={form.control}
+                                name="about"
+                                render={({ field }) => (
+                                    <FormItem className="my-2">
+                                        <FormLabel className="text-gray-700 text-base font-bold px-1">
+                                            Acerca de ti
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder="Breve descripcion de ti"
+                                                disabled={inputStates.input6}
+                                                className="resize-none disabled:border-1 disabeled:tex-zinc-800 disabled:bg-background rounded border px-1 text-gray-700 border-gray-400  text-base font-medium placeholder:text-gray-400"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button
+                                type="button"
+                                variant={'ghost'}
+                                onClick={() => handleToggleInput('input6')}
                                 className="text-zinc-600 text-base font-medium"
                             >
                                 Editar

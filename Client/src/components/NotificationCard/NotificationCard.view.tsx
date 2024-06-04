@@ -27,7 +27,7 @@ const NotificationCardView: React.FC<NotificationCardViewProps> = ({
   renderIcon,
 }) => {
   return (
-    <Card className="rounded-lg shadow-md bg-background w-[291px] h-[147px]">
+    <Card className="rounded-lg shadow-md bg-background w-full h-[147px]">
       <CardHeader className="w-full p-2 text-center">
         <div className="flex justify-between items-center">
           <CardTitle className="text-lg font-medium">{title}</CardTitle>
