@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface MeetingRepository extends JpaRepository<Meeting, Integer> {
 
+    List<Meeting> findByUsername(String username);
+
     List<Meeting> findByTutor_IdTutor(Integer tutorId);
 
 }

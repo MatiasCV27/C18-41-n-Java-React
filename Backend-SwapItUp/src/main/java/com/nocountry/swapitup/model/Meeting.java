@@ -25,6 +25,8 @@ public class Meeting {
     @Column(length = 75)
     private String fullname;
 
+    private String username;
+
     private byte[] image;
 
     @Column(unique = true, length = 450)

@@ -9,6 +9,7 @@ import com.nocountry.swapitup.model.Tutor;
 import com.nocountry.swapitup.repository.MeetingRepository;
 import com.nocountry.swapitup.repository.ProfileRepository;
 import com.nocountry.swapitup.repository.TutorRepository;
+import com.nocountry.swapitup.utils.MapTemplatesMeetings;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import static com.nocountry.swapitup.utils.infoTokenUtils.getUsernameToken;
 
 @Service
 @RequiredArgsConstructor
-public class MeetingService {
+public class StudentMeetingService {
 
     private final ProfileRepository profileRepository;
     private final TutorRepository tutorRepository;
@@ -32,6 +33,7 @@ public class MeetingService {
                 .orElseThrow(() -> new NotFoundDataException("Tutor " + idTutor + "no ha sido encontrado"));
         Meeting meeting = Meeting.builder()
                 .fullname(profile.getUser().getName() + " " + profile.getUser().getLastname())
+                .username(profile.getUser().getUsername())
                 .image(profile.getImage())
                 .message(meetingDTO.getMessage())
                 .schule(meetingDTO.getSchule())
@@ -42,20 +44,6 @@ public class MeetingService {
         tutor.addMeeting(meeting);
         tutorRepository.save(tutor);
         return meeting;
-    }
-
-    public Meeting acceptOrRejectRequest(Integer idMeeting, LinkMeetDto linkDto, boolean response) {
-        Meeting meeting = meetingRepository.findById(idMeeting)
-                .orElseThrow(() -> new NotFoundDataException("Reunión con " + idMeeting + " no ha sido encontrado"));
-        if (response && meeting.getStatus().equals(StatusName.PENDIENTES)) {
-            meeting.setStatus(StatusName.PROXIMAS);
-            meeting.setLink(linkDto.getLink());
-            meetingRepository.save(meeting);
-            return meeting;
-        } else {
-            meetingRepository.deleteById(idMeeting);
-            return null;
-        }
     }
 
     public Meeting endMeeting(Integer idMeeting, ScoreMeeting scoreMeeting) {
@@ -70,62 +58,30 @@ public class MeetingService {
         return null;
     }
 
-    //TODO: Listado de Proximas Reuniones
+    //TODO: Listado de Reuniones de los Estudiantes
 
-    public List<UpcomingMeetingDto> getUpcomingMeetingsByTutorId(Integer tutorId) {
-        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+    public List<UpcomingMeetingDto> getUpcomingMeetingsByStudent(String username) {
+        List<Meeting> allMeetings = meetingRepository.findByUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PROXIMAS)
-                .map(this::mapToUpcomingMeetingDTO)
+                .map(MapTemplatesMeetings::mapToUpcomingMeetingDTO)
                 .collect(Collectors.toList());
     }
 
-    private UpcomingMeetingDto mapToUpcomingMeetingDTO(Meeting meeting) {
-        return UpcomingMeetingDto.builder()
-                .fullname(meeting.getFullname())
-                .image(meeting.getImage())
-                .schule(meeting.getSchule())
-                .date(meeting.getDate())
-                .link(meeting.getLink())
-                .build();
-    }
-
-    //TODO: Listado de Reuniones Pendientes
-
-    public List<PendingMeetingDto> getPendingMeetingsByTutorId(Integer tutorId) {
-        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+    public List<PendingMeetingDto> getPendingMeetingsByStudent(String username) {
+        List<Meeting> allMeetings = meetingRepository.findByUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PENDIENTES)
-                .map(this::mapToPendingMeetingDTO)
+                .map(MapTemplatesMeetings::mapToPendingMeetingDTO)
                 .collect(Collectors.toList());
     }
 
-    private PendingMeetingDto mapToPendingMeetingDTO(Meeting meeting) {
-        return PendingMeetingDto.builder()
-                .fullname(meeting.getFullname())
-                .image(meeting.getImage())
-                .message(meeting.getMessage())
-                .schule(meeting.getSchule())
-                .date(meeting.getDate())
-                .build();
-    }
-
-    //TODO: Listado de Historial Reuniones
-
-    public List<HistoryMeetingDto> getHistoryMeetingsByTutorId(Integer tutorId) {
-        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+    public List<HistoryMeetingDto> getHistoryMeetingsByStudent(String username) {
+        List<Meeting> allMeetings = meetingRepository.findByUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.HISTORIAL)
-                .map(this::mapToHistoryMeetingDTO)
+                .map(MapTemplatesMeetings::mapToHistoryMeetingDTO)
                 .collect(Collectors.toList());
     }
 
-    private HistoryMeetingDto mapToHistoryMeetingDTO(Meeting meeting) {
-        return HistoryMeetingDto.builder()
-                .fullname(meeting.getFullname())
-                .image(meeting.getImage())
-                .date(meeting.getDate())
-                .meetingScore(meeting.getMeetingScore())
-                .build();
-    }
 }
