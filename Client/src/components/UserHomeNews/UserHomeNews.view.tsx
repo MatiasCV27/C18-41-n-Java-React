@@ -25,7 +25,7 @@ const News: React.FC<NewsProps> = ({ icon, title }) => (
 
 const UserHomeNewsView: React.FC = () => {
   return (
-    <Card className="w-[291px] h-full bg-secondary rounded-lg">
+    <Card className="w-full h-full bg-secondary rounded-lg max-w-full">
       <CardHeader>
         <CardTitle  className="text-xl">
           Novedades

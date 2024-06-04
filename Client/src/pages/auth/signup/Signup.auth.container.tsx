@@ -7,56 +7,53 @@ import { useNavigate } from 'react-router-dom';
 
 const authController = new AuthController();
 
+const FormSchema = z
+    .object({
+        email: z.string().email({ message: 'Email invalido' }),
+        username: z
+            .string()
+            .min(2, {
+                message:
+                    'El nombre de usuario debe tener al menos 2 caracteres',
+            })
+            .max(25, {
+                message:
+                    'El nombre de usuario debe tener un maximo de 25 caracteres',
+            }),
+        name: z
+            .string()
+            .min(2, {
+                message: 'El nombre debe tener al menos 2 caracteres',
+            })
+            .max(50, {
+                message: 'El nombre debe tener un maximo de 60 caracteres',
+            }),
+        lastname: z
+            .string()
+            .min(2, {
+                message: 'El apellido debe tener al menos 2 caracteres',
+            })
+            .max(50, {
+                message: 'El apellido debe tener un maximo de 60 caracteres',
+            }),
+        password: z
+            .string()
+            .min(8, {
+                message: 'La contraseña debe tener al menos 8 caracteres',
+            })
+            .max(50, {
+                message: 'La contraseña debe tener un maximo de 50 caracteres',
+            }),
+        confirmPassword: z.string(),
+        terms: z.boolean(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        message: 'Las contraseñas no coinciden',
+        path: ['confirmPassword'],
+    });
+type FormSchemaType = z.infer<typeof FormSchema>;
 const SignupContainer = () => {
     const navigate = useNavigate();
-    const FormSchema = z
-        .object({
-            email: z.string().email({ message: 'Email invalido' }),
-            username: z
-                .string()
-                .min(2, {
-                    message:
-                        'El nombre de usuario debe tener al menos 2 caracteres',
-                })
-                .max(25, {
-                    message:
-                        'El nombre de usuario debe tener un maximo de 25 caracteres',
-                }),
-            name: z
-                .string()
-                .min(2, {
-                    message: 'El nombre debe tener al menos 2 caracteres',
-                })
-                .max(50, {
-                    message: 'El nombre debe tener un maximo de 60 caracteres',
-                }),
-            lastname: z
-                .string()
-                .min(2, {
-                    message: 'El apellido debe tener al menos 2 caracteres',
-                })
-                .max(50, {
-                    message:
-                        'El apellido debe tener un maximo de 60 caracteres',
-                }),
-            password: z
-                .string()
-                .min(8, {
-                    message: 'La contraseña debe tener al menos 8 caracteres',
-                })
-                .max(50, {
-                    message:
-                        'La contraseña debe tener un maximo de 50 caracteres',
-                }),
-            confirmPassword: z.string(),
-            terms: z.boolean(),
-        })
-        .refine((data) => data.password === data.confirmPassword, {
-            message: 'Las contraseñas no coinciden',
-            path: ['confirmPassword'],
-        });
-
-    type FormSchemaType = z.infer<typeof FormSchema>;
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),

@@ -49,7 +49,9 @@ const DropdownUserView: React.FC<Props> = ({ onLogout, name, lastname }) => {
                                 </Avatar>
                                 <div className="flex flex-col">
                                     <span className="text-lg font-medium">
-                                        {`${name ? name : 'name'} ${lastname ? lastname : 'lastname'}`}
+                                        {`${name ? name : 'name'} ${
+                                            lastname ? lastname : 'lastname'
+                                        }`}
                                     </span>
                                     <span className="text-xs font-light">
                                         Desarrollador de Software
@@ -61,9 +63,11 @@ const DropdownUserView: React.FC<Props> = ({ onLogout, name, lastname }) => {
                             <DropdownMenuItem className="p-3">
                                 <div className="flex items-center gap-2.5">
                                     <UserRoundCog size={24} />
-                                    <p className="text-base font-normal">
-                                        Ver mi perfil
-                                    </p>
+                                    <NavLink to="/configurar-perfil">
+                                        <p className="text-base font-normal">
+                                            Ver mi perfil
+                                        </p>
+                                    </NavLink>
                                 </div>
                             </DropdownMenuItem>
                             <DropdownMenuItem className="p-3">
