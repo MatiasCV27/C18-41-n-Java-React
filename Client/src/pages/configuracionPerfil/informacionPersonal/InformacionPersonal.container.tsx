@@ -6,16 +6,24 @@ import { zodResolver } from '@hookform/resolvers/zod';
 const FormSchema = z.object({
     name: z.string(),
     lastname: z.string(),
-
+    gender: z.string(),
+    country: z.string(),
+    lenguages: z.string(),
+    industry: z.string(),
+    about: z.string(),
 });
 type FormSchemaType = z.infer<typeof FormSchema>;
-export const InformacionPersonalContainer = () => {
+const InformacionPersonalContainer = () => {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            
             name: '',
             lastname: '',
+            gender: '',
+            country: '',
+            lenguages: '',
+            industry: '',
+            about: '',
         },
     });
 
@@ -31,3 +39,6 @@ export const InformacionPersonalContainer = () => {
         </>
     );
 };
+
+export type { FormSchemaType };
+export default InformacionPersonalContainer;

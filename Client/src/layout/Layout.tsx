@@ -19,22 +19,20 @@ const Layout: React.FC<LayoutProps> = () => {
     return (
         <>
             <div className="min-h-screen w-full">
-
-                <div >
+                <div>
                     <DashboardHeaderContainer />
                 </div>
-            <div className="flex grow-0">
-                <div className=" ">
-                    <MenuBarContainer />
+                <div className="flex grow-0">
+                    <div>
+                        <MenuBarContainer />
+                    </div>
+                    <div className="grow">
+                        <Outlet />
+                    </div>
+                    <div className="grow-0 ">
+                        <SidebarContainer />
+                    </div>
                 </div>
-                <div className="grow">
-                    <Outlet />
-                </div>
-                <div className="grow-0 ">
-                    <SidebarContainer />
-                </div>
-            </div>
-
             </div>
         </>
     );

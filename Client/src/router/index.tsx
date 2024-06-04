@@ -14,7 +14,7 @@ import GuardadoContainer from '@/pages/guardado/Guardado.container';
 import EvaluacionesContainer from '@/pages/evaluaciones/Evaluaciones.container';
 import ConfiguracionPerfilContainer from '@/pages/configuracionPerfil/layout/ConfiguracionPerfil.container';
 import { PerfilMentorContainer } from '@/pages/configuracionPerfil/perfiMentor/PerfilMentor.container';
-import { InformacionPersonalContainer } from '@/pages/configuracionPerfil/informacionPersonal/InformacionPersonal.container';
+import InformacionPersonalContainer from '@/pages/configuracionPerfil/informacionPersonal/InformacionPersonal.container';
 
 const router = createBrowserRouter([
     {
