@@ -64,6 +64,10 @@ public class UserProfileController {
     //IMAGEN
 
     @PostMapping(value = "/{id}/image")
+    @Operation(
+            summary = "Sube la imagen",
+            description= "Permite subir la imagen al perfil del usuario"
+    )
     public ResponseEntity<Profile> uploadImage(@PathVariable Integer id, @RequestParam MultipartFile imageFile){
         try{
             Profile profile = userService.saveImage(id,imageFile);
@@ -74,12 +78,20 @@ public class UserProfileController {
     }
 
     @DeleteMapping(value = "/{id}/image")
+    @Operation(
+            summary = "Elimina la imagen del perfil",
+            description = "Permite la eliminación de la imagen del perfil del usuario, la imagen sería nula"
+    )
     public ResponseEntity<Void> deleteImage(@PathVariable Integer id){
         userService.deleteImage(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping(value = "/{id}/image")
+    @Operation(
+            summary = "Muestra la imagen",
+            description = "Permite mostrar la imagen perteneciente al perfil del usuario por id"
+    )
     public ResponseEntity<byte[]> getImage(@PathVariable String userName){
         Optional<UserProfileDto> profile = Optional.ofNullable(userService.getProfile(userName));
         if(profile.isPresent() && profile.get().getImage() != null){
