@@ -60,16 +60,16 @@ const DropdownUserView: React.FC<Props> = ({ onLogout, name, lastname }) => {
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuGroup className="space-y-1.5">
-                            <DropdownMenuItem className="p-3">
-                                <div className="flex items-center gap-2.5">
-                                    <UserRoundCog size={24} />
-                                    <NavLink to="/configurar-perfil">
+                            <NavLink to="/">
+                                <DropdownMenuItem className="p-3 cursor-pointer">
+                                    <div className="flex items-center gap-2.5">
+                                        <UserRoundCog size={24} />
                                         <p className="text-base font-normal">
                                             Ver mi perfil
                                         </p>
-                                    </NavLink>
-                                </div>
-                            </DropdownMenuItem>
+                                    </div>
+                                </DropdownMenuItem>
+                            </NavLink>
                             <DropdownMenuItem className="p-3">
                                 <div className="flex items-center gap-2.5">
                                     <CalendarDays size={24} />
@@ -78,14 +78,16 @@ const DropdownUserView: React.FC<Props> = ({ onLogout, name, lastname }) => {
                                     </p>
                                 </div>
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="p-3">
-                                <div className="flex items-center gap-2.5">
-                                    <Settings size={24} />
-                                    <p className="text-base font-normal">
-                                        Configuración
-                                    </p>
-                                </div>
-                            </DropdownMenuItem>
+                            <NavLink to="/configurar-perfil">
+                                <DropdownMenuItem className="p-3 cursor-pointer">
+                                    <div className="flex items-center gap-2.5">
+                                        <Settings size={24} />
+                                        <p className="text-base font-normal">
+                                            Configuración
+                                        </p>
+                                    </div>
+                                </DropdownMenuItem>
+                            </NavLink>
                             <DropdownMenuItem className="p-3">
                                 <div className="flex items-center gap-2.5">
                                     <CircleHelp size={24} />
