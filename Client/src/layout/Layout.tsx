@@ -10,31 +10,30 @@ interface LayoutProps {
     children?: ReactNode;
 }
 const Layout: React.FC<LayoutProps> = () => {
-    const status = useAuthStore((state) => state.status);
+    //TODO: Recordar habilitar para que fincione correctamente el redireccionamiento
+    // const status = useAuthStore((state) => state.status)
 
-    if (status === 'unauthorized') {
-        return <Navigate to="/signin" />;
-    }
+    // if (status === 'unauthorized') {
+    //     return <Navigate to="/signin" />;
+    // }
 
     return (
         <>
-            <div className="min-h-screen w-full">
-
-                <div >
+            <div className="flex flex-col min-h-screen  w-full">
+                <div className="sticky top-0 bg-background z-50">
                     <DashboardHeaderContainer />
                 </div>
-            <div className="flex grow-0">
-                <div className=" ">
-                    <MenuBarContainer />
+                <div className="flex">
+                    <div>
+                        <MenuBarContainer />
+                    </div>
+                    <div className=" ml-96 grow">
+                        <Outlet />
+                    </div>
+                    <div className="grow-0">
+                        <SidebarContainer />
+                    </div>
                 </div>
-                <div className="grow">
-                    <Outlet />
-                </div>
-                <div className="grow-0 ">
-                    <SidebarContainer />
-                </div>
-            </div>
-
             </div>
         </>
     );
