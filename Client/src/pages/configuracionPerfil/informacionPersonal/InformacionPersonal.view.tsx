@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import {
     Form,
     FormControl,
-    FormDescription,
+    // FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -16,9 +16,10 @@ import { FormSchemaType } from './InformacionPersonal.container';
 import TimeZoneSelectContainer from '@/components/TimeZoneSelect/TimeZoneSelect.container';
 import { Select } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { UseFormReturn } from 'react-hook-form';
 
 interface Props {
-    form: any;
+    form: UseFormReturn<FormSchemaType>;
     onSubmit: (data: FormSchemaType) => void;
     handleToggleInput: (input: string) => void;
     inputStates: { [input: string]: boolean };
