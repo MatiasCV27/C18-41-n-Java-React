@@ -17,7 +17,7 @@ export const TimeZoneSelectView: React.FC<Props> = ({ selectIsActive }) => {
     return (
         <>
             <FormControl>
-                <SelectTrigger disabled={selectIsActive} className="w-[280px]  disabled:border-0 disabeled:tex-zinc-800 disabled:bg-background  rounded border px-1 text-gray-700 border-gray-400 h-10 text-base font-medium placeholder:text-gray-400">
+                <SelectTrigger disabled={selectIsActive} className="w-[280px]  disabled:border-0 disabled:placeholder:text-zinc-800 disabled:bg-background  rounded border px-1 text-gray-700 border-gray-400 h-10 text-base font-medium placeholder:text-zinc-300">
                     <SelectValue placeholder="Selecciona una zona horaria" />
                 </SelectTrigger>
             </FormControl>
