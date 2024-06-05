@@ -30,8 +30,8 @@ const MenubarView: React.FC = () => {
 
   return (
     // <div className="fixed top-[24px] bottom-[24px] left-[24px]  flex flex-col lg:w-[226px] xl:w-[316px] 2xl:w-[316px]">
-    <div className="  flex flex-col min-w-[226px] max-w-[330px] mx-6 ">
-      <div className="bg-accent text-black p-4 rounded-lg flex flex-col min-h-[600px] lg:min-h-[800px] ">
+    <div className="flex fixed top-24 flex-col w-80 mx-6 h-screen">
+      <div className="bg-accent  text-black p-4 rounded-lg flex flex-col min-h-[600px] lg:min-h-full ">
         <ul className="space-y-4">
           {menuItems.map((item, index) => (
             <li key={index}>

@@ -6,7 +6,7 @@ const DashboardHeaderView = () => {
     return (
         <>
             <div className="w-full flex justify-between items-center py-5 px-6">
-                <h1 className="text-2xl grow-0 font-bold tracking-wide bg-transparent ">
+                <h1 className="text-2xl grow-0 text-nowrap font-bold tracking-wide bg-transparent ">
                     <span className="text-accent">Swap</span> It Up
                 </h1>
                 <div className="grow mx-16">
@@ -27,7 +27,7 @@ const DashboardHeaderView = () => {
                                 />
                             </div>
                         </div>
-                        <div className='rounded-2xl bg-white p-3'>
+                        <div className="rounded-2xl bg-white p-3">
                             <BellDot size={30} color="black" />
                         </div>
 
