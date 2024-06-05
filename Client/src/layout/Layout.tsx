@@ -10,6 +10,7 @@ interface LayoutProps {
     children?: ReactNode;
 }
 const Layout: React.FC<LayoutProps> = () => {
+    //TODO: Recordar habilitar para que fincione correctamente el redireccionamiento
     // const status = useAuthStore((state) => state.status)
 
     // if (status === 'unauthorized') {
@@ -26,10 +27,10 @@ const Layout: React.FC<LayoutProps> = () => {
                     <div>
                         <MenuBarContainer />
                     </div>
-                    <div className=" ml-96 mr-96 grow">
+                    <div className=" ml-96 grow">
                         <Outlet />
                     </div>
-                    <div className=" grow-0 ">
+                    <div className="grow-0">
                         <SidebarContainer />
                     </div>
                 </div>

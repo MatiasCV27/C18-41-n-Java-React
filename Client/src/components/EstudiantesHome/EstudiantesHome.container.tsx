@@ -10,7 +10,7 @@ const EstudiantesHomeContainer: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="w-full mx-auto ">
       <EstudiantesHomeView
         calendarios={calendarios}
         onExploreMentoresClick={handleExploreMentoresClick}
