@@ -2,20 +2,30 @@ import * as z from 'zod';
 import InformacionPersonalView from './InformacionPersonal.view';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ProfileInfoModel } from '@/models/profileInfo.model';
+import { ProfileInfoController } from '@/controllers/profileInfo/profileInfo.controller';
+import { useAuthStore } from '@/stores/auth/auth.store';
 
 const FormSchema = z.object({
     name: z.string(),
     lastname: z.string(),
     gender: z.string(),
     country: z.string(),
-    languages: z.string(),
+    lenguage: z.string(),
     industry: z.string(),
-    about: z.string(),
-    timezone: z.string(),
+    aboutMe: z.string(),
+    timeZone: z.string(),
 });
 type FormSchemaType = z.infer<typeof FormSchema>;
 const InformacionPersonalContainer = () => {
+    const profileInfoController = new ProfileInfoController();
+
+    const username = useAuthStore((state) => state.user?.username);
+
+    const [profileInfo, setProfileInfo] = useState<ProfileInfoModel>(
+        new Object() as ProfileInfoModel
+    );
     const [inputStates, setInputStates] = useState<{ [key: string]: boolean }>({
         input1: true,
         input2: true,
@@ -26,6 +36,7 @@ const InformacionPersonalContainer = () => {
         input7: true,
         input8: true,
     });
+
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -33,12 +44,36 @@ const InformacionPersonalContainer = () => {
             lastname: '',
             gender: '',
             country: '',
-            languages: '',
+            lenguage: '',
             industry: '',
-            about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat odio aliquam nostrum corrupti rerum consequuntur repudiandae nemo, officiis tempore nobis veniam cupiditate vitae perspiciatis similique. Eligendi architecto iste incidunt earum.',
-            timezone: '',
+            aboutMe:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat odio aliquam nostrum corrupti rerum consequuntur repudiandae nemo, officiis tempore nobis veniam cupiditate vitae perspiciatis similique. Eligendi architecto iste incidunt earum.',
+            timeZone: '',
         },
     });
+
+    useEffect(() => {
+        getProfileInfo(username);
+    }, []);
+
+    useEffect(() => {
+        form.reset(profileInfo);
+    }, [profileInfo]);
+
+    //TODO: corregir porque lanza error cuando llegan valores null de la api, puede ser en el getProfileInfo
+   
+
+    const getProfileInfo = async (username?: string) => {
+        if (!username) {
+            console.log('no hay username');
+            return;
+        }
+        const response = await profileInfoController.getProfileInfo(username);
+        console.log('getProfile', response);
+        setProfileInfo(response);
+    };
+
+    console.log('profileInfo', profileInfo);
 
     const handleToggleInput = (input: string) => {
         setInputStates((prevInputStates) => ({
@@ -60,6 +95,7 @@ const InformacionPersonalContainer = () => {
                 onSubmit={onSubmit}
                 inputStates={inputStates}
                 handleToggleInput={handleToggleInput}
+                
             />
         </>
     );

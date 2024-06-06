@@ -17,12 +17,14 @@ import TimeZoneSelectContainer from '@/components/TimeZoneSelect/TimeZoneSelect.
 import { Select } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { UseFormReturn } from 'react-hook-form';
+import { ProfileInfoModel } from '@/models/profileInfo.model';
 
 interface Props {
     form: UseFormReturn<FormSchemaType>;
     onSubmit: (data: FormSchemaType) => void;
     handleToggleInput: (input: string) => void;
     inputStates: { [input: string]: boolean };
+    
 }
 
 const InformacionPersonalView: FC<Props> = ({
@@ -30,6 +32,7 @@ const InformacionPersonalView: FC<Props> = ({
     onSubmit,
     handleToggleInput,
     inputStates,
+    
 }) => {
     return (
         <>
@@ -195,13 +198,13 @@ const InformacionPersonalView: FC<Props> = ({
                         <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
                             <FormField
                                 control={form.control}
-                                name="timezone"
+                                name="timeZone"
                                 render={({ field }) => (
                                     <FormItem className="py-2">
                                         <FormLabel className="text-gray-700 text-base font-bold px-1">
                                             Zona horaria
                                         </FormLabel>
-                                        <Select
+                                        {/* <Select
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
                                         >
@@ -210,7 +213,18 @@ const InformacionPersonalView: FC<Props> = ({
                                                     inputStates.input4
                                                 }
                                             />
-                                        </Select>
+                                        </Select> */}
+                                         <FormControl>
+                                                <Input
+                                                    placeholder="zona"
+                                                    disabled={
+                                                        inputStates.input4
+                                                    }
+                                                    className="disabled:border-0 disabled:placeholder:text-zinc-800 disabled:bg-background  rounded border px-1 text-gray-700 border-gray-400 h-10 text-base font-medium placeholder:text-zinc-300"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -227,7 +241,7 @@ const InformacionPersonalView: FC<Props> = ({
                         <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
                             <FormField
                                 control={form.control}
-                                name="languages"
+                                name="lenguage"
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className=" my-2 ">
@@ -301,7 +315,7 @@ const InformacionPersonalView: FC<Props> = ({
                         <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200 gap-x-3">
                             <FormField
                                 control={form.control}
-                                name="about"
+                                name="aboutMe"
                                 render={({ field }) => (
                                     <FormItem className="my-2 w-full">
                                         <FormLabel className="text-gray-700 text-base font-bold px-1">
