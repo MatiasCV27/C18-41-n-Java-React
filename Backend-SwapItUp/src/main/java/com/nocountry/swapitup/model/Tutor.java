@@ -28,12 +28,11 @@ public class Tutor {
     private byte[] image;
 
     @Column(length = 75)
-
     private String industry;
 
     private double score;
 
-    private Integer swapPoints;
+    private Integer exchangesMade;
 
     private boolean active;
 
@@ -42,6 +41,7 @@ public class Tutor {
 
     @OneToOne
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)

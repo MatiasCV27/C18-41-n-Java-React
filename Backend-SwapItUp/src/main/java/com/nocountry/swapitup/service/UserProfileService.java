@@ -36,6 +36,7 @@ public class UserProfileService {
                 .lenguage(profile.getLenguage())
                 .aboutMe(profile.getAboutMe())
                 .skills(profile.getSkills())
+                .industry(profile.getIndustry())
                 .experience(profile.getExperience())
                 .link_linkedin(profile.getLink_portfolio())
                 .link_portfolio(profile.getLink_portfolio())
