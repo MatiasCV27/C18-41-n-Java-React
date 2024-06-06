@@ -1,7 +1,10 @@
 package com.nocountry.swapitup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nocountry.swapitup.enums.StatusName;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +25,12 @@ public class Meeting {
     @Column(length = 75)
     private String fullname;
 
+    private String username;
+
     private byte[] image;
+
+    @Column(unique = true, length = 450)
+    private String message;
 
     @Column(length = 75)
     private String schule;
@@ -32,6 +40,10 @@ public class Meeting {
 
     private boolean active;
 
+    @Min(0)
+    @Max(5)
+    private double meetingScore;
+
     @Enumerated(EnumType.STRING)
     private StatusName status;
 
@@ -39,7 +51,8 @@ public class Meeting {
     private String link;
 
     @ManyToOne
-    @JoinColumn(name = "tutor_id")
+    @JoinColumn(name = "idTutor")
+    @JsonIgnore
     private Tutor tutor;
 
 }

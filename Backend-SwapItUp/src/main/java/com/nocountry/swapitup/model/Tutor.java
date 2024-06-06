@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -30,17 +31,29 @@ public class Tutor {
 
     private String industry;
 
-    private double stars;
+    private double score;
 
     private Integer swapPoints;
 
     private boolean active;
 
+    @Column(length = 78)
+    private String link_calendar;
+
     @OneToOne
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")
     private User user;
 
-    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
-    private List<Meeting> meetings;
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Meeting> meetings = new ArrayList<>();
 
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
+        meeting.setTutor(this);
+    }
+
+    public void removeMeeting(Meeting meeting) {
+        meetings.remove(meeting);
+        meeting.setTutor(null);
+    }
 }
