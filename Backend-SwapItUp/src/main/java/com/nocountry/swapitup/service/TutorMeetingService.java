@@ -8,9 +8,7 @@ import com.nocountry.swapitup.enums.StatusName;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Meeting;
 import com.nocountry.swapitup.repository.MeetingRepository;
-import com.nocountry.swapitup.repository.ProfileRepository;
-import com.nocountry.swapitup.repository.TutorRepository;
-import com.nocountry.swapitup.utils.MapTemplatesMeetings;
+import com.nocountry.swapitup.utils.MapInfoTemplates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +41,7 @@ public class TutorMeetingService {
         List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PROXIMAS)
-                .map(MapTemplatesMeetings::mapToUpcomingMeetingDTO)
+                .map(MapInfoTemplates::mapToUpcomingMeetingDTO)
                 .collect(Collectors.toList());
     }
 
@@ -51,7 +49,7 @@ public class TutorMeetingService {
         List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PENDIENTES)
-                .map(MapTemplatesMeetings::mapToPendingMeetingDTO)
+                .map(MapInfoTemplates::mapToPendingMeetingDTO)
                 .collect(Collectors.toList());
     }
 
@@ -59,7 +57,7 @@ public class TutorMeetingService {
         List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.HISTORIAL)
-                .map(MapTemplatesMeetings::mapToHistoryMeetingDTO)
+                .map(MapInfoTemplates::mapToHistoryMeetingDTO)
                 .collect(Collectors.toList());
     }
 

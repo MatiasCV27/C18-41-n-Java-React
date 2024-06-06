@@ -1,17 +1,20 @@
 package com.nocountry.swapitup.service;
 
+import com.nocountry.swapitup.dto.TutorSearchDto;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Tutor;
 import com.nocountry.swapitup.model.User;
 import com.nocountry.swapitup.repository.TutorRepository;
 import com.nocountry.swapitup.repository.UserRepository;
+import com.nocountry.swapitup.utils.MapInfoTemplates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import static com.nocountry.swapitup.utils.OtherUtils.findByTutorFullname;
+import static com.nocountry.swapitup.utils.OtherUtils.hasSkills;
 import static com.nocountry.swapitup.utils.infoTokenUtils.getUsernameToken;
 
 @Service
@@ -29,6 +32,7 @@ public class TutorSearchService {
             Tutor newTutor = Tutor.builder()
                     .fullname(newUser.getName() + " " + newUser.getLastname())
                     .image(newUser.getProfile().getImage())
+                    .skills(newUser.getProfile().getSkills())
                     .industry(newUser.getProfile().getIndustry())
                     .score(0)
                     .exchangesMade(0)
@@ -44,7 +48,7 @@ public class TutorSearchService {
     }
 
     public List<Tutor> findAllTutorsByFullname(String fulname) {
-        return tutorRepository.findAll(findByTutorFullname(fulname));
+        return tutorRepository.findAll(hasSkills(fulname));
     }
 
 }

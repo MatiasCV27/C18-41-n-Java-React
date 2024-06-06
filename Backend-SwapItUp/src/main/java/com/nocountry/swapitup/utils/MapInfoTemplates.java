@@ -2,10 +2,26 @@ package com.nocountry.swapitup.utils;
 
 import com.nocountry.swapitup.dto.HistoryMeetingDto;
 import com.nocountry.swapitup.dto.PendingMeetingDto;
+import com.nocountry.swapitup.dto.TutorSearchDto;
 import com.nocountry.swapitup.dto.UpcomingMeetingDto;
 import com.nocountry.swapitup.model.Meeting;
+import com.nocountry.swapitup.model.Tutor;
 
-public class MapTemplatesMeetings {
+public class MapInfoTemplates {
+
+    //TODO: Listado de todos los tutores disponibles
+
+    public static TutorSearchDto mapToSearchTutorDTO(Tutor tutor) {
+        return TutorSearchDto.builder()
+                .fullname(tutor.getFullname())
+                .image(tutor.getImage())
+                .skills(tutor.getSkills())
+                .industry(tutor.getIndustry())
+                .score(tutor.getScore())
+                .active(tutor.getActive())
+                .link(tutor.getLink_calendar())
+                .build();
+    }
 
     //TODO: Listado de Proximas Reuniones
 

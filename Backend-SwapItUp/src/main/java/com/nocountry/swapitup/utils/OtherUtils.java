@@ -5,10 +5,10 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class OtherUtils {
 
-    public static Specification<Tutor> findByTutorFullname(String nombre) {
+    public static Specification<Tutor> hasSkills(String habilidad) {
         return (root, query, criteriaBuilder) -> {
-            String likePattern = "%" + nombre + "%";
-            return criteriaBuilder.like(criteriaBuilder.concat(root.get("user").get("name"), criteriaBuilder.concat(" ", root.get("user").get("lastname"))), likePattern);
+            String likePattern = "%" + habilidad + "%";
+            return criteriaBuilder.like(root.get("skills"), likePattern);
         };
     }
 

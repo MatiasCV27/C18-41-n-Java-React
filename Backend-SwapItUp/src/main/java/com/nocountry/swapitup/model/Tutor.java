@@ -30,11 +30,13 @@ public class Tutor {
     @Column(length = 75)
     private String industry;
 
+    private String skills;
+
     private double score;
 
     private Integer exchangesMade;
 
-    private boolean active;
+    private Boolean active;
 
     @Column(length = 78)
     private String link_calendar;
