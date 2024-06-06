@@ -1,54 +1,17 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Clock, CalendarDays, CircleCheck, CircleX } from "lucide-react";
+import { CircleCheck, CircleX } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
-function ThumbUpIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="50"
-      height="50"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-black"
-    >
-      <path d="M14 9V5a3 3 0 0 0-6 0v4H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-3.68L14 9z" />
-      <line x1="9" y1="22" x2="9" y2="13" />
-    </svg>
-  );
-}
-
-function ThumbDownIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="50"
-      height="50"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-black"
-    >
-      <path d="M10 15v4a3 3 0 0 0 6 0v-4h3a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3.68L10 15z" />
-      <line x1="15" y1="2" x2="15" y2="11" />
-    </svg>
-  );
-}
+import Calendario from "../icons/Calendario";
+import Horario from "../icons/Horario";
+import ModalAceptar from "../icons/ModalAceptar";
+import ModalRechazar from "../icons/ModalRechazar";
 
 const EstudianteHomeSolicitudView: React.FC = () => {
   const [isAcceptModalOpen, setAcceptModalOpen] = useState(false);
@@ -80,11 +43,11 @@ const EstudianteHomeSolicitudView: React.FC = () => {
 
             <div className="flex flex-col items-end w-2/3 p-4 space-y-4">
               <div className="flex items-center space-x-1 w-[160px]">
-                <Clock />
+                <Horario size={18} />
                 <span className="text-gray-500">8:30 - 9:00 pm</span>
               </div>
               <div className="flex items-center space-x-1 w-[160px]">
-                <CalendarDays />
+                <Calendario size={18}  />
                 <span className="text-gray-500">Lunes 24 Mayo</span>
               </div>
             </div>
@@ -114,14 +77,16 @@ const EstudianteHomeSolicitudView: React.FC = () => {
 
       {/* Modal de aceptación */}
       <Dialog open={isAcceptModalOpen} onOpenChange={setAcceptModalOpen}>
-        <DialogContent className="max-w-lg bg-blue-400">
+        <DialogContent className="max-w-2xl bg-accent">
           <DialogHeader>
-            <ThumbUpIcon />
-            <DialogTitle className="text-lg font-bold mt-4">
+            <div className="flex justify-center items-center p-4">
+              <ModalAceptar size={125} />
+            </div>
+            <DialogTitle className="text-xl font-bold mt-4 bg-white p-2 text-center rounded-lg">
               Solicitud aceptada exitosamente
             </DialogTitle>
           </DialogHeader>
-          <DialogDescription className="text-center mt-2">
+          <DialogDescription className="text-center mt-2 text-black font-medium text-lg">
             Al acceder a tu calendario podrás ver cuando se acerca la fecha de
             dar tu tutoría, además de que la plataforma te notificará.
           </DialogDescription>
@@ -130,15 +95,17 @@ const EstudianteHomeSolicitudView: React.FC = () => {
 
       {/* Modal de rechazo */}
       <Dialog open={isRejectModalOpen} onOpenChange={setRejectModalOpen}>
-        <DialogContent className="max-w-lg bg-blue-400">
+        <DialogContent className="max-w-2xl bg-accent">
           <DialogHeader>
-            <ThumbDownIcon />
-            <DialogTitle className="text-lg font-bold mt-4">
+            <div className="flex justify-center items-center p-4">
+             <ModalRechazar size={125} />
+            </div>
+            <DialogTitle className="text-xl font-bold mt-4 bg-muted rounded-lg text-center p-2 text-white">
               ¿Estás seguro de rechazar?
             </DialogTitle>
           </DialogHeader>
           <DialogDescription className="text-center mt-2">
-            <div className="flex space-x-4 justify-center mt-4">
+            <div className="flex space-x-4 justify-center mt-4 font-medium text-base">
               <Button
                 variant="destructive"
                 onClick={() => setRejectModalOpen(false)}
@@ -148,6 +115,7 @@ const EstudianteHomeSolicitudView: React.FC = () => {
               <Button
                 variant="outline"
                 onClick={() => setRejectModalOpen(false)}
+                className="font-medium text-base"
               >
                 Volver atrás
               </Button>

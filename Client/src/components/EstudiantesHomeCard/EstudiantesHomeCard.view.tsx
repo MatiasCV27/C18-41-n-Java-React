@@ -6,7 +6,9 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Clock, CalendarDays, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Calendario from "../icons/Calendario";
+import Horario from "../icons/Horario";
 
 const EstudiantesHomeCardView: React.FC = () => {
   return (
@@ -21,13 +23,13 @@ const EstudiantesHomeCardView: React.FC = () => {
           Alumno 1
         </CardTitle>
         <CardDescription className="flex items-center">
-          <Clock size="24" className="text-black" />
+          <Horario size={24} />
           <span className="ml-1 text-xs font-bold text-black">
             Horario: 09:00 - 10:00
           </span>
         </CardDescription>
         <CardDescription className="flex items-center">
-          <CalendarDays size="24" className="text-black" />
+          <Calendario size={24} />
           <span className="ml-1 text-xs font-bold text-black">
             Fecha: 2023-01-01
           </span>

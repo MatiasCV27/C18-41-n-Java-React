@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Zap } from "lucide-react";
+import RayoCeleste from "../icons/RayoCeleste";
 
 interface UserHomeCardProps {
   title: string;
@@ -39,9 +39,7 @@ const UserHomeCardView: React.FC<UserHomeCardProps> = ({
           <CardTitle>{title}</CardTitle>
           <div className="flex items-center space-x-1">
             <span className="text-black font-medium text-md">1</span>
-            <div className="bg-accent rounded-full p-1 border border-black">
-              <Zap size={10} strokeWidth={1} color="black" fill="yellow" />
-            </div>
+            <RayoCeleste size={20} />
           </div>
         </div>
       </CardHeader>

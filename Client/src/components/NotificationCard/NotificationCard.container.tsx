@@ -1,6 +1,8 @@
 import React from "react";
 import NotificationCardView from "./NotificationCard.view";
 import { Zap, CalendarCheck } from "lucide-react";
+import NotificacionCheck from "../icons/NotificacionCheck";
+import NotificacionRayo from "../icons/NotificacionRayo";
 
 interface NotificationCardContainerProps {
   title: string;
@@ -24,11 +26,11 @@ const NotificationCardContainer: React.FC<NotificationCardContainerProps> = ({
       case "zap":
         return (
           <div className="bg-white rounded-full p-1 border-2 border-black">
-            <Zap size={25} strokeWidth={2} color="black" fill="yellow" />
+            <NotificacionRayo size={48}  />
           </div>
         );
       case "calendarCheck":
-        return <CalendarCheck size={35} strokeWidth={2} color="black" fill="yellow" />;
+        return <NotificacionCheck size={48}  />;
       default:
         return null;
     }

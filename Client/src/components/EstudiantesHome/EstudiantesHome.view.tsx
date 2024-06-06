@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import {
-  CalendarDays,
-  ChevronRight,
-  CalendarCheck,
-  ArrowRight,
-} from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EstudiantesHomeCardContainer from "../EstudiantesHomeCard/EstudiantesHomeCard.container";
 import EstudianteHomeSolicitudContainer from "../EstudiantesHomeSolicitud/EstudianteHomeSolicitud.container";
 import EstudiantesHomeHistorialContainer from "../EstudiantesHomeHistorial/EstudiantesHomeHistorial.container";
+import Calendario31 from "../icons/Calendario31";
+import Calendario from "../icons/Calendario";
 
 const TABS = [
   { id: "proximos", label: "Próximas" },
@@ -50,9 +47,7 @@ const EstudiantesHomeView: React.FC = () => {
           </>
         );
       case "historial":
-        return (
-          <EstudiantesHomeHistorialContainer />
-        );
+        return <EstudiantesHomeHistorialContainer />;
       default:
         return null;
     }
@@ -62,7 +57,7 @@ const EstudiantesHomeView: React.FC = () => {
     <div className="w-full h-auto">
       <div>
         <div className="flex space-x-2 mb-2 w-full">
-          <CalendarDays size={24} />
+          <Calendario size={24} />
           <h2 className="text-base">
             Comporta a tiempo real tu tiempo disponible
           </h2>
@@ -75,7 +70,7 @@ const EstudiantesHomeView: React.FC = () => {
             (calendario, index) => (
               <div key={index} className="p-4">
                 <Button className="flex items-center justify-between bg-secondary text-black font-medium rounded-md py-2 px-4">
-                  <CalendarCheck size={24} />
+                  <Calendario31 size={24} />
                   <span className="mx-4 text-[16px] font-bold">
                     {calendario}
                   </span>

@@ -9,6 +9,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { ChevronRight } from "lucide-react";
 
+
 interface NotificationCardViewProps {
   title: string;
   description: string;

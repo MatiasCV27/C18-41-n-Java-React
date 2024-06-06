@@ -5,7 +5,6 @@ import CronogramaContainer from "@/components/Cronograma/Cronograma.container";
 const HomeView = () => {
   return (
     <main className="flex flex-col space-y-[24px] w-auto mx-auto">
-      
       <UserHomeBannerContainer />
       <UserHomeCardContainer />
       <CronogramaContainer />
