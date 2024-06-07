@@ -1,3 +1,4 @@
+import { ProfilePersonalInformationDto } from '@/dtos/profilePersonalInformation.dto';
 import { ProfileInfoModel } from '@/models/profileInfo.model';
 import HttpClient from '@/utils/HttpClient/HttpClient.utils';
 
@@ -9,8 +10,18 @@ export class ProfileInfoRepository {
     constructor() {}
 
     async getProfileInfo(username: string): Promise<ProfileInfoModel> {
-        
         const getAllResponse = await this.httpClient.get(`/${username}`);
+        return getAllResponse.data;
+    }
+
+    async updateProfileInfo(
+        id: string,
+        profileInfo: ProfilePersonalInformationDto
+    ): Promise<ProfileInfoModel> {
+        const getAllResponse = await this.httpClient.put(
+            `/user/${id}`,
+            profileInfo
+        );
         return getAllResponse.data;
     }
 }
