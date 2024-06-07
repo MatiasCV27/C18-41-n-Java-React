@@ -35,7 +35,7 @@ public class TutorSearchController {
     public ResponseEntity<List<TutorSearchDto>> getAllTutorByFullname(
             @RequestParam(value = "skills", required = false) String skills,
             @RequestParam(value = "industry", required = false) String industry) {
-        return ResponseEntity.ok(tutorSearchService.findAllTutorsByFullname(skills, industry));
+        return ResponseEntity.ok(tutorSearchService.findAllTutors(skills, industry));
     }
 
     @PutMapping(value = "/disable")

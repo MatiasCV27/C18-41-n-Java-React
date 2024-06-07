@@ -48,7 +48,7 @@ public class TutorSearchService {
         }
     }
 
-    public List<TutorSearchDto> findAllTutorsByFullname(String skills, String industry) {
+    public List<TutorSearchDto> findAllTutors(String skills, String industry) {
         Specification<Tutor> tutor = Specification.where(null);
         if (skills != null && !skills.isEmpty()) {
             tutor = tutor.and(OtherUtils.hasSkills(skills));

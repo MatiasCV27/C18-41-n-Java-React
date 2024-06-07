@@ -2,6 +2,8 @@ package com.nocountry.swapitup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,6 +34,8 @@ public class Tutor {
 
     private String skills;
 
+    @Min(0)
+    @Max(5)
     private double score;
 
     private Integer exchangesMade;

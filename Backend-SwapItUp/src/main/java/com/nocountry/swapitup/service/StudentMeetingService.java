@@ -53,10 +53,28 @@ public class StudentMeetingService {
         if (meeting.getStatus().equals(StatusName.PROXIMAS)) {
             meeting.setStatus(StatusName.HISTORIAL);
             meeting.setMeetingScore(scoreMeetingDto.getMeetingScore());
+            addInteraction(meeting.getTutor().getIdTutor());
             meetingRepository.save(meeting);
             return meeting;
         }
         return null;
+    }
+
+    public void addInteraction(Integer idTutor) {
+        Tutor tutor = tutorRepository.findById(idTutor)
+                .orElseThrow(() -> new NotFoundDataException("Tutor del ID - " + idTutor + " no ha sido encontrado"));
+        tutor.setExchangesMade(tutor.getExchangesMade() + 1);
+        tutor.setScore(scoreAvarageByTutor(idTutor));
+        tutorRepository.save(tutor);
+    }
+
+    public double scoreAvarageByTutor(Integer tutorId) {
+        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+        double averageScore = allMeetings.stream()
+                .mapToDouble(Meeting::getMeetingScore)
+                .average()
+                .orElse(0.0);
+        return averageScore;
     }
 
     //TODO: Listado de Reuniones de los Estudiantes
