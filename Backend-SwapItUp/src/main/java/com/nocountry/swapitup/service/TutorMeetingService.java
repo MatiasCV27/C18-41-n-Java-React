@@ -7,7 +7,9 @@ import com.nocountry.swapitup.dto.UpcomingMeetingDto;
 import com.nocountry.swapitup.enums.StatusName;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Meeting;
+import com.nocountry.swapitup.model.Profile;
 import com.nocountry.swapitup.repository.MeetingRepository;
+import com.nocountry.swapitup.repository.ProfileRepository;
 import com.nocountry.swapitup.utils.MapInfoTemplates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 public class TutorMeetingService {
 
     private final MeetingRepository meetingRepository;
+    private final ProfileRepository profileRepository;
 
     public Meeting acceptOrRejectRequest(Integer idMeeting, LinkMeetDto linkDto, boolean response) {
         Meeting meeting = meetingRepository.findById(idMeeting)
@@ -27,11 +30,21 @@ public class TutorMeetingService {
         if (response && meeting.getStatus().equals(StatusName.PENDIENTES)) {
             meeting.setStatus(StatusName.PROXIMAS);
             meeting.setLink(linkDto.getLink());
+            removeSwapis(meeting.getUsername());
             meetingRepository.save(meeting);
             return meeting;
         } else {
             meetingRepository.deleteById(idMeeting);
             return null;
+        }
+    }
+
+    public void removeSwapis(String username) {
+        Profile profile = profileRepository.findByUser_Username(username)
+                .orElseThrow(() -> new NotFoundDataException("Perfil de " + username + " no ha sido encontrado"));
+        if (profile.getPoints() > 0) {
+            profile.setPoints(profile.getPoints() - 1);
+            profileRepository.save(profile);
         }
     }
 

@@ -58,8 +58,4 @@ public class Tutor {
         meeting.setTutor(this);
     }
 
-    public void removeMeeting(Meeting meeting) {
-        meetings.remove(meeting);
-        meeting.setTutor(null);
-    }
 }

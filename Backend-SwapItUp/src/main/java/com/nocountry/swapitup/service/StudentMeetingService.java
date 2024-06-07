@@ -54,6 +54,7 @@ public class StudentMeetingService {
             meeting.setStatus(StatusName.HISTORIAL);
             meeting.setMeetingScore(scoreMeetingDto.getMeetingScore());
             addInteraction(meeting.getTutor().getIdTutor());
+            addSwapisToTutor(meeting.getTutor().getIdTutor());
             meetingRepository.save(meeting);
             return meeting;
         }
@@ -75,6 +76,14 @@ public class StudentMeetingService {
                 .average()
                 .orElse(0.0);
         return averageScore;
+    }
+
+    public void addSwapisToTutor(Integer idTutor) {
+        Tutor tutor = tutorRepository.findById(idTutor)
+                .orElseThrow(() -> new NotFoundDataException("Tutor del ID - " + idTutor + " no ha sido encontrado"));
+        Profile profile = tutor.getUser().getProfile();
+        profile.setPoints(profile.getPoints() + 1);
+        profileRepository.save(profile);
     }
 
     //TODO: Listado de Reuniones de los Estudiantes
