@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScoreMeeting {
+public class ScoreMeetingDto {
 
     double meetingScore;
 

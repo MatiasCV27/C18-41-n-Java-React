@@ -30,7 +30,7 @@ public class StudentMeetingController {
     @PostMapping(value = "/histories/{idMeeting}")
     @Operation(summary = "Finalizar reunión",
             description = "Con el ID de la reunion y el estudiante agrega la puntuación de la reunión. El status se modificara automaticamente en HISTORY")
-    public ResponseEntity<Meeting> endMeetingToHistory(@PathVariable(value = "idMeeting") Integer idMeeting, @RequestBody ScoreMeeting scoreDto) {
+    public ResponseEntity<Meeting> endMeetingToHistory(@PathVariable(value = "idMeeting") Integer idMeeting, @RequestBody ScoreMeetingDto scoreDto) {
         return ResponseEntity.ok(meetingService.endMeeting(idMeeting, scoreDto));
     }
 

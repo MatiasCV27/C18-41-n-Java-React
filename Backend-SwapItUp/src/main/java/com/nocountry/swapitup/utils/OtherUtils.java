@@ -12,4 +12,13 @@ public class OtherUtils {
         };
     }
 
+    public static Specification<Tutor> findByIndustry(String industry) {
+        return (root, query, criteriaBuilder) -> {
+            if (industry == null || industry.isEmpty()) {
+                return criteriaBuilder.conjunction();
+            }
+            return criteriaBuilder.equal(root.get("industry"), industry);
+        };
+    }
+
 }

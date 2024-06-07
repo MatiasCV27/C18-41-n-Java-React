@@ -8,13 +8,14 @@ import com.nocountry.swapitup.repository.TutorRepository;
 import com.nocountry.swapitup.repository.UserRepository;
 import com.nocountry.swapitup.utils.MapInfoTemplates;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.nocountry.swapitup.utils.OtherUtils.hasSkills;
+import com.nocountry.swapitup.utils.OtherUtils;
 import static com.nocountry.swapitup.utils.infoTokenUtils.getUsernameToken;
 
 @Service
@@ -47,8 +48,35 @@ public class TutorSearchService {
         }
     }
 
-    public List<Tutor> findAllTutorsByFullname(String fulname) {
-        return tutorRepository.findAll(hasSkills(fulname));
+    public List<TutorSearchDto> findAllTutorsByFullname(String skills, String industry) {
+        Specification<Tutor> tutor = Specification.where(null);
+        if (skills != null && !skills.isEmpty()) {
+            tutor = tutor.and(OtherUtils.hasSkills(skills));
+        }
+        if (industry != null && !industry.isEmpty()) {
+            tutor = tutor.and(OtherUtils.findByIndustry(industry));
+        }
+        tutor = tutor.and((root, query, criteriaBuilder) ->
+                criteriaBuilder.isTrue(root.get("active"))
+        );
+        List<Tutor> tutoresList = tutorRepository.findAll(tutor);
+        return tutoresList.stream()
+                .map(MapInfoTemplates::mapToSearchTutorDTO)
+                .collect(Collectors.toList());
+    }
+
+    public void disableTutoring() {
+        Tutor tutor = tutorRepository.findByUser_Username(getUsernameToken())
+                .orElseThrow(() -> new NotFoundDataException("El tutor no ha sido encontrado"));
+        tutor.setActive(false);
+        tutorRepository.save(tutor);
+    }
+
+    public void enableTutoring() {
+        Tutor tutor = tutorRepository.findByUser_Username(getUsernameToken())
+                .orElseThrow(() -> new NotFoundDataException("El tutor no ha sido encontrado"));
+        tutor.setActive(true);
+        tutorRepository.save(tutor);
     }
 
 }

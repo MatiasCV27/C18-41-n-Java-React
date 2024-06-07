@@ -29,8 +29,9 @@ public class MapInfoTemplates {
         return UpcomingMeetingDto.builder()
                 .fullname(meeting.getFullname())
                 .image(meeting.getImage())
-                .schule(meeting.getSchule())
-                .date(meeting.getDate())
+                .schedule(meeting.getSchedule())
+                .startDate(meeting.getStartDate())
+                .endDate(meeting.getEndDate())
                 .link(meeting.getLink())
                 .build();
     }
@@ -42,8 +43,9 @@ public class MapInfoTemplates {
                 .fullname(meeting.getFullname())
                 .image(meeting.getImage())
                 .message(meeting.getMessage())
-                .schule(meeting.getSchule())
-                .date(meeting.getDate())
+                .schedule(meeting.getSchedule())
+                .startDate(meeting.getStartDate())
+                .endDate(meeting.getEndDate())
                 .build();
     }
 
@@ -53,7 +55,8 @@ public class MapInfoTemplates {
         return HistoryMeetingDto.builder()
                 .fullname(meeting.getFullname())
                 .image(meeting.getImage())
-                .date(meeting.getDate())
+                .startDate(meeting.getStartDate())
+                .endDate(meeting.getEndDate())
                 .meetingScore(meeting.getMeetingScore())
                 .build();
     }

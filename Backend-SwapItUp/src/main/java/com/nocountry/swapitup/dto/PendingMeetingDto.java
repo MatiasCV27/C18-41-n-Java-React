@@ -14,7 +14,8 @@ public class PendingMeetingDto {
     String fullname;
     byte[] image;
     String message;
-    String schule;
-    String date;
+    String schedule;
+    String startDate;
+    String endDate;
 
 }

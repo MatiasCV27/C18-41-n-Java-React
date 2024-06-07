@@ -13,7 +13,8 @@ public class HistoryMeetingDto {
 
     String fullname;
     byte[] image;
-    String date;
+    String startDate;
+    String endDate;
     double meetingScore;
 
 }

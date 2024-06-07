@@ -36,8 +36,9 @@ public class StudentMeetingService {
                 .username(profile.getUser().getUsername())
                 .image(profile.getImage())
                 .message(meetingDTO.getMessage())
-                .schule(meetingDTO.getSchule())
-                .date(meetingDTO.getDate())
+                .schedule(meetingDTO.getSchedule())
+                .startDate(meetingDTO.getStartDate())
+                .endDate(meetingDTO.getEndDate())
                 .status(StatusName.PENDIENTES)
                 .tutor(tutor)
                 .build();
@@ -46,12 +47,12 @@ public class StudentMeetingService {
         return meeting;
     }
 
-    public Meeting endMeeting(Integer idMeeting, ScoreMeeting scoreMeeting) {
+    public Meeting endMeeting(Integer idMeeting, ScoreMeetingDto scoreMeetingDto) {
         Meeting meeting = meetingRepository.findById(idMeeting)
                 .orElseThrow(() -> new NotFoundDataException("Reunión con " + idMeeting + " no ha sido encontrado"));
         if (meeting.getStatus().equals(StatusName.PROXIMAS)) {
             meeting.setStatus(StatusName.HISTORIAL);
-            meeting.setMeetingScore(scoreMeeting.getMeetingScore());
+            meeting.setMeetingScore(scoreMeetingDto.getMeetingScore());
             meetingRepository.save(meeting);
             return meeting;
         }
