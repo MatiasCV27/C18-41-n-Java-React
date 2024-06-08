@@ -3,8 +3,10 @@ package com.nocountry.swapitup.service;
 import com.nocountry.swapitup.dto.UserProfileDto;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Profile;
+import com.nocountry.swapitup.model.Tutor;
 import com.nocountry.swapitup.model.User;
 import com.nocountry.swapitup.repository.ProfileRepository;
+import com.nocountry.swapitup.repository.TutorRepository;
 import com.nocountry.swapitup.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class UserProfileService {
 
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
+    private final TutorRepository tutorRepository;
 
     public UserProfileDto getProfile(String username) {
         User user = userRepository.findByUsername(username)
@@ -38,7 +41,7 @@ public class UserProfileService {
                 .skills(profile.getSkills())
                 .industry(profile.getIndustry())
                 .experience(profile.getExperience())
-                .link_linkedin(profile.getLink_portfolio())
+                .link_linkedin(profile.getLink_linkedin())
                 .link_portfolio(profile.getLink_portfolio())
                 .image(profile.getImage())
                 .build();
@@ -50,6 +53,9 @@ public class UserProfileService {
         if (newUser.getUsername().equals(getUsernameToken())) {
             newUser.setName(user.getName());
             newUser.setLastname(user.getLastname());
+            Tutor tutor = tutorRepository.findByUser_Username(username).orElse(null);
+            tutor.setFullname(newUser.getName() + " " + newUser.getLastname());
+            tutorRepository.save(tutor);
             return userRepository.save(newUser);
         }
         return null;
@@ -70,6 +76,10 @@ public class UserProfileService {
             newprofile.setExperience(profile.getExperience());
             newprofile.setLink_linkedin(profile.getLink_linkedin());
             newprofile.setLink_portfolio(profile.getLink_portfolio());
+            Tutor tutor = tutorRepository.findByUser_Username(user.getUsername()).orElse(null);
+            tutor.setIndustry(newprofile.getIndustry());
+            tutor.setSkills(newprofile.getSkills());
+            tutorRepository.save(tutor);
             return profileRepository.save(newprofile);
         }
         return null;
@@ -91,6 +101,9 @@ public class UserProfileService {
         if(profileOptional.isPresent()){
             Profile profile = profileOptional.get();
             profile.setImage(imageFile.getBytes());
+            Tutor tutor = tutorRepository.findByUser_Username(profile.getUser().getUsername()).orElse(null);
+            tutor.setImage(profile.getImage());
+            tutorRepository.save(tutor);
             return profileRepository.save(profile);
         } else {
             throw new IllegalArgumentException("Profile not found");

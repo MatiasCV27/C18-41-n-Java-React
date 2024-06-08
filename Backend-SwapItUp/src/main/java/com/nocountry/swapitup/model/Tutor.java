@@ -2,6 +2,8 @@ package com.nocountry.swapitup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,11 +32,15 @@ public class Tutor {
     @Column(length = 75)
     private String industry;
 
+    private String skills;
+
+    @Min(0)
+    @Max(5)
     private double score;
 
     private Integer exchangesMade;
 
-    private boolean active;
+    private Boolean active;
 
     @Column(length = 78)
     private String link_calendar;
@@ -47,13 +53,12 @@ public class Tutor {
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Meeting> meetings = new ArrayList<>();
 
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
+
     public void addMeeting(Meeting meeting) {
         meetings.add(meeting);
         meeting.setTutor(this);
     }
 
-    public void removeMeeting(Meeting meeting) {
-        meetings.remove(meeting);
-        meeting.setTutor(null);
-    }
 }

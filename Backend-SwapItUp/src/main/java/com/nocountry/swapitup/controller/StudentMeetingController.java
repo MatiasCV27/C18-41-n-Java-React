@@ -5,6 +5,7 @@ import com.nocountry.swapitup.model.Meeting;
 import com.nocountry.swapitup.service.StudentMeetingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class StudentMeetingController {
     @PostMapping(value = "/histories/{idMeeting}")
     @Operation(summary = "Finalizar reunión",
             description = "Con el ID de la reunion y el estudiante agrega la puntuación de la reunión. El status se modificara automaticamente en HISTORY")
-    public ResponseEntity<Meeting> endMeetingToHistory(@PathVariable(value = "idMeeting") Integer idMeeting, @RequestBody ScoreMeeting scoreDto) {
+    public ResponseEntity<Meeting> endMeetingToHistory(@PathVariable(value = "idMeeting") Integer idMeeting, @RequestBody ScoreMeetingDto scoreDto) {
         return ResponseEntity.ok(meetingService.endMeeting(idMeeting, scoreDto));
     }
 
@@ -38,21 +39,21 @@ public class StudentMeetingController {
 
     @GetMapping(value = "/upcomings/{username}")
     @Operation(summary = "Obtener los Meetings por PROXIMOS del Estudiante",
-            description = "Obtiene todos las reuniones del estudiante de estado PROXIMOS por el IdTutor")
+            description = "Obtiene todos las reuniones del estudiante de estado PROXIMOS por el username del estudiante")
     public ResponseEntity<List<UpcomingMeetingDto>> getAllStudentMeetingUpcomings(@PathVariable(value = "username") String username) {
         return ResponseEntity.ok(meetingService.getUpcomingMeetingsByStudent(username));
     }
 
     @GetMapping(value = "/pendings/{username}")
     @Operation(summary = "Obtener los Meetings por PENDIENTES del Estudiante",
-            description = "Obtiene todos las reuniones del estudiante de estado PENDIENTES por el IdTutor")
+            description = "Obtiene todos las reuniones del estudiante de estado PENDIENTES por el username del estudiante")
     public ResponseEntity<List<PendingMeetingDto>> getAllStudentMeetingPendings(@PathVariable(value = "username") String username) {
         return ResponseEntity.ok(meetingService.getPendingMeetingsByStudent(username));
     }
 
     @GetMapping(value = "/histories/{username}")
     @Operation(summary = "Obtener los Meetings por HISTORY del Estudiante",
-            description = "Obtiene todos las reuniones del estudiante de estado HISTORY por el IdTutor")
+            description = "Obtiene todos las reuniones del estudiante de estado HISTORY por el username del estudiante")
     public ResponseEntity<List<HistoryMeetingDto>> getAllStudentMeetingHistories(@PathVariable(value = "username") String username) {
         return ResponseEntity.ok(meetingService.getHistoryMeetingsByStudent(username));
     }

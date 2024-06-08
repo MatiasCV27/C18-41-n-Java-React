@@ -1,17 +1,16 @@
 package com.nocountry.swapitup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "review")
 public class Review {
@@ -20,18 +19,22 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReview;
 
-    @Column(length = 50)
-    private String title;
+    @Column(length = 75)
+    private String fullname;
 
-    @Column(length = 450)
-    private String description;
+    private String username;
 
-    @Min(value = 0)
-    @Max(value = 10)
-    private Integer score;
+    private byte[] image;
+
+    private String dateCreated;
+
+    private String comment;
+
+    private double meetingScore;
 
     @ManyToOne
-    @JoinColumn(name = "idUser", referencedColumnName = "idUser")
-    private User user;
+    @JoinColumn(name = "idTutor")
+    @JsonIgnore
+    private Tutor tutor;
 
 }

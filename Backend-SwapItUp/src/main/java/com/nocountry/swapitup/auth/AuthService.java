@@ -57,6 +57,7 @@ public class AuthService {
 
             Profile profile = Profile.builder()
                     .user(user)
+                    .points(1)
                     .build();
             profileRepository.save(profile);
 
