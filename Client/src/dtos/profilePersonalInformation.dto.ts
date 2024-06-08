@@ -12,5 +12,5 @@ export interface ProfilePersonalInformationDto {
     experience?: string;
     link_linkedin?: string;
     link_portfolio?: string;
-    image?: Uint32Array; //TODO: revisar el tipo de la imagen
+    image?: string[]; //TODO: revisar el tipo de la imagen
 }

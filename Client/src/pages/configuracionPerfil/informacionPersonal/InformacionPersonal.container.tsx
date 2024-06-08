@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ProfileInfoModel } from '@/models/profileInfo.model';
 import { ProfileInfoController } from '@/controllers/profileInfo/profileInfo.controller';
 import { useAuthStore } from '@/stores/auth/auth.store';
+import { useProfileConfigStore } from '@/stores/configuracionPerfil/perfilConfig.store';
 
 const FormSchema = z.object({
     name: z.string(),
@@ -24,10 +25,14 @@ const InformacionPersonalContainer = () => {
 
     const username = useAuthStore((state) => state.user?.username);
     const id = useAuthStore((state) => state.user?.id);
-
-    const [profileInfo, setProfileInfo] = useState<ProfileInfoModel>(
-        new Object() as ProfileInfoModel
+    const userProfileInfo = useProfileConfigStore(
+        (state) => state.userProfileInfo
     );
+    const addNewInfo = useProfileConfigStore((state) => state.addNewInfo);
+
+    // const [profileInfo, setProfileInfo] = useState<ProfileInfoModel>(
+    //     new Object() as ProfileInfoModel
+    // );
 
     const [inputStates, setInputStates] = useState<{ [key: string]: boolean }>({
         input1: true,
@@ -54,15 +59,23 @@ const InformacionPersonalContainer = () => {
         },
     });
 
+    /* TODO: Este codigo se puede mejorar ya que se repite tanto en en el perfil
+    de mentor como en este componente, al refactorizar llevar las funciones que
+    se repiten a un solo lugar, puede ser en utils */
+
     //al iniciar el componente, se obtiene la informacion del perfil
     useEffect(() => {
         getProfileInfo(username);
     }, [username]);
 
     // llena el formulario con la informacion del perfil
+
+    /*FIXME: No funciona correctamente despues de hacer submit hace 
+    hace multiples render cuando se modifican los inputs
+    */
     useEffect(() => {
-        form.reset(profileInfo);
-    }, [profileInfo]);
+        form.reset(userProfileInfo);
+    }, [userProfileInfo]);
 
     //actualiza la informacion del perfil con los datos del formulario
 
@@ -73,11 +86,13 @@ const InformacionPersonalContainer = () => {
                 console.log('no hay id');
                 return;
             }
-            const response = await profileInfoController.updateProfileInfo(
-                id,
-                values
-            );
-            
+            addNewInfo(values);
+
+            const response = await profileInfoController.updateProfileInfo(id, {
+                ...userProfileInfo,
+                ...values,
+            });
+
             // console.log('response:', response);
             return response;
         },
@@ -108,8 +123,9 @@ const InformacionPersonalContainer = () => {
                 link_linkedin,
                 link_portfolio,
                 image,
-            } = response;
+            } = response as ProfileInfoModel;
 
+            console.log('response:', response);
             //Esto previene algun comportamiento inesperado si algun valor es undefined o null
 
             const newProfileInfo: ProfileInfoModel = {
@@ -128,13 +144,15 @@ const InformacionPersonalContainer = () => {
                 link_portfolio: link_portfolio ?? '',
                 image: image ?? [],
             };
+            addNewInfo(newProfileInfo);
 
-            setProfileInfo({ ...newProfileInfo });
+            form.reset(newProfileInfo);
         },
         [username]
     );
 
-    console.log('profileInfo', profileInfo);
+
+    console.log('profileInfo', userProfileInfo);
 
     const handleToggleInput = (input: string) => {
         setInputStates((prevInputStates) => ({
@@ -160,8 +178,9 @@ const InformacionPersonalContainer = () => {
                 input7: true,
                 input8: true,
             }));
-            updateProfileInformation(id, values);
+            await updateProfileInformation(id, values);
 
+            form.reset(values);
             console.log('desde OnSubmit values:', values);
         } catch (error) {
             console.error(error);
