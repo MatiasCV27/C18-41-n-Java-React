@@ -41,7 +41,7 @@ public class UserProfileService {
                 .skills(profile.getSkills())
                 .industry(profile.getIndustry())
                 .experience(profile.getExperience())
-                .link_linkedin(profile.getLink_portfolio())
+                .link_linkedin(profile.getLink_linkedin())
                 .link_portfolio(profile.getLink_portfolio())
                 .image(profile.getImage())
                 .build();
