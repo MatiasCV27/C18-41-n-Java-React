@@ -5,17 +5,21 @@ import com.nocountry.swapitup.enums.StatusName;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Meeting;
 import com.nocountry.swapitup.model.Profile;
+import com.nocountry.swapitup.model.Review;
 import com.nocountry.swapitup.model.Tutor;
 import com.nocountry.swapitup.repository.MeetingRepository;
 import com.nocountry.swapitup.repository.ProfileRepository;
+import com.nocountry.swapitup.repository.ReviewRepository;
 import com.nocountry.swapitup.repository.TutorRepository;
 import com.nocountry.swapitup.utils.MapInfoTemplates;
+import com.nocountry.swapitup.utils.OtherUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.nocountry.swapitup.utils.OtherUtils.createdDate;
 import static com.nocountry.swapitup.utils.infoTokenUtils.getUsernameToken;
 
 @Service
@@ -25,6 +29,7 @@ public class StudentMeetingService {
     private final ProfileRepository profileRepository;
     private final TutorRepository tutorRepository;
     private final MeetingRepository meetingRepository;
+    private final ReviewRepository reviewRepository;
 
     public Meeting requestExchange(Integer idTutor, PendingMeetingDto meetingDTO) {
         Profile profile = profileRepository.findByUser_Username(getUsernameToken())
@@ -53,6 +58,16 @@ public class StudentMeetingService {
         if (meeting.getStatus().equals(StatusName.PROXIMAS)) {
             meeting.setStatus(StatusName.HISTORIAL);
             meeting.setMeetingScore(scoreMeetingDto.getMeetingScore());
+            Review review = Review.builder()
+                    .fullname(meeting.getFullname())
+                    .username(getUsernameToken())
+                    .image(meeting.getImage())
+                    .dateCreated(createdDate())
+                    .comment(scoreMeetingDto.getComment())
+                    .meetingScore(scoreMeetingDto.getMeetingScore())
+                    .tutor(meeting.getTutor())
+                .build();
+            reviewRepository.save(review);
             addInteraction(meeting.getTutor().getIdTutor());
             addSwapisToTutor(meeting.getTutor().getIdTutor());
             meetingRepository.save(meeting);
@@ -75,7 +90,7 @@ public class StudentMeetingService {
                 .mapToDouble(Meeting::getMeetingScore)
                 .average()
                 .orElse(0.0);
-        return averageScore;
+        return Math.round(averageScore * 100.0) / 100.0;
     }
 
     public void addSwapisToTutor(Integer idTutor) {

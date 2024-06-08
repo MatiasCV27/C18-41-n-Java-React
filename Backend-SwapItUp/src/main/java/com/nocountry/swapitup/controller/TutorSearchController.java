@@ -1,5 +1,6 @@
 package com.nocountry.swapitup.controller;
 
+import com.nocountry.swapitup.dto.TutorReviewDto;
 import com.nocountry.swapitup.dto.TutorSearchDto;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Tutor;
@@ -36,6 +37,13 @@ public class TutorSearchController {
             @RequestParam(value = "skills", required = false) String skills,
             @RequestParam(value = "industry", required = false) String industry) {
         return ResponseEntity.ok(tutorSearchService.findAllTutors(skills, industry));
+    }
+
+    @GetMapping(value = "/reviews/{idTutor}")
+    @Operation(summary = "Obtener Todas las Reviews por Tutor",
+            description = "Con este controllador con el idTutor, se pueden obtener todas las reviews asociadas al tutor")
+    public ResponseEntity<List<TutorReviewDto>> getAllReviewsByTUtor(@PathVariable(value = "idTutor") Integer idTutor) {
+        return ResponseEntity.ok(tutorSearchService.getAllTutorReviewsByIdTuto(idTutor));
     }
 
     @PutMapping(value = "/disable")

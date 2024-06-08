@@ -1,9 +1,12 @@
 package com.nocountry.swapitup.service;
 
+import com.nocountry.swapitup.dto.TutorReviewDto;
 import com.nocountry.swapitup.dto.TutorSearchDto;
 import com.nocountry.swapitup.exception.NotFoundDataException;
+import com.nocountry.swapitup.model.Review;
 import com.nocountry.swapitup.model.Tutor;
 import com.nocountry.swapitup.model.User;
+import com.nocountry.swapitup.repository.ReviewRepository;
 import com.nocountry.swapitup.repository.TutorRepository;
 import com.nocountry.swapitup.repository.UserRepository;
 import com.nocountry.swapitup.utils.MapInfoTemplates;
@@ -11,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,6 +28,7 @@ public class TutorSearchService {
 
     private final TutorRepository tutorRepository;
     private final UserRepository userRepository;
+    private final ReviewRepository reviewRepository;
 
     public Tutor createTutor() {
         Optional<Tutor> existingTutorOptional = tutorRepository.findByUser_Username(getUsernameToken());
@@ -77,6 +82,14 @@ public class TutorSearchService {
                 .orElseThrow(() -> new NotFoundDataException("El tutor no ha sido encontrado"));
         tutor.setActive(true);
         tutorRepository.save(tutor);
+    }
+
+    public List<TutorReviewDto> getAllTutorReviewsByIdTuto(Integer tutorId) {
+        List<Review> allReviews = reviewRepository.findByTutor_IdTutor(tutorId);
+        if (allReviews == null) return new ArrayList<>();
+        return allReviews.stream()
+                .map(MapInfoTemplates::mapToTutorReviewDTO)
+                .collect(Collectors.toList());
     }
 
 }

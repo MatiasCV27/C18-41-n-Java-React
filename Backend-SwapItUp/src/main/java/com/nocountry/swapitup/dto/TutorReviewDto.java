@@ -9,9 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScoreMeetingDto {
+public class TutorReviewDto {
 
-    double meetingScore;
+    String fullname;
+    byte[] image;
     String comment;
+    String dateCreated;
+    double meetingScore;
 
 }

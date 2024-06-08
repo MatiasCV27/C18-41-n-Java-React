@@ -10,6 +10,4 @@ public interface TutorRepository extends JpaRepository<Tutor, Integer>, JpaSpeci
 
     Optional<Tutor> findByUser_Username(String username);
 
-    Optional<Tutor> findByFullname(String fullname);
-
 }

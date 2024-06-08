@@ -1,11 +1,7 @@
 package com.nocountry.swapitup.utils;
 
-import com.nocountry.swapitup.dto.HistoryMeetingDto;
-import com.nocountry.swapitup.dto.PendingMeetingDto;
-import com.nocountry.swapitup.dto.TutorSearchDto;
-import com.nocountry.swapitup.dto.UpcomingMeetingDto;
-import com.nocountry.swapitup.model.Meeting;
-import com.nocountry.swapitup.model.Tutor;
+import com.nocountry.swapitup.dto.*;
+import com.nocountry.swapitup.model.*;
 
 public class MapInfoTemplates {
 
@@ -20,6 +16,18 @@ public class MapInfoTemplates {
                 .score(tutor.getScore())
                 .active(tutor.getActive())
                 .link(tutor.getLink_calendar())
+                .build();
+    }
+
+    //TODO: Listado de todos los comentarios de un tutor
+
+    public static TutorReviewDto mapToTutorReviewDTO(Review review) {
+        return TutorReviewDto.builder()
+                .fullname(review.getFullname())
+                .image(review.getImage())
+                .comment(review.getComment())
+                .dateCreated(review.getDateCreated())
+                .meetingScore(review.getMeetingScore())
                 .build();
     }
 
