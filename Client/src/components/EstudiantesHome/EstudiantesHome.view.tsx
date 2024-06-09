@@ -25,10 +25,10 @@ const EstudiantesHomeView: React.FC = () => {
               Tienes clases próximamente. Reúnete con tus estudiantes en el
               horario acordado.
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-4">
               {Array(6).fill(<EstudiantesHomeCardContainer />)}
             </div>
-            <Button className="bg-white text-black hover:bg-accent hover:text-white rounded-lg mt-2 shadow-md">
+            <Button className="bg-muted text-white hover:bg-accent hover:text-white rounded-lg mt-2 shadow-md">
               <span className="font-semibold">Explora mentores</span>
               <ArrowRight size={18} className="ml-4" />
             </Button>
@@ -87,8 +87,8 @@ const EstudiantesHomeView: React.FC = () => {
           {TABS.map((tab) => (
             <h3
               key={tab.id}
-              className={`text-lg font-bold mb-2 cursor-pointer ${
-                activeTab === tab.id && "border-b-4 border-accent"
+              className={`text-lg font-bold mb-2 cursor-pointer hover:border-b-[3px] hover:border-accent ${
+                activeTab === tab.id && "border-b-[3px] border-accent"
               }`}
               onClick={() => setActiveTab(tab.id)}
             >
