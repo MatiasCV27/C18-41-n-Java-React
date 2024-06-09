@@ -38,7 +38,7 @@ export const PerfilMentorView: FC<Props> = ({
                         <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
                             <FormField
                                 control={form.control}
-                                name="habilities"
+                                name="skills"
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className=" my-2 ">
@@ -114,7 +114,7 @@ export const PerfilMentorView: FC<Props> = ({
                         <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
                             <FormField
                                 control={form.control}
-                                name="linkedin"
+                                name="link_linkedin"
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className=" my-2 ">
@@ -151,7 +151,7 @@ export const PerfilMentorView: FC<Props> = ({
                         <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
                             <FormField
                                 control={form.control}
-                                name="portfolio"
+                                name="link_portfolio"
                                 render={({ field }) => (
                                     <FormItem>
                                         <div className=" my-2 ">
@@ -185,7 +185,7 @@ export const PerfilMentorView: FC<Props> = ({
                                 Editar
                             </Button>
                         </div>
-                        <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
+                        {/* <div className="flex justify-between items-center w-full border-b-[1px] border-b-zinc-200">
                             <FormField
                                 control={form.control}
                                 name="other"
@@ -221,7 +221,7 @@ export const PerfilMentorView: FC<Props> = ({
                             >
                                 Editar
                             </Button>
-                        </div>
+                        </div> */}
                     </div>
 
                     <Button type="submit">Save</Button>

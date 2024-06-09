@@ -6,7 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { LightbulbIcon, ChevronRight } from "lucide-react"; // Suponiendo que los iconos están importados aquí
+import { ChevronRight } from "lucide-react";
+import Novedades from "../icons/Novedades";
 
 interface NewsProps {
   icon: React.ReactNode;
@@ -34,15 +35,15 @@ const UserHomeNewsView: React.FC = () => {
       <CardContent>
         <div className="flex flex-col space-y-4">
           <News
-            icon={<LightbulbIcon size={40} />}
+            icon={<Novedades size={40} />}
             title="Nuevas clases que puedes tomar"
           />
           <News
-            icon={<LightbulbIcon size={40} />}
+            icon={<Novedades size={40} />}
             title="Scrum master, primer vistazo"
           />
           <News
-            icon={<LightbulbIcon size={40} />}
+            icon={<Novedades size={40} />}
             title="Herramientas para el diseño UI/UX"
           />
         </div>
@@ -57,3 +58,4 @@ const UserHomeNewsView: React.FC = () => {
 };
 
 export default UserHomeNewsView;
+

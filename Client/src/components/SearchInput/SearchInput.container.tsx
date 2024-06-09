@@ -1,9 +1,23 @@
 import SearchInputView from './SearchInput.view';
 
-const SearchInputContainer = () => {
+interface Props {
+    onSubmit: (event: React.FormEvent) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    searchTerm: string;
+}
+
+const SearchInputContainer: React.FC<Props> = ({
+    onSubmit,
+    onChange,
+    searchTerm,
+}) => {
     return (
         <>
-            <SearchInputView />
+            <SearchInputView
+                onSubmit={onSubmit}
+                onChange={onChange}
+                searchTerm={searchTerm}
+            />
         </>
     );
 };
