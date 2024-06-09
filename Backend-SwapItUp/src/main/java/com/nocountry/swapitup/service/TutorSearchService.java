@@ -31,26 +31,27 @@ public class TutorSearchService {
     private final ReviewRepository reviewRepository;
 
     public Tutor createTutor() {
-        Optional<Tutor> existingTutorOptional = tutorRepository.findByUser_Username(getUsernameToken());
-        if (existingTutorOptional.isEmpty()) {
-            User newUser = userRepository.findByUsername(getUsernameToken())
+        Optional<Tutor> tutor = tutorRepository.findByUser_Username(getUsernameToken());
+        if (tutor.isEmpty()) {
+            User user = userRepository.findByUsername(getUsernameToken())
                     .orElseThrow(() -> new NotFoundDataException("Usuario " + getUsernameToken() + " no ha sido encontrado"));
+            if (user.getName().isEmpty() || user.getLastname().isEmpty() || user.getProfile().getIndustry().isEmpty() || user.getProfile().getAboutMe().isEmpty() || user.getProfile().getSkills().isEmpty() || user.getProfile().getExperience().isEmpty()) {
+                return null;
+            }
             Tutor newTutor = Tutor.builder()
-                    .fullname(newUser.getName() + " " + newUser.getLastname())
-                    .image(newUser.getProfile().getImage())
-                    .skills(newUser.getProfile().getSkills())
-                    .industry(newUser.getProfile().getIndustry())
+                    .fullname(user.getName() + " " + user.getLastname())
+                    .image(user.getProfile().getImage())
+                    .skills(user.getProfile().getSkills())
+                    .industry(user.getProfile().getIndustry())
                     .score(0)
                     .exchangesMade(0)
                     .active(true)
                     .link_calendar("")
-                    .user(newUser)
+                    .user(user)
                     .build();
-
             return tutorRepository.save(newTutor);
-        } else {
-            return null;
         }
+        return null;
     }
 
     public List<TutorSearchDto> findAllTutors(String skills, String industry) {
