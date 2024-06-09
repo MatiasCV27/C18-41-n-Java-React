@@ -1,5 +1,6 @@
 package com.nocountry.swapitup.dto;
 
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class UserProfileDto {
     String experience;
     String link_linkedin;
     String link_portfolio;
+    @Lob
     byte[] image;
 
 }

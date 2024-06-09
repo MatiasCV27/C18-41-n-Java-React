@@ -27,6 +27,7 @@ public class Meeting {
 
     private String username;
 
+    @Lob
     private byte[] image;
 
     @Column(unique = true, length = 450)

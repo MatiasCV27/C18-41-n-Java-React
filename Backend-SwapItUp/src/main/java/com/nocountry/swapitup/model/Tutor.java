@@ -27,6 +27,7 @@ public class Tutor {
     @Column(length = 75)
     private String fullname;
 
+    @Lob
     private byte[] image;
 
     @Column(length = 75)

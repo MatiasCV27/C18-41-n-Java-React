@@ -51,6 +51,7 @@ public class Profile {
     @Min(value = 0)
     private Integer points;
 
+    @Lob
     @Column(name = "image")
     private byte[] image;
 

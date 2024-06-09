@@ -24,6 +24,7 @@ public class Review {
 
     private String username;
 
+    @Lob
     private byte[] image;
 
     private String dateCreated;
