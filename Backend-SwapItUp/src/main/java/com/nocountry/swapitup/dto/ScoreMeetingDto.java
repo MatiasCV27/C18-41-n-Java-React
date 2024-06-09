@@ -9,12 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HistoryMeetingDto {
+public class ScoreMeetingDto {
 
-    String fullname;
-    byte[] image;
-    String startDate;
-    String endDate;
     double meetingScore;
+    String comment;
 
 }

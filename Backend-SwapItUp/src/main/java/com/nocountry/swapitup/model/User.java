@@ -61,18 +61,6 @@ public class User implements UserDetails {
     @JsonIgnore
     private Tutor tutor;
 
-    @OneToMany(mappedBy = "user")
-    private List<Review> reviews;
-
-    @OneToMany(mappedBy = "user")
-    private List<Post> posts;
-
-    @ManyToMany
-    @JoinTable(name = "user_interest",
-            joinColumns = @JoinColumn(name = "idUser"),
-            inverseJoinColumns = @JoinColumn(name = "idInterest"))
-    private List<Interest> interests;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

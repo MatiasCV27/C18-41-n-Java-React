@@ -13,8 +13,9 @@ public class UpcomingMeetingDto {
 
     String fullname;
     byte[] image;
-    String schule;
-    String date;
+    String schedule;
+    String startDate;
+    String endDate;
     String link;
 
 }

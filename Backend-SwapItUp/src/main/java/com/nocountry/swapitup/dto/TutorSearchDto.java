@@ -9,8 +9,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScoreMeeting {
+public class TutorSearchDto {
 
-    double meetingScore;
+    String fullname;
+    byte[] image;
+    String skills;
+    String industry;
+    double score;
+    String link;
+    boolean active;
 
 }

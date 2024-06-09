@@ -33,10 +33,13 @@ public class Meeting {
     private String message;
 
     @Column(length = 75)
-    private String schule;
+    private String schedule;
 
     @Column(length = 50)
-    private String date;
+    private String startDate;
+
+    @Column(length = 50)
+    private String endDate;
 
     private boolean active;
 

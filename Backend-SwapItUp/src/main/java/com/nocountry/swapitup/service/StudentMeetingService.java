@@ -5,17 +5,21 @@ import com.nocountry.swapitup.enums.StatusName;
 import com.nocountry.swapitup.exception.NotFoundDataException;
 import com.nocountry.swapitup.model.Meeting;
 import com.nocountry.swapitup.model.Profile;
+import com.nocountry.swapitup.model.Review;
 import com.nocountry.swapitup.model.Tutor;
 import com.nocountry.swapitup.repository.MeetingRepository;
 import com.nocountry.swapitup.repository.ProfileRepository;
+import com.nocountry.swapitup.repository.ReviewRepository;
 import com.nocountry.swapitup.repository.TutorRepository;
-import com.nocountry.swapitup.utils.MapTemplatesMeetings;
+import com.nocountry.swapitup.utils.MapInfoTemplates;
+import com.nocountry.swapitup.utils.OtherUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.nocountry.swapitup.utils.OtherUtils.createdDate;
 import static com.nocountry.swapitup.utils.infoTokenUtils.getUsernameToken;
 
 @Service
@@ -25,6 +29,7 @@ public class StudentMeetingService {
     private final ProfileRepository profileRepository;
     private final TutorRepository tutorRepository;
     private final MeetingRepository meetingRepository;
+    private final ReviewRepository reviewRepository;
 
     public Meeting requestExchange(Integer idTutor, PendingMeetingDto meetingDTO) {
         Profile profile = profileRepository.findByUser_Username(getUsernameToken())
@@ -36,8 +41,9 @@ public class StudentMeetingService {
                 .username(profile.getUser().getUsername())
                 .image(profile.getImage())
                 .message(meetingDTO.getMessage())
-                .schule(meetingDTO.getSchule())
-                .date(meetingDTO.getDate())
+                .schedule(meetingDTO.getSchedule())
+                .startDate(meetingDTO.getStartDate())
+                .endDate(meetingDTO.getEndDate())
                 .status(StatusName.PENDIENTES)
                 .tutor(tutor)
                 .build();
@@ -46,16 +52,53 @@ public class StudentMeetingService {
         return meeting;
     }
 
-    public Meeting endMeeting(Integer idMeeting, ScoreMeeting scoreMeeting) {
+    public Meeting endMeeting(Integer idMeeting, ScoreMeetingDto scoreMeetingDto) {
         Meeting meeting = meetingRepository.findById(idMeeting)
                 .orElseThrow(() -> new NotFoundDataException("Reunión con " + idMeeting + " no ha sido encontrado"));
         if (meeting.getStatus().equals(StatusName.PROXIMAS)) {
             meeting.setStatus(StatusName.HISTORIAL);
-            meeting.setMeetingScore(scoreMeeting.getMeetingScore());
+            meeting.setMeetingScore(scoreMeetingDto.getMeetingScore());
+            Review review = Review.builder()
+                    .fullname(meeting.getFullname())
+                    .username(getUsernameToken())
+                    .image(meeting.getImage())
+                    .dateCreated(createdDate())
+                    .comment(scoreMeetingDto.getComment())
+                    .meetingScore(scoreMeetingDto.getMeetingScore())
+                    .tutor(meeting.getTutor())
+                .build();
+            reviewRepository.save(review);
+            addInteraction(meeting.getTutor().getIdTutor());
+            addSwapisToTutor(meeting.getTutor().getIdTutor());
             meetingRepository.save(meeting);
             return meeting;
         }
         return null;
+    }
+
+    public void addInteraction(Integer idTutor) {
+        Tutor tutor = tutorRepository.findById(idTutor)
+                .orElseThrow(() -> new NotFoundDataException("Tutor del ID - " + idTutor + " no ha sido encontrado"));
+        tutor.setExchangesMade(tutor.getExchangesMade() + 1);
+        tutor.setScore(scoreAvarageByTutor(idTutor));
+        tutorRepository.save(tutor);
+    }
+
+    public double scoreAvarageByTutor(Integer tutorId) {
+        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+        double averageScore = allMeetings.stream()
+                .mapToDouble(Meeting::getMeetingScore)
+                .average()
+                .orElse(0.0);
+        return Math.round(averageScore * 100.0) / 100.0;
+    }
+
+    public void addSwapisToTutor(Integer idTutor) {
+        Tutor tutor = tutorRepository.findById(idTutor)
+                .orElseThrow(() -> new NotFoundDataException("Tutor del ID - " + idTutor + " no ha sido encontrado"));
+        Profile profile = tutor.getUser().getProfile();
+        profile.setPoints(profile.getPoints() + 1);
+        profileRepository.save(profile);
     }
 
     //TODO: Listado de Reuniones de los Estudiantes
@@ -64,7 +107,7 @@ public class StudentMeetingService {
         List<Meeting> allMeetings = meetingRepository.findByUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PROXIMAS)
-                .map(MapTemplatesMeetings::mapToUpcomingMeetingDTO)
+                .map(MapInfoTemplates::mapToUpcomingMeetingDTO)
                 .collect(Collectors.toList());
     }
 
@@ -72,7 +115,7 @@ public class StudentMeetingService {
         List<Meeting> allMeetings = meetingRepository.findByUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PENDIENTES)
-                .map(MapTemplatesMeetings::mapToPendingMeetingDTO)
+                .map(MapInfoTemplates::mapToPendingMeetingDTO)
                 .collect(Collectors.toList());
     }
 
@@ -80,7 +123,7 @@ public class StudentMeetingService {
         List<Meeting> allMeetings = meetingRepository.findByUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.HISTORIAL)
-                .map(MapTemplatesMeetings::mapToHistoryMeetingDTO)
+                .map(MapInfoTemplates::mapToHistoryMeetingDTO)
                 .collect(Collectors.toList());
     }
 

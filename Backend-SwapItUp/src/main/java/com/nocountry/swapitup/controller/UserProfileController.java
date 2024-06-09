@@ -41,7 +41,7 @@ public class UserProfileController {
 
     @PutMapping(value = "/user/{id}")
     @Operation(summary = "Editar perfil",
-            description = "Permite editar la mayoria de los datos del perfil del usuario logeado mediante su Id.")
+            description = "Permite editar la mayoria de los datos del perfil del usuario logeado mediante su Id del usuario.")
     public ResponseEntity<Profile> updateProfileInfo(@PathVariable(value = "id") Integer id, @RequestBody Profile profile) {
         return ResponseEntity.ok(userService.updateProfileInfo(id, profile));
     }
