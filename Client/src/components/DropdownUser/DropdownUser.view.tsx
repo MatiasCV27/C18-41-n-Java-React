@@ -70,7 +70,7 @@ const DropdownUserView: React.FC<Props> = ({ onLogout, name, lastname }) => {
                                     </div>
                                 </DropdownMenuItem>
                             </NavLink>
-                            <DropdownMenuItem className="p-3">
+                            <DropdownMenuItem className="p-3 cursor-pointer">
                                 <div className="flex items-center gap-2.5">
                                     <CalendarDays size={24} />
                                     <p className="text-base font-normal">
@@ -88,7 +88,7 @@ const DropdownUserView: React.FC<Props> = ({ onLogout, name, lastname }) => {
                                     </div>
                                 </DropdownMenuItem>
                             </NavLink>
-                            <DropdownMenuItem className="p-3">
+                            <DropdownMenuItem className="p-3 cursor-pointer">
                                 <div className="flex items-center gap-2.5">
                                     <CircleHelp size={24} />
                                     <p className="text-base font-normal">
@@ -97,14 +97,14 @@ const DropdownUserView: React.FC<Props> = ({ onLogout, name, lastname }) => {
                                 </div>
                             </DropdownMenuItem>
 
-                            <DropdownMenuItem className="text-red-600 p-3">
-                                <div className="flex items-center gap-2.5">
-                                    <LogOut size={24} />
-                                    <NavLink onClick={onLogout} to="/signin">
+                            <NavLink onClick={onLogout} to="/signin">
+                                <DropdownMenuItem className="text-red-600 p-3 cursor-pointer">
+                                    <div className="flex items-center gap-2.5">
+                                        <LogOut size={24} />
                                         Cerrar sesión
-                                    </NavLink>
-                                </div>
-                            </DropdownMenuItem>
+                                    </div>
+                                </DropdownMenuItem>
+                            </NavLink>
                         </DropdownMenuGroup>
                     </DropdownMenuContent>
                 </DropdownMenu>

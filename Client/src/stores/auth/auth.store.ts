@@ -4,7 +4,7 @@ import { devtools, persist } from 'zustand/middleware';
 
 const authController = new AuthController();
 interface User {
-    id: string;
+    id: string ;
     name: string;
     lastname: string;
     isActive: boolean;

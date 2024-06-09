@@ -42,24 +42,28 @@ public class AuthService {
     }
 
     public String register(RegisterRequest request) {
-        User user = User.builder()
-                .name(request.getName())
-                .lastname(request.getLastname())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .username(request.getUsername())
-                .isActive(true)
-                .createAt(LocalDateTime.now())
-                .role(Rolename.ROLE_USER)
-                .build();
-        userRepository.save(user);
+        if (!userRepository.findByEmail(request.getEmail()).isPresent()) {
+            User user = User.builder()
+                    .name(request.getName())
+                    .lastname(request.getLastname())
+                    .email(request.getEmail())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .username(request.getUsername())
+                    .isActive(true)
+                    .createAt(LocalDateTime.now())
+                    .role(Rolename.ROLE_USER)
+                    .build();
+            userRepository.save(user);
 
-        Profile profile = Profile.builder()
-                .user(user)
-                .build();
-        profileRepository.save(profile);
+            Profile profile = Profile.builder()
+                    .user(user)
+                    .points(1)
+                    .build();
+            profileRepository.save(profile);
 
-        return "El usuario " + request.getUsername() + " se registró exitosamente";
+            return "El usuario " + request.getUsername() + " se registró exitosamente";
+        }
+        return "El email ingresado ya existe en la base de datos";
     }
 
 }

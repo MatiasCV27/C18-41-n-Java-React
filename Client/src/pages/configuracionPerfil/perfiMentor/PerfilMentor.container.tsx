@@ -1,37 +1,138 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { PerfilMentorView } from './PerfilMentor.view';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ProfileInfoController } from '@/controllers/profileInfo/profileInfo.controller';
+import { useAuthStore } from '@/stores/auth/auth.store';
+import { ProfileInfoModel } from '@/models/profileInfo.model';
+import { useProfileConfigStore } from '@/stores/configuracionPerfil/perfilConfig.store';
 
 const FormSchema = z.object({
-    habilities: z.string(),
+    skills: z.string(),
     experience: z.string(),
-    linkedin: z.string(),
-    portfolio: z.string(),
-    other: z.string(),
+    link_linkedin: z.string(),
+    link_portfolio: z.string(),
+    // other: z.string(),
 });
 
 type FormSchemaType = z.infer<typeof FormSchema>;
+
 const PerfilMentorContainer = () => {
+    const profileInfoController = new ProfileInfoController();
+
+    const username = useAuthStore((state) => state.user?.username);
+
+    const id = useAuthStore((state) => state.user?.id);
+
+    const userProfileInfo = useProfileConfigStore(
+        (state) => state.userProfileInfo
+    );
+    const addNewInfo = useProfileConfigStore((state) => state.addNewInfo);
+
+    // const [profileInfo, setProfileInfo] = useState<ProfileInfoModel>(
+    //     new Object() as ProfileInfoModel
+    // );
+
     const [inputStates, setInputStates] = useState<{ [key: string]: boolean }>({
         input1: true,
         input2: true,
         input3: true,
         input4: true,
-        input5: true,
+        // input5: true,
     });
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            habilities: '',
+            skills: '',
             experience: '',
-            linkedin: '',
-            portfolio: '',
-            other: '',
+            link_linkedin: '',
+            link_portfolio: '',
+            // other: '',
         },
     });
+
+    useEffect(() => {
+        getProfileInfo(username);
+    }, [username]);
+
+    useEffect(() => {
+        form.reset(userProfileInfo);
+    }, [userProfileInfo]);
+
+    const updateProfileInformation = useCallback(
+        async (id: string, values: FormSchemaType) => {
+            console.log('ID:', id);
+            if (!id) {
+                console.log('no hay id');
+                return;
+            }
+            addNewInfo(values);
+
+            const response = await profileInfoController.updateProfileInfo(id, {
+                ...userProfileInfo,
+                ...values,
+            });
+
+            // console.log('response:', response);
+            return response;
+        },
+        []
+    );
+    const getProfileInfo = useCallback(
+        async (username?: string) => {
+            if (!username) {
+                console.log('no hay username');
+                return;
+            }
+            const response = await profileInfoController.getProfileInfo(
+                username
+            );
+            const {
+                name,
+                lastname,
+                gender,
+                country,
+                lenguage,
+                industry,
+                aboutMe,
+                timeZone,
+                skills,
+                experience,
+                email,
+                link_linkedin,
+                link_portfolio,
+                image,
+            } = response as ProfileInfoModel;
+
+            console.log('response:', response);
+            //Esto previene algun comportamiento inesperado si algun valor es undefined o null
+
+            const newProfileInfo: ProfileInfoModel = {
+                name: name ?? '',
+                lastname: lastname ?? '',
+                gender: gender ?? '',
+                country: country ?? '',
+                lenguage: lenguage ?? '',
+                industry: industry ?? '',
+                aboutMe: aboutMe ?? '',
+                timeZone: timeZone ?? '',
+                skills: skills ?? '',
+                experience: experience ?? '',
+                email: email ?? '',
+                link_linkedin: link_linkedin ?? '',
+                link_portfolio: link_portfolio ?? '',
+                image: image ?? [],
+            };
+
+            addNewInfo(newProfileInfo);
+            form.reset(newProfileInfo);
+        },
+        [username]
+    );
+
+    console.log('profileInfo:', userProfileInfo);
 
     const handleToggleInput = (input: string) => {
         setInputStates((prevInputStates) => ({
@@ -40,10 +141,26 @@ const PerfilMentorContainer = () => {
         }));
     };
 
-    function onSubmit(values: FormSchemaType) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values);
+    async function onSubmit(values: FormSchemaType) {
+        try {
+            if (!id) {
+                console.log('no hay id');
+                return;
+            }
+            setInputStates((prevInputStates) => ({
+                ...prevInputStates,
+                input1: true,
+                input2: true,
+                input3: true,
+                input4: true,
+            }));
+            await updateProfileInformation(id, values);
+
+            form.reset(values);
+            console.log('desde OnSubmit values:', values);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -58,6 +175,5 @@ const PerfilMentorContainer = () => {
     );
 };
 
-
 export type { FormSchemaType };
-export default PerfilMentorContainer;   
+export default PerfilMentorContainer;
