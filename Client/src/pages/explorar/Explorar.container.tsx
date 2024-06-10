@@ -1,24 +1,54 @@
-import { useLocation } from 'react-router-dom';
-import queryStrring from 'query-string';
+import { useLoaderData } from 'react-router-dom';
+
+import { getTutors } from '@/utils/Search/getTutors.utils';
 import ExplorarView from './Explorar.view';
-import { getTutorsByFilter } from '@/utils/Search/getTutorsByFilter.utils';
-import { getAllTutors } from '@/utils/Search/getAllTutors.utils';
+
+interface Filter {
+    skills?: string;
+    industry?: string;
+}
+
+export interface Tutores {
+    fullname: string;
+    image: null;
+    skills: string;
+    industry: string;
+    score: number;
+    link: string;
+    active: boolean;
+}
 
 const ExplorarContainer = () => {
-    const location = useLocation();
-    const query = queryStrring.parse(location.search);
+    const data = useLoaderData();
+    console.log(data);
 
-    if (Object.keys(query).length === 0) {
-        getAllTutors();
-    } else {
-        getTutorsByFilter(query);
-    }
-
+    const tutores = data as Tutores[];
     return (
         <>
-            <ExplorarView />
+            <ExplorarView tutores={tutores} />
         </>
     );
 };
 
 export default ExplorarContainer;
+
+/**
+ * Esta funcion la utilizo en las rutas para cargar la informacion
+ * antes de que se renderice el componente.
+ *
+ * @param {Filter} query - The query object to filter the tutors.
+ * @return {Promise<Tutor[]>} A promise that resolves to an array of tutors.
+ */
+export const dataLoader = async (query: Filter) => {
+    const getTutorsFromApi = async (query: any) => {
+        try {
+            const tutors = await getTutors(query);
+            return tutors;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const data = await getTutorsFromApi(query);
+    return await data;
+};
