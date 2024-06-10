@@ -77,9 +77,11 @@ public class UserProfileService {
             newprofile.setLink_linkedin(profile.getLink_linkedin());
             newprofile.setLink_portfolio(profile.getLink_portfolio());
             Tutor tutor = tutorRepository.findByUser_Username(user.getUsername()).orElse(null);
-            tutor.setIndustry(newprofile.getIndustry());
-            tutor.setSkills(newprofile.getSkills());
-            tutorRepository.save(tutor);
+            if (tutor != null) {
+                tutor.setIndustry(newprofile.getIndustry());
+                tutor.setSkills(newprofile.getSkills());
+                tutorRepository.save(tutor);
+            }
             return profileRepository.save(newprofile);
         }
         return null;

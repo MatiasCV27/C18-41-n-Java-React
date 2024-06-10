@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HistoryMeetingDto {
 
+    Integer idMetting;
     String fullname;
     @Lob
     byte[] image;
