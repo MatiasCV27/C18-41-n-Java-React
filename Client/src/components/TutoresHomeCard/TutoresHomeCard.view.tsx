@@ -1,20 +1,30 @@
+// TutoresHomeCard.view.tsx
+
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Maletin from "../icons/Maletin";
 import RayoCeleste from "../icons/RayoCeleste";
 import Estrella from "../icons/Estrella";
 
 interface TutoresHomeCardViewProps {
+  id: number;
   nombre: string;
   especialidad: string[];
   intercambiosExitosos: number;
 }
 
-const TutoresHomeCardView: React.FC<TutoresHomeCardViewProps> = ({ nombre, especialidad, intercambiosExitosos }) => {
+const TutoresHomeCardView: React.FC<TutoresHomeCardViewProps> = ({ id, nombre, especialidad, intercambiosExitosos }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/tutores/${id}`);
+  };
+
   return (
-    <div className="w-[212px] h-[329px] rounded-lg container">
+    <div className="w-[212px] h-[329px] rounded-lg container cursor-pointer" onClick={handleCardClick}>
       <div className="flex flex-col gap-4">
         <img
-          src="https://via.placeholder.com/40"
+          src="https://img.freepik.com/premium-photo/photo-students-greeting-their-teacher-classroom-teacher-day-concept-generative-ai_742418-2059.jpg?w=826"
           alt="Card Image"
           className="w-[182px] h-auto rounded-lg"
         />

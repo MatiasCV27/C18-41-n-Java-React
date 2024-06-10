@@ -69,7 +69,7 @@ const EstudiantesHomeView: React.FC = () => {
           {["Google Calendar", "Microsoft Outlook", "Apple Calendar"].map(
             (calendario, index) => (
               <div key={index} className="p-4">
-                <Button className="flex items-center justify-between bg-secondary text-black font-medium rounded-md py-2 px-4">
+                <Button className="flex items-center justify-between bg-secondary text-black font-medium rounded-md py-2 px-4 hover:text-white">
                   <Calendario31 size={24} />
                   <span className="mx-4 text-[16px] font-bold">
                     {calendario}
