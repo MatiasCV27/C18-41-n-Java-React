@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,40 +9,28 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
 import SearchInputContainer from '@/components/SearchInput/SearchInput.container';
-import { useNavigate } from 'react-router-dom';
 
-const UserHomeSearchView: React.FC = () => {
-    const navigate = useNavigate();
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filterActive, setFilterActive] = useState<{
-        [key: string]: boolean;
-    }>({
-        skillsFilter: false,
-        industryFilter: false,
-        noneFilter: true,
-    });
+interface Props {
+    setFilterActive: any;
+    filterActive: any;
+    searchTerm: string;
+    onSubmit: (event: React.FormEvent) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(event.target.value);
-    };
-
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
-
-        if (searchTerm.trim().length <= 1) return;
-
-        console.log({ searchTerm });
-        navigate(`/explorar/?q=${searchTerm}`);
-    };
-
+const UserHomeSearchView: React.FC<Props> = ({
+    setFilterActive,
+    filterActive,
+    onSubmit,
+    searchTerm,
+    onChange,
+}) => {
     return (
         <div className="flex space-x-4">
             <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center rounded-2xl bg-secondary px-4 py-3 space-x-2 cursor-pointer">
                     <span className="text-base font-medium">
-                        {filterActive.noneFilter
-                            ? 'Areas'
-                            : filterActive.skillsFilter
+                        {filterActive.skillsFilter
                             ? 'Habilidades'
                             : 'Industria'}
                     </span>
@@ -54,7 +42,6 @@ const UserHomeSearchView: React.FC = () => {
                             setFilterActive({
                                 skillsFilter: true,
                                 industryFilter: false,
-                                noneFilter: false,
                             });
                         }}
                         className="cursor-pointer"
@@ -66,7 +53,6 @@ const UserHomeSearchView: React.FC = () => {
                             setFilterActive({
                                 skilsFilter: false,
                                 industryFilter: true,
-                                noneFilter: false,
                             });
                         }}
                         className="cursor-pointer"
@@ -76,8 +62,8 @@ const UserHomeSearchView: React.FC = () => {
                 </DropdownMenuContent>
             </DropdownMenu>
             <SearchInputContainer
-                onSubmit={handleSubmit}
-                onChange={handleChange}
+                onSubmit={onSubmit}
+                onChange={onChange}
                 searchTerm={searchTerm}
             />
         </div>
