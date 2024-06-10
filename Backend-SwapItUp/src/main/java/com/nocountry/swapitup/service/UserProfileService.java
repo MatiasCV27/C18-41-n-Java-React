@@ -100,7 +100,7 @@ public class UserProfileService {
 
     public Profile saveImage(Integer profileId, MultipartFile imageFile) throws IOException {
         Optional<Profile> profileOptional = profileRepository.findById(profileId);
-        if(profileOptional.isPresent()){
+        if (profileOptional.isPresent()) {
             Profile profile = profileOptional.get();
             profile.setImage(imageFile.getBytes());
             Tutor tutor = tutorRepository.findByUser_Username(profile.getUser().getUsername()).orElse(null);
