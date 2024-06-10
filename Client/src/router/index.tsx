@@ -15,6 +15,7 @@ import TutoresContainer from '@/pages/tutores/Tutores.container';
 import ExplorarContainer, {
     dataLoader,
 } from '@/pages/explorar/Explorar.container';
+import TutoresDetallesContainer from '@/components/TutoresDetalles/TutoresDetalles.container';
 import RecursosContainer from '@/pages/recursos/Recursos.container';
 import GuardadoContainer from '@/pages/guardado/Guardado.container';
 import EvaluacionesContainer from '@/pages/evaluaciones/Evaluaciones.container';
@@ -39,6 +40,12 @@ const router = createBrowserRouter([
             {
                 path: '/tutores',
                 element: <TutoresContainer />,
+
+            },
+            {
+                path: '/tutores/:tutorId',  
+                element: <TutoresDetallesContainer />,
+
             },
             {
                 path: '/explorar',
@@ -68,9 +75,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/configurar-perfil',
-
                 element: <ConfiguracionPerfilContainer />,
-
                 children: [
                     {
                         path: 'mentor',
@@ -81,8 +86,10 @@ const router = createBrowserRouter([
                         element: <InformacionPersonalContainer />,
                     },
                     {
+
                         index: true,
                         element: <Navigate to="personal" replace />,
+
                     },
                 ],
             },
