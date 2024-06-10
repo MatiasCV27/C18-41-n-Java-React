@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Calendario31 from "@/components/icons/Calendario31";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "@/components/icons/Link";
+import TutoresReseñasCardContainer from "../TutoresReseñas/TutoresReseñas.container";
+import { Separator } from "@/components/ui/separator";
+import Medalla from "../icons/Medalla";
+
+const TABS = [
+  { id: "general", label: "General" },
+  { id: "reseñas", label: "Reseñas" },
+];
 
 const TutoresDetallesView: React.FC = () => {
   const { tutorId } = useParams<{ tutorId: string }>();
+  const [activeTab, setActiveTab] = useState<string>("general");
 
   // Aca debemos llamar a la API mediante la Id para obtener la data del tutor seleccionado
+  // O utilizarla desde un estado global
   const tutor = {
     id: parseInt(tutorId || "0"),
     nombre: "Andrea Soto",
@@ -42,6 +52,129 @@ const TutoresDetallesView: React.FC = () => {
         fecha: "Coderhouse (2018)",
       },
     ],
+    reseñas: [
+      {
+        autor: "Juan Pérez",
+        texto: "Excelente tutor, muy claro en sus explicaciones.",
+        fecha: "10 de Junio de 2023",
+      },
+      {
+        autor: "María García",
+        texto: "Aprendí mucho, recomendado.",
+        fecha: "15 de Mayo de 2023",
+      },
+      {
+        autor: "Carlos López",
+        texto: "Muy profesional y amable.",
+        fecha: "20 de Abril de 2023",
+      },
+      {
+        autor: "Ana Torres",
+        texto: "Me ayudó a mejorar mis habilidades rápidamente.",
+        fecha: "5 de Marzo de 2023",
+      },
+      {
+        autor: "Jorge Martínez",
+        texto: "Gran conocimiento y paciencia.",
+        fecha: "28 de Febrero de 2023",
+      },
+    ],
+  };
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "general":
+        return (
+          <div className="flex flex-col space-y-4">
+            <p className="text-base">{tutor.descripcion}</p>
+            <div className="flex justify-between">
+              <h2 className="font-bold text-black text-lg">Calendario</h2>
+              <Button className="flex items-center justify-between bg-secondary text-black font-medium rounded-md py-2 px-4 hover:text-white">
+                <Calendario31 size={24} />
+                <span className="mx-4 text-[16px] font-bold">
+                  Google Calendar
+                </span>
+                <ChevronRight size={24} />
+              </Button>
+            </div>
+            <div className="font-normal text-base flex justify-between">
+              <h2 className="font-bold text-black text-lg">Idiomas</h2>
+              <ul className="flex space-x-4 list-none">
+                {tutor.idiomas.map((idioma, index) => (
+                  <li
+                    key={index}
+                    className="border-2 border-black rounded-lg py-1 px-2"
+                  >
+                    {idioma}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="font-normal text-base flex justify-between">
+              <h2 className="font-bold text-black text-lg">Industria</h2>
+              <ul className="flex space-x-4 list-none">
+                {tutor.industria.map((ind, index) => (
+                  <li
+                    key={index}
+                    className="border-2 border-black rounded-lg py-1 px-2"
+                  >
+                    {ind}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="font-bold text-black text-lg mb-4">Experiencia</h2>
+              <ul className="ml-4 space-y-4">
+                {tutor.experiencia.map((exp, index) => (
+                  <li key={index}>
+                    <div className="flex justify-between">
+                      <span className="font-normal">{exp.nombre}</span>
+                      <span className="border-2 border-black rounded-lg font-normal py-1 px-2">
+                        {exp.fecha}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="font-bold text-black text-lg mb-4">Educación</h2>
+              <ul className="ml-4 space-y-4">
+                {tutor.educacion.map((edu, index) => (
+                  <li key={index}>
+                    <div className="flex justify-between ">
+                      <span className="font-normal">{edu.nombre}</span>
+                      <span className="border-2 border-black rounded-lg font-normal py-1 px-2">
+                        {edu.fecha}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex flex-col">
+              <h2 className="font-bold text-black text-lg mb-4">Logros</h2>
+              <div className="flex space-x-4 items-center">
+                <Medalla size={30} />
+                <span className="font-bold text-black text-lg">+30 Sesiones de mentoria exitosas</span>
+              </div>
+            </div>
+          </div>
+        );
+      case "reseñas":
+        return (
+          <>
+            <p className="text-base mb-4">
+              Conoce acerca de la experiencia que han tenido con {tutor.nombre}{" "}
+              siendo tutor
+            </p>
+            {Array(5).fill(<TutoresReseñasCardContainer />)}
+          </>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -72,78 +205,21 @@ const TutoresDetallesView: React.FC = () => {
         </div>
       </section>
 
-      <section className="w-full px-4 bg-white rounded-lg justify-start space-y-2">
+      <section className="w-full px-4 bg-white rounded-lg justify-start -translate-y-14">
         <div className="flex space-x-4">
-          <h2 className="font-bold text-black text-lg">General</h2>
-          <h2 className="font-bold text-black text-lg">Reseñas</h2>
+          {TABS.map((tab) => (
+            <h2
+              key={tab.id}
+              className={`font-bold text-lg cursor-pointer ${
+                activeTab === tab.id ? "border-b-2 border-black" : ""
+              }`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.label}
+            </h2>
+          ))}
         </div>
-        <p className="text-base">{tutor.descripcion}</p>
-
-        <div className="flex justify-between">
-          <h2 className="font-bold text-black text-lg">Calendario</h2>
-          <Button className="flex items-center justify-between bg-secondary text-black font-medium rounded-md py-2 px-4 hover:text-white">
-            <Calendario31 size={24} />
-            <span className="mx-4 text-[16px] font-bold">Google Calendar</span>
-            <ChevronRight size={24} />
-          </Button>
-        </div>
-
-        <div className="font-normal text-base flex justify-between">
-          <h2 className="font-bold text-black text-lg">Idiomas</h2>
-          <ul className="flex space-x-4 list-none">
-            {tutor.idiomas.map((idioma, index) => (
-              <li
-                key={index}
-                className="border-2 border-black rounded-lg py-1 px-2"
-              >
-                {idioma}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="font-normal text-base flex justify-between">
-          <h2 className="font-bold text-black text-lg">Industria</h2>
-          <ul className="flex space-x-4 list-none">
-            {tutor.industria.map((ind, index) => (
-              <li
-                key={index}
-                className="border-2 border-black rounded-lg py-1 px-2"
-              >
-                {ind}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 className="font-bold text-black text-lg mb-4">Experiencia</h2>
-          <ul className="ml-4 space-y-4">
-            {tutor.experiencia.map((exp, index) => (
-              <li key={index}>
-                <div className="flex justify-between">
-                  <span className="font-normal">{exp.nombre}</span>
-                  <span className="border-2 border-black rounded-lg font-normal py-1 px-2">
-                    {exp.fecha}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 className="font-bold text-black text-lg mb-4">Educación</h2>
-          <ul className="ml-4 space-y-4">
-            {tutor.educacion.map((edu, index) => (
-              <li key={index}>
-                <div className="flex justify-between ">
-                  <span className="font-normal">{edu.nombre}</span>
-                  <span className="border-2 border-black rounded-lg font-normal py-1 px-2">
-                    {edu.fecha}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className="mt-4">{renderContent()}</div>
       </section>
     </main>
   );
