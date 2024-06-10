@@ -8,12 +8,13 @@ import SignupContainer from '@/pages/auth/signup/Signup.auth.container';
 import HomeContainer from '@/pages/home/Home.container';
 import EstudiantesContainer from '@/pages/estudiantes/Estudiantes.container';
 import TutoresContainer from '@/pages/tutores/Tutores.container';
+import TutoresDetallesContainer from '@/components/TutoresDetalles/TutoresDetalles.container';
 import ExplorarContainer from '@/pages/explorar/Explorar.container';
 import RecursosContainer from '@/pages/recursos/Recursos.container';
 import GuardadoContainer from '@/pages/guardado/Guardado.container';
 import EvaluacionesContainer from '@/pages/evaluaciones/Evaluaciones.container';
 import ConfiguracionPerfilContainer from '@/pages/configuracionPerfil/layout/ConfiguracionPerfil.container';
-import PerfilMentorContainer  from '@/pages/configuracionPerfil/perfiMentor/PerfilMentor.container';
+import PerfilMentorContainer from '@/pages/configuracionPerfil/perfiMentor/PerfilMentor.container';
 import InformacionPersonalContainer from '@/pages/configuracionPerfil/informacionPersonal/InformacionPersonal.container';
 
 const router = createBrowserRouter([
@@ -32,7 +33,10 @@ const router = createBrowserRouter([
             {
                 path: '/tutores',
                 element: <TutoresContainer />,
-
+            },
+            {
+                path: '/tutores/:tutorId',  
+                element: <TutoresDetallesContainer />,
             },
             {
                 path: '/explorar',
@@ -52,9 +56,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/configurar-perfil',
-
                 element: <ConfiguracionPerfilContainer />,
-
                 children: [
                     {
                         path: 'mentor',
@@ -66,7 +68,7 @@ const router = createBrowserRouter([
                     },
                     {
                         index: true,                        
-                        element: <Navigate to='personal' replace/>,
+                        element: <Navigate to='personal' replace />,
                     },
                 ],
             },

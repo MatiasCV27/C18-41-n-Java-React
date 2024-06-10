@@ -1,7 +1,10 @@
+// TutoresHomeCard.container.tsx
+
 import React from "react";
 import TutoresHomeCardView from "./TutoresHomeCard.view";
 
 interface Tutor {
+  id: number;
   nombre: string;
   especialidad: string[];
   intercambiosExitosos: number;
@@ -14,9 +17,10 @@ interface TutoresHomeCardContainerProps {
 const TutoresHomeCardContainer: React.FC<TutoresHomeCardContainerProps> = ({ tutores }) => {
   return (
     <main className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-4">
-      {tutores.map((tutor, index) => (
+      {tutores.map((tutor) => (
         <TutoresHomeCardView
-          key={index}
+          key={tutor.id}
+          id={tutor.id}
           nombre={tutor.nombre}
           especialidad={tutor.especialidad}
           intercambiosExitosos={tutor.intercambiosExitosos}
