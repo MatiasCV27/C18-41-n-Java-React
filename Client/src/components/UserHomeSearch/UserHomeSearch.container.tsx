@@ -10,7 +10,6 @@ const UserHomeSearchContainer = () => {
     }>({
         skillsFilter: true,
         industryFilter: false,
-        
     });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +22,13 @@ const UserHomeSearchContainer = () => {
         if (searchTerm.trim().length <= 1) return;
 
         console.log({ searchTerm });
-        navigate(`/explorar/?q=${searchTerm}`);
+        navigate(
+            `/explorar/?${
+                filterActive.skillsFilter
+                    ? `skills=${searchTerm}`
+                    : `industry=${searchTerm}`
+            }`
+        );
     };
 
     return (

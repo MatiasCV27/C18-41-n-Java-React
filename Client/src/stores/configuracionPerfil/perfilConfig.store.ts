@@ -37,5 +37,5 @@ const storeApi: StateCreator<profileConfigState> = (set) => ({
 });
 
 export const useProfileConfigStore = create<profileConfigState>()(
-    devtools(storeApi)
+    devtools(storeApi , { name: 'profile-config-storage' })
 );
