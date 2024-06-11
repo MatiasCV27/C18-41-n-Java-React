@@ -1,10 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Book from '../../assets/bookBanner.png';
 import { Button } from '@/components/ui';
 import { ArrowRight } from 'lucide-react';
-
+import Swal from 'sweetalert2';
+import { CreateTutorController } from '@/controllers/createTutor/createTutor.controller';
 
 const UserHomeBannerView: React.FC = ({ name }) => {
+  
+  const [tutorCreated, setTutorCreated] = useState(() => {
+    return localStorage.getItem('tutorCreated') === 'true';
+  });
+
+  // Para volver a ver el banner descomentar esto y comentar el usestate
+  localStorage.removeItem('tutorCreated');
+
+  const handleCreateTutor = async () => {
+    const createTutorController = new CreateTutorController();
+    try {
+        const result = await createTutorController.postCreateTutor();
+        if (result) {
+            Swal.fire({
+              icon: 'success',
+              title: '¡Tutor creado exitosamente!',
+              text: 'Usted ahora puede intercambiar conocimientos!',
+              showConfirmButton: true,
+              timer: 3000,
+              background: 'rgba(255, 255, 255, 1)',
+              color: 'rgba(41, 45, 50, 1)',
+              confirmButtonColor: 'rgba(59, 208, 255, 1)',
+            });
+            setTutorCreated(true);
+            localStorage.setItem('tutorCreated', 'true');
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo crear el tutor. Completa tu perfil antes de intentarlo nuevamente.',
+            showConfirmButton: true,
+            timer: 3000,
+            background: 'rgba(255, 255, 255, 1)',
+            color: 'rgba(41, 45, 50, 1)',
+            confirmButtonColor: 'rgba(59, 208, 255, 1)',
+            
+          });
+        }
+    } catch (error) {
+      console.error('Hubo un error al crear el tutor:', error);
+      Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al crear el tutor. Por favor, inténtalo de nuevo más tarde.'
+      });
+    }
+  };
+  
+  if (tutorCreated) {
+    return null;
+  }
+
   return (
     <div className="w-full h-auto bg-muted relative rounded-lg overflow-hidden">
       <div className="w-2/3 flex flex-col justify-center items-start p-6 z-10">
@@ -14,8 +67,8 @@ const UserHomeBannerView: React.FC = ({ name }) => {
         <p className="text-xl text-white text-pretty mb-4 z-10">
           Bienvenido, activa tu agenda para impartir clases Quiero ser tutor
         </p>
-        <Button className="bg-white text-black hover:bg-white border border-muted rounded-lg mt-8 z-10 hover:translate-x-1 transition-transform">
-          <span className="flex items-center ">
+        <Button className="bg-white text-black hover:bg-white border border-muted rounded-lg mt-8 z-10 hover:translate-x-1 transition-transform" onClick={handleCreateTutor}>
+          <span className="flex items-center">
             Quiero ser tutor <ArrowRight size={18} className="ml-4" />
           </span>
         </Button>
@@ -23,7 +76,7 @@ const UserHomeBannerView: React.FC = ({ name }) => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
-        className="w-full absolute -bottom-16 z-0 rounded-lg" 
+        className="w-full absolute -bottom-16 z-0 rounded-lg"
       >
         <path
           fill="#0099ff"

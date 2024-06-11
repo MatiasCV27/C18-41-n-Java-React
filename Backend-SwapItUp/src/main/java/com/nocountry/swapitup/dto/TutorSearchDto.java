@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TutorSearchDto {
 
+    Integer idTutor;
     String fullname;
     @Lob
     byte[] image;

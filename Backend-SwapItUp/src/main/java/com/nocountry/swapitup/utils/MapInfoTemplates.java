@@ -9,6 +9,7 @@ public class MapInfoTemplates {
 
     public static TutorSearchDto mapToSearchTutorDTO(Tutor tutor) {
         return TutorSearchDto.builder()
+                .idTutor(tutor.getIdTutor())
                 .fullname(tutor.getFullname())
                 .image(tutor.getImage())
                 .skills(tutor.getSkills())
@@ -35,6 +36,7 @@ public class MapInfoTemplates {
 
     public static UpcomingMeetingDto mapToUpcomingMeetingDTO(Meeting meeting) {
         return UpcomingMeetingDto.builder()
+                .idMetting(meeting.getIdMetting())
                 .fullname(meeting.getFullname())
                 .image(meeting.getImage())
                 .schedule(meeting.getSchedule())
@@ -48,6 +50,7 @@ public class MapInfoTemplates {
 
     public static PendingMeetingDto mapToPendingMeetingDTO(Meeting meeting) {
         return PendingMeetingDto.builder()
+                .idMetting(meeting.getIdMetting())
                 .fullname(meeting.getFullname())
                 .image(meeting.getImage())
                 .message(meeting.getMessage())
@@ -61,6 +64,7 @@ public class MapInfoTemplates {
 
     public static HistoryMeetingDto mapToHistoryMeetingDTO(Meeting meeting) {
         return HistoryMeetingDto.builder()
+                .idMetting(meeting.getIdMetting())
                 .fullname(meeting.getFullname())
                 .image(meeting.getImage())
                 .startDate(meeting.getStartDate())
