@@ -1,6 +1,6 @@
 // TutoresHomeCard.view.tsx
 
-import RayoCeleste from "../icons/RayoCeleste";
+// import RayoCeleste from "../icons/RayoCeleste";
 import Estrella from "../icons/Estrella";
 
 const TutoresReseñasView: React.FC = ({}) => {

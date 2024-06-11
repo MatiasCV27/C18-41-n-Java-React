@@ -9,13 +9,17 @@ interface Filter {
 }
 
 export interface Tutores {
+    idTutor: number;
     fullname: string;
     image: null;
-    skills: string;
     industry: string;
+    skills: string;
     score: number;
-    link: string;
+    exchangesMade: number;
     active: boolean;
+    link_calendar: string;
+    meetings: null;
+    reviews: null;
 }
 
 const ExplorarContainer = () => {
