@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/swapitup-db
-    username: root
-    password:
+    url: jdbc:mysql://localhost:3307/swapitup-db
+    username: nocountry
+    password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
