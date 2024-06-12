@@ -1,0 +1,65 @@
+.rbc-header {
+    color: black;
+    font-size: 14px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px !important;
+    background: hsl(194.39 100% 61.57%);
+    z-index: 2;
+}
+
+.rbc-calendar {
+   background: hsl(253.33 69.23% 97.45%);
+}
+
+.rbc-toolbar-label {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    ;
+}
+
+.rbc-toolbar {
+    background: hsl(253.33 69.23% 97.45%);
+}
+
+.rbc-toolbar button {
+    color: black;
+    font-size: 14px !important;
+    background: hsl(194.39 100% 61.57%);
+    border: none;
+}
+.rbc-toolbar button:hover {
+    background: hsl(213.33 9.89% 17.84%)!important;
+    color: white!important;
+}
+.rbc-toolbar button:active {
+    background: hsl(213.33 9.89% 17.84%)!important;
+    color: white!important;
+}
+
+.rbc-toolbar button:focus{
+    background: hsl(213.33 9.89% 17.84%)!important;
+    color: white!important;
+}
+
+.rbc-toolbar button.rbc-active {
+    background: hsl(213.33 9.89% 17.84%) !important;
+    color: white !important;
+}
+
+.rbc-time-header-cell .rbc-today {
+    background-color: hsl(248.57 71.43% 90.39%);
+}
+
+.rbc-time-slot {
+    font-size: 14px !important;
+    color: gray;
+    height: 36px !important;
+    z-index: 1;
+}
+
+.rbc-event {
+    z-index: 2;
+    background: hsl(213.33 9.89% 17.84%);
+}
