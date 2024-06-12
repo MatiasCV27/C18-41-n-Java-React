@@ -19,6 +19,7 @@ public class TutorSearchDto {
     String skills;
     String industry;
     double score;
+    Integer exchangesMade;
     String link;
     boolean active;
 
