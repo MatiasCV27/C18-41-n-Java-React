@@ -6,7 +6,7 @@ services:
     restart: always
     container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: ${SPRING_DATASOURCE_DB}
       MYSQL_USER: ${SPRING_DATASOURCE_USERNAME}
       MYSQL_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}

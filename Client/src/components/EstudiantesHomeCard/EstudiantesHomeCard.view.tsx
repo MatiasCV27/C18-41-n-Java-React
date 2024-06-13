@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardDescription,
@@ -10,19 +10,26 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Calendario from "../icons/Calendario";
 import Horario from "../icons/Horario";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface EstudiantesHomeCardProps {
   avatarUrl: string;
 }
 
 const EstudiantesHomeCardView: React.FC<EstudiantesHomeCardProps> = ({ avatarUrl }) => {
-  
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <Card className="w-[212px] h-auto rounded-lg bg-secondary">
       <CardHeader className="flex flex-col gap-2">
+        {!imageLoaded && (
+          <Skeleton className="w-[182px] h-[165px] rounded-lg mx-auto" />
+        )}
         <img
           src={avatarUrl}
-          className="w-[182px] h-[165px] rounded-lg object-cover mx-auto"
+          className={`w-[182px] h-[165px] rounded-lg object-cover mx-auto ${imageLoaded ? 'block' : 'hidden'}`}
+          onLoad={() => setImageLoaded(true)}
+          onError={() => setImageLoaded(false)}
         />
         <CardTitle className="text-base font-medium text-black leading-6">
           Nombre Alumno
