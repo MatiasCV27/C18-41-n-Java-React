@@ -26,7 +26,11 @@ const EstudiantesHomeView: React.FC = () => {
               horario acordado.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-4">
-              {Array(6).fill(<EstudiantesHomeCardContainer />)}
+              {Array(6)
+                .fill(null)
+                .map((_, index) => (
+                  <EstudiantesHomeCardContainer key={index} />
+                ))}
             </div>
             <Button className="bg-muted text-white hover:bg-accent hover:text-white rounded-lg mt-2 shadow-md">
               <span className="font-semibold">Explora mentores</span>
@@ -42,7 +46,11 @@ const EstudiantesHomeView: React.FC = () => {
               que desees impartir clases.
             </p>
             <div className="flex flex-col w-full gap-4">
-              {Array(5).fill(<EstudianteHomeSolicitudContainer />)}
+              {Array(5)
+                .fill(null)
+                .map((_, index) => (
+                  <EstudianteHomeSolicitudContainer key={index} />
+                ))}
             </div>
           </>
         );

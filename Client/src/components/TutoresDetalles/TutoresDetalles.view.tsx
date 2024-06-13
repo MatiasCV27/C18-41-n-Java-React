@@ -156,7 +156,9 @@ const TutoresDetallesView: React.FC = () => {
               <h2 className="font-bold text-black text-lg mb-4">Logros</h2>
               <div className="flex space-x-4 items-center">
                 <Medalla size={30} />
-                <span className="font-bold text-black text-lg">+30 Sesiones de mentoria exitosas</span>
+                <span className="font-bold text-black text-lg">
+                  +30 Sesiones de mentoria exitosas
+                </span>
               </div>
             </div>
           </div>
@@ -168,7 +170,11 @@ const TutoresDetallesView: React.FC = () => {
               Conoce acerca de la experiencia que han tenido con {tutor.nombre}{" "}
               siendo tutor
             </p>
-            {Array(5).fill(<TutoresReseñasCardContainer />)}
+            {Array(5)
+              .fill(null)
+              .map((_, index) => (
+                <TutoresReseñasCardContainer key={index} />
+              ))}
           </>
         );
       default:
