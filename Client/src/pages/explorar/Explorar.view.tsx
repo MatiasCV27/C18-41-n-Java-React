@@ -1,4 +1,4 @@
-import TutoresHomeCardContainer from '@/components/TutoresHomeCard/TutoresHomeCard.container';
+import TutoresHoverCardContainer from '@/components/TutoresHoverCard/TutoresHoverCard.container';
 import { FC } from 'react';
 
 interface Props {
@@ -26,7 +26,7 @@ const ExplorarView: FC<Props> = ({ tutores }) => {
 
             <div className="flex flex-col space-y-[24px] justify-start items-start">
                 <h1 className="text-2xl font-bold text-black">Tutores</h1>
-                <TutoresHomeCardContainer tutores={tutores} />
+                <TutoresHoverCardContainer tutores={tutores} />
             </div>
         </main>
     );
