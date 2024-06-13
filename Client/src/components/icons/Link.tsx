@@ -23,7 +23,7 @@ const Link: React.FC<Props> = ({ size }) => {
       <path
         d="M10.59 13.4406C8.24996 11.1006 8.24996 7.30065 10.59 4.95065C12.93 2.60065 16.73 2.61065 19.08 4.95065C21.43 7.29065 21.42 11.0906 19.08 13.4406"
         stroke="#292D32"
-        strokeWidth="1.5"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

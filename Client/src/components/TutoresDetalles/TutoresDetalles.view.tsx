@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button";
 import Link from "@/components/icons/Link";
 import TutoresReseñasCardContainer from "../TutoresReseñas/TutoresReseñas.container";
 import Medalla from "../icons/Medalla";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const TABS = [
   { id: "general", label: "General" },
@@ -15,6 +22,7 @@ const TABS = [
 const TutoresDetallesView: React.FC = () => {
   const { tutorId } = useParams<{ tutorId: string }>();
   const [activeTab, setActiveTab] = useState<string>("general");
+  const [isLinkModalOpen, setLinkModalOpen] = useState(false);
 
   // Aca debemos llamar a la API mediante la Id para obtener la data del tutor seleccionado
   // O utilizarla desde un estado global
@@ -203,29 +211,70 @@ const TutoresDetallesView: React.FC = () => {
             <p className="text-base">{tutor.especialidad}</p>
           </div>
           <div className="flex flex-col items-start justify-end mr-6 rounded-md p-4">
-            <Button className="bg-secondary p-3 rounded-lg w-auto h-auto hover:bg-secondary ">
-              <Link size={24} />
+            <Button
+              className="bg-secondary p-3 rounded-lg w-auto h-auto hover:bg-secondary border border-black"
+              onClick={() => setLinkModalOpen(true)}
+            >
+              <Link size={24}/>
             </Button>
           </div>
         </div>
       </section>
-
-      <section className="w-full px-4 bg-white rounded-lg justify-start -translate-y-14">
-        <div className="flex space-x-4">
-          {TABS.map((tab) => (
-            <h2
-              key={tab.id}
-              className={`font-bold text-lg cursor-pointer ${
-                activeTab === tab.id ? "border-b-2 border-black" : ""
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </h2>
-          ))}
+      <section className="w-full -translate-y-16 px-6">
+        <div className="bg-white rounded-lg p-4">
+          <div className="flex border-b-2 border-secondary pb-4">
+            {TABS.map((tab) => (
+              <button
+                key={tab.id}
+                className={`font-bold text-lg mr-4 ${
+                  activeTab === tab.id ? "text-secondary" : ""
+                }`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+          <div className="pt-4">{renderContent()}</div>
         </div>
-        <div className="mt-4">{renderContent()}</div>
       </section>
+      <Dialog open={isLinkModalOpen} onOpenChange={setLinkModalOpen}>
+        <DialogContent>
+          <DialogHeader className="text-center">
+            <DialogTitle className="text-2xl font-bold text-center">Enlaces</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col items-start space-y-6">
+            <div className="w-full flex flex-col items-start">
+              <h2 className="text-xl font-semibold">Youtube</h2>
+              <div className="flex items-center space-x-2 mt-2">
+                <Link size={24} />
+                <a
+                  href="https://www.youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-800"
+                >
+                  https://www.youtube.com
+                </a>
+              </div>
+            </div>
+            <div className="w-full flex flex-col items-start">
+              <h2 className="text-xl font-semibold">Linkedin</h2>
+              <div className="flex items-start space-x-2 mt-2">
+                <Link size={24} />
+                <a
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-800"
+                >
+                  https://www.linkedin.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 };
