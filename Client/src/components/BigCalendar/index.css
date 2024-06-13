@@ -62,4 +62,5 @@
 .rbc-event {
     z-index: 2;
     background: hsl(213.33 9.89% 17.84%);
+    border-radius: 12px;
 }

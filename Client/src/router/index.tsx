@@ -33,6 +33,11 @@ const router = createBrowserRouter([
                 path: '/inicio',
                 element: <HomeContainer />,
             },
+
+            {
+                index: true,
+                element: <Navigate to="inicio" replace />,
+            },
             {
                 path: '/estudiantes',
                 element: <EstudiantesContainer />,
@@ -40,12 +45,10 @@ const router = createBrowserRouter([
             {
                 path: '/tutores',
                 element: <TutoresContainer />,
-
             },
             {
-                path: '/tutores/:tutorId',  
+                path: '/tutores/:tutorId',
                 element: <TutoresDetallesContainer />,
-
             },
             {
                 path: '/explorar',
@@ -86,10 +89,8 @@ const router = createBrowserRouter([
                         element: <InformacionPersonalContainer />,
                     },
                     {
-
                         index: true,
                         element: <Navigate to="personal" replace />,
-
                     },
                 ],
             },

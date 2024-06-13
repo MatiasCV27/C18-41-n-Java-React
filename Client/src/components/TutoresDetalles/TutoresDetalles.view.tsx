@@ -5,7 +5,6 @@ import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "@/components/icons/Link";
 import TutoresReseñasCardContainer from "../TutoresReseñas/TutoresReseñas.container";
-import { Separator } from "@/components/ui/separator";
 import Medalla from "../icons/Medalla";
 
 const TABS = [
