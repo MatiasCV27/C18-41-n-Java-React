@@ -15,6 +15,7 @@ public class MapInfoTemplates {
                 .skills(tutor.getSkills())
                 .industry(tutor.getIndustry())
                 .score(tutor.getScore())
+                .exchangesMade(tutor.getExchangesMade())
                 .active(tutor.getActive())
                 .link(tutor.getLink_calendar())
                 .build();
