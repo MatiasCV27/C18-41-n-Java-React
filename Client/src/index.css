@@ -8,6 +8,8 @@ body {
     background-color: #f6f4fd;
 }
 
+
+
 @layer base {
     :root {
         --background: 253.33 69.23% 97.45%; /*  mismo bg del body */

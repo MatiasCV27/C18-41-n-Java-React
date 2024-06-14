@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Card,
   CardDescription,
@@ -9,18 +10,29 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Calendario from "../icons/Calendario";
 import Horario from "../icons/Horario";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const EstudiantesHomeCardView: React.FC = () => {
+interface EstudiantesHomeCardProps {
+  avatarUrl: string;
+}
+
+const EstudiantesHomeCardView: React.FC<EstudiantesHomeCardProps> = ({ avatarUrl }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <Card className="w-[212px] h-auto rounded-lg bg-secondary">
       <CardHeader className="flex flex-col gap-2">
+        {!imageLoaded && (
+          <Skeleton className="w-[182px] h-[165px] rounded-lg mx-auto" />
+        )}
         <img
-          src="https://img.freepik.com/free-photo/portrait-hispanic-college-student-carrying-backpack-standing-school-hallway_662251-1109.jpg?t=st=1717297851~exp=1717301451~hmac=9351073af22c9124dff2845925ce54fb08b3c40f3730cd3abf15f9855c304877&w=740"
-          alt="Foto de estudiante"
-          className="w-[182px] h-[165px] rounded-lg object-cover mx-auto"
+          src={avatarUrl}
+          className={`w-[182px] h-[165px] rounded-lg object-cover mx-auto ${imageLoaded ? 'block' : 'hidden'}`}
+          onLoad={() => setImageLoaded(true)}
+          onError={() => setImageLoaded(false)}
         />
         <CardTitle className="text-base font-medium text-black leading-6">
-          Alumno 1
+          Nombre Alumno
         </CardTitle>
         <CardDescription className="flex items-center">
           <Horario size={24} />
