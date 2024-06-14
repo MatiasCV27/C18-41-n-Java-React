@@ -2,9 +2,41 @@
 
 ## 🚀 Probar el proyecto
 
+### - Pasos para ejecutar el proyecto de Front-End
+
+##### 1.Clonar el Repositorio:
+
+```bash
+git clone https://github.com/MatiasCV27/C18-41-n-Java-React.git
+```
+
+##### 2.Navegar a la Carpeta del Proyecto Frontend:
+
+```bash
+cd Client
+```
+
+##### 3.Instalar Dependencias en la terminal:
+
+```bash
+npm install
+```
+
+##### 4.Ejecutar el Servidor de Desarrollo:
+
+```bash
+npm run dev
+```
+
+##### 5.Abrir la Aplicación en el Navegador:
+
+_*La aplicación estará disponible en*_ http://localhost:3001/
+
+### - Pasos para ejecutar el proyecto de Back-End
+
 ## 🛠️ Tecnologías Utilizadas
 
-### Front-End
+### - Front-End
 
   <p>
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/320px-React-icon.svg.png" alt="React" width="60" height="60">
@@ -17,7 +49,7 @@
   </p>
 
 
-### Back-End
+### - Back-End
 
   <p>
     <img src="https://www.manualweb.net/img/logos/java.png" alt="" width="60" height="60">
@@ -30,7 +62,7 @@
 
   </p>
 
-### Organización
+### - Organización
 
   <a href='https://figma.com/'>
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Logo" width="60" height="60">
