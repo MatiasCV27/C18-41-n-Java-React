@@ -1,9 +1,11 @@
 import { StudentMeetingsService } from '@/services/studentMeetings/StudentMeetings.service';
 
 class StudentMeetingsController {
-    private studentMeetingsService: StudentMeetingsService = new StudentMeetingsService();
+    private studentMeetingsService: StudentMeetingsService;
 
-    constructor() {}
+    constructor() {
+        this.studentMeetingsService = new StudentMeetingsService();
+    }
 
     async getUpcomingMeetings(username: string): Promise<any> {
         return this.studentMeetingsService.getUpcomingMeetings(username);
@@ -18,18 +20,18 @@ class StudentMeetingsController {
     }
 }
 
-// Exporta cada método por separado
+// Creamos una única instancia del controlador
+const controller = new StudentMeetingsController();
+
+// Exportamos cada método utilizando la instancia única del controlador
 export const getUpcomingMeetings = async (username: string): Promise<any> => {
-    const controller = new StudentMeetingsController();
     return controller.getUpcomingMeetings(username);
 };
 
 export const getPendingMeetings = async (username: string): Promise<any> => {
-    const controller = new StudentMeetingsController();
     return controller.getPendingMeetings(username);
 };
 
 export const getMeetingHistories = async (username: string): Promise<any> => {
-    const controller = new StudentMeetingsController();
     return controller.getMeetingHistories(username);
 };

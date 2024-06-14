@@ -24,7 +24,7 @@ const UserHomeCardContainer: React.FC = () => {
   return (
     <article className="w-full h-auto flex flex-col ">
       <h2 className="text-lg font-bold text-left mt-4">
-        Próximas clases con tus estudiantes
+        Próximas clases con tus tutores
       </h2>
       <div className="w-full h-auto flex justify-between flex-wrap">
         {[...Array(cardCount)].map((_, index) => (

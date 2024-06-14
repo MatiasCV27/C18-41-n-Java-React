@@ -46,7 +46,7 @@ const EstudiantesHomeView: React.FC = () => {
               que desees impartir clases.
             </p>
             <div className="flex flex-col w-full gap-4">
-              {Array(5)
+              {Array(1)
                 .fill(null)
                 .map((_, index) => (
                   <EstudianteHomeSolicitudContainer key={index} />

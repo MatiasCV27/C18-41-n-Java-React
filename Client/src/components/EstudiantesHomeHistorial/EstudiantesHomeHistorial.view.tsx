@@ -38,45 +38,46 @@ const estudiantes = [
     foto: "https://github.com/shadcn.png",
   },
   {
-    nombre: "Jeremy Wilson",
-    fecha: "Jueves 16 Mayo",
-    calificacion: 5.0,
-    foto: "https://github.com/shadcn.png",
+    nombre: "Sophia Garcia",
+    fecha: "Viernes 17 Mayo",
+    calificacion: 4.5,
+    foto: "https://github.com/sophiag.png",
   },
   {
-    nombre: "Jeremy Wilson",
-    fecha: "Jueves 16 Mayo",
-    calificacion: 5.0,
-    foto: "https://github.com/shadcn.png",
+    nombre: "Elena Martinez",
+    fecha: "Martes 20 Mayo",
+    calificacion: 3.7,
+    foto: "https://github.com/elenam.png",
   },
   {
-    nombre: "Jeremy Wilson",
-    fecha: "Jueves 16 Mayo",
-    calificacion: 5.0,
-    foto: "https://github.com/shadcn.png",
+    nombre: "Luis Ramirez",
+    fecha: "Miércoles 22 Mayo",
+    calificacion: 4.8,
+    foto: "https://github.com/luisr.png",
   },
   {
-    nombre: "Jeremy Wilson",
-    fecha: "Jueves 16 Mayo",
-    calificacion: 5.0,
-    foto: "https://github.com/shadcn.png",
+    nombre: "Emma Thompson",
+    fecha: "Jueves 23 Mayo",
+    calificacion: 4.2,
+    foto: "https://github.com/emmat.png",
   },
-  
   {
-    nombre: "Jeremy Wilson",
-    fecha: "Jueves 16 Mayo",
-    calificacion: 5.0,
-    foto: "https://github.com/shadcn.png",
-  },{
-    nombre: "Jeremy Wilson",
-    fecha: "Jueves 16 Mayo",
-    calificacion: 5.0,
-    foto: "https://github.com/shadcn.png",
-  },{
-    nombre: "Jeremy Wilson",
-    fecha: "Jueves 16 Mayo",
-    calificacion: 5.0,
-    foto: "https://github.com/shadcn.png",
+    nombre: "Carlos Sanchez",
+    fecha: "Viernes 24 Mayo",
+    calificacion: 3.9,
+    foto: "https://github.com/carloss.png",
+  },
+  {
+    nombre: "Lucía Lopez",
+    fecha: "Lunes 27 Mayo",
+    calificacion: 4.6,
+    foto: "https://github.com/lucial.png",
+  },
+  {
+    nombre: "Alejandro Perez",
+    fecha: "Miércoles 29 Mayo",
+    calificacion: 4.1,
+    foto: "https://github.com/alejandrop.png",
   },
 ];
 
@@ -100,9 +101,9 @@ const EstudiantesHomeHistorialView: React.FC = () => {
               <Avatar className="h-[50px] w-[50px] border-[2.2px] border-white shadow-md cursor-pointer">
                 <AvatarImage
                   src={estudiante.foto}
-                  alt="Avatar de usuario"
+                  alt={`Avatar de ${estudiante.nombre}`}
                 />
-                <AvatarFallback>Usuario</AvatarFallback>
+                <AvatarFallback>{estudiante.nombre.charAt(0)}</AvatarFallback>
               </Avatar>
               <span className="text-base">{estudiante.nombre}</span>
             </TableCell>
