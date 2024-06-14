@@ -1,4 +1,3 @@
-// Menubar.view.tsx
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui";
@@ -12,16 +11,16 @@ import Tutores from "../icons/Tutores";
 
 const MenubarView: React.FC = () => {
   const menuItems = [
-    { name: "Inicio", path: "/inicio", icon: <Home size={24} /> },
+    { name: "Inicio", path: "/inicio", icon: <Home /> },
     {
       name: "Estudiantes",
       path: "/estudiantes",
-      icon: <Estudiantes size={24} />,
+      icon: <Estudiantes />,
     },
-    { name: "Tutores", path: "/tutores", icon: <Tutores size={24} /> },
-    { name: "Explorar", path: "/explorar", icon: <Explorar size={24} /> },
-    { name: "Recursos", path: "/recursos", icon: <Recursos size={24} /> },
-    { name: "Guardado", path: "/guardado", icon: <Guardados size={24} /> },
+    { name: "Tutores", path: "/tutores", icon: <Tutores /> },
+    { name: "Explorar", path: "/explorar", icon: <Explorar  /> },
+    { name: "Recursos", path: "/recursos", icon: <Recursos /> },
+    { name: "Guardado", path: "/guardado", icon: <Guardados /> },
     {
       name: "Evaluaciones",
       path: "/evaluaciones",
@@ -70,3 +69,4 @@ const MenubarView: React.FC = () => {
 };
 
 export default MenubarView;
+ 

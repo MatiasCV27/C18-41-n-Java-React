@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 
 interface Props {
   size: number;
@@ -24,6 +24,31 @@ const Tutores: React.FC<Props> = ({ size }) => {
         clipRule="evenodd"
         d="M2.65991 22C2.65991 17.5791 6.99703 14.25 11.9999 14.25C17.0028 14.25 21.3399 17.5791 21.3399 22C21.3399 22.4142 21.0041 22.75 20.5899 22.75C20.1757 22.75 19.8399 22.4142 19.8399 22C19.8399 18.6809 16.477 15.75 11.9999 15.75C7.52278 15.75 4.15991 18.6809 4.15991 22C4.15991 22.4142 3.82413 22.75 3.40991 22.75C2.9957 22.75 2.65991 22.4142 2.65991 22Z"
         fill="#292D32"
+      />
+    </svg>
+  );
+};
+
+export default Tutores;
+ */
+
+import React from "react";
+
+
+const Tutores: React.FC = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="size-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
       />
     </svg>
   );
