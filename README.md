@@ -36,7 +36,7 @@ npm run dev
 
 ##### 4.Abrir la Aplicación en el Navegador:
 
-_*La aplicación estará disponible en*_ http://localhost:3001/
+* _*La aplicación estará disponible en*_ http://localhost:3001/
 
 ### - Pasos para ejecutar el proyecto de Back-End
 
@@ -60,9 +60,9 @@ docker ps -a
 
 ##### 4.Ejecutar el backend en diferentes editores
 
-##### 4.1. En intellij: Dirigirse al archivo principal del proyecto _*BackendSwapItUpApplication*_ y darle al boton de ejecutar.
+* ##### 4.1. En intellij: Dirigirse al archivo principal del proyecto _*BackendSwapItUpApplication*_ y darle al boton de ejecutar.
 
-##### 4.2. En VS Code: Descargar las extenciones de SpringBoot par VS Code, después dirigirse al Spring Boot Dashboard y darle a ejecutar.
+* ##### 4.2. En VS Code: Descargar las extenciones de SpringBoot par VS Code, después dirigirse al Spring Boot Dashboard y darle a ejecutar.
 
 ##### 5.Abrir el navegador para probar los Endpoints del backend,
 
