@@ -6,8 +6,6 @@
 
 ### Front-End
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
-
   <p>
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/320px-React-icon.svg.png" alt="React" width="60" height="60">
     <img src="https://th.bing.com/th/id/R.848032d3e5b9ef45e5c8d3e5aea50f6b?rik=tM7Fhlr3nFOqRA&pid=ImgRaw&r=0" alt="Tailwind CSS" width="60" height="60">
@@ -24,10 +22,11 @@
   <p>
     <img src="https://www.manualweb.net/img/logos/java.png" alt="" width="60" height="60">
     <img src="https://miro.medium.com/v2/resize:fit:500/1*AbiX4LwtSNozoyfypcKvEg.png" alt="SpringBoot" width="60" height="60">
-    <img src="" alt="" width="60" height="60">
-    <img src="" alt="" width="60" height="60">
-    <img src="" alt="" width="60" height="60">
-    <img src="" alt="" width="60" height="60">
+    <img src="https://th.bing.com/th/id/R.e05fc9e46a880fc983c45207ca27dca1?rik=qMmjMflHCll1KA&pid=ImgRaw&r=0" alt="Swagger" width="60" height="60">
+    <img src="https://app.cartat.net/assets/images/postman.png" alt="Postman" width="60" height="60">
+    <img src="https://th.bing.com/th/id/R.b316628a0db3d4e612101b01cfac600e?rik=quYzXN5O9%2byYnQ&pid=ImgRaw&r=0" alt="Docker" width="60" height="60">
+    <img src="https://th.bing.com/th/id/R.2b3975f88966e9a6656b6161a8838856?rik=3IViBPJcooLwQg&pid=ImgRaw&r=0" alt="MySql" width="60" height="60">
+    <img src="https://img.icons8.com/color/600w/000000/java-web-token.png" alt="JWT" width="60" height="60">
 
   </p>
 
