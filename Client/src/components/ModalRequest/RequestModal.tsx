@@ -42,16 +42,19 @@ export const ModalRequest: React.FC<Props> = ({
                     onReset();
                 }}
             >
-                <DialogContent className="max-w-2xl flex flex-col bg-accent items-center text-white">
+                <DialogContent className="max-w-2xl flex flex-col bg-accent items-center">
                     <DialogHeader>
-                        <DialogTitle className="text-2xl bg-muted font-bold mt-4 mb-2 p-2 text-center rounded-lg">
+                        <DialogTitle className="text-2xl bg-muted font-bold mt-4 mb-2 p-2 text-center text-white rounded-lg">
                             Solicitud de intercambio
                         </DialogTitle>
                     </DialogHeader>
                     {/* <DialogDescription className="flex flex-col items-center gap-3 text-center mt-2 text-black font-medium text-lg"></DialogDescription> */}
                     <div className="flex flex-col w-full gap-4 py-4">
                         <div className="flex flex-col items-start  gap-2">
-                            <Label htmlFor="name" className="text-right">
+                            <Label
+                                htmlFor="name"
+                                className="text-right text-white"
+                            >
                                 Fecha
                             </Label>
                             <Input
@@ -59,25 +62,31 @@ export const ModalRequest: React.FC<Props> = ({
                                 value={requestModalValues.date}
                                 onChange={onChange}
                                 name="date"
-                                className="col-span-3  text-black"
+                                className="col-span-3 text-black placeholder:text-gray-300"
                                 placeholder="DD/MM/YYYY"
                             />
                         </div>
                         <div className="flex flex-col items-start  gap-2">
-                            <Label htmlFor="name" className="text-right">
+                            <Label
+                                htmlFor="name"
+                                className="text-right text-white"
+                            >
                                 Hora de inicio
                             </Label>
                             <Input
                                 id="start"
                                 value={requestModalValues.start}
-                                className="col-span-3  text-black"
+                                className="col-span-3 text-black placeholder:text-gray-300"
                                 placeholder="hh:mm"
                                 name="start"
                                 onChange={onChange}
                             />
                         </div>
-                        <div className="flex flex-col items-start  gap-2">
-                            <Label htmlFor="username" className="text-right">
+                        <div className="flex flex-col items-start gap-2">
+                            <Label
+                                htmlFor="username"
+                                className="text-right text-white"
+                            >
                                 Hora de finalización
                             </Label>
                             <Input
@@ -85,19 +94,22 @@ export const ModalRequest: React.FC<Props> = ({
                                 name="end"
                                 value={requestModalValues.end}
                                 onChange={onChange}
-                                className="col-span-3 text-black"
+                                className="col-span-3 text-black placeholder:text-gray-300"
                                 placeholder="hh:mm"
                             />
                         </div>
                         <div className="flex flex-col items-start  gap-2">
-                            <Label htmlFor="username" className="text-right">
+                            <Label
+                                htmlFor="username"
+                                className="text-right text-white"
+                            >
                                 Mensaje
                             </Label>
                             <Textarea
                                 id="message"
                                 name="message"
                                 value={requestModalValues.message}
-                                className="col-span-3  text-black"
+                                className="col-span-3 text-black placeholder:text-gray-300"
                                 placeholder="Escribe un mensaje..."
                                 onChange={onChange}
                             />

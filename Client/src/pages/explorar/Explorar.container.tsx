@@ -54,5 +54,6 @@ export const dataLoader = async (query: Filter) => {
     };
 
     const data = await getTutorsFromApi(query);
+    if (!data) return [];
     return await data;
 };
