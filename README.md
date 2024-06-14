@@ -22,7 +22,13 @@ cd Client
 npm install
 ```
 
-##### 4.Ejecutar el Servidor de Desarrollo:
+##### 4.Crear variables de ambiente: Crea un nuevo archivo ".env" en la raiz del proyecto, luego copia y pega esta variable
+
+```bash
+VITE_API_URL=http://localhost:8080
+```
+
+##### 5.Ejecutar el Servidor de Desarrollo:
 
 ```bash
 npm run dev
