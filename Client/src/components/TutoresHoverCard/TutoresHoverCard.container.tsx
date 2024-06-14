@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import TutoresHoverCardView from './TutoresHoverCard.view';
 import { ModalRequest } from '../ModalRequest/RequestModal';
+import { MeetingsForStudentesController } from '@/controllers/meetingsForStudents/meetingsForStudents.controller';
 
 export interface Tutores {
     idTutor?: number;
@@ -16,12 +17,14 @@ export interface Tutores {
     link_calendar?: string;
     meetings?: null;
     reviews?: null;
+    username?: string;
 }
 
 interface TutoresHomeCardContainerProps {
     tutores: Tutores[];
 }
 
+const meetingsForStudentsController = new MeetingsForStudentesController();
 const TutoresHoverCardContainer: React.FC<TutoresHomeCardContainerProps> = ({
     tutores,
 }) => {
@@ -32,6 +35,7 @@ const TutoresHoverCardContainer: React.FC<TutoresHomeCardContainerProps> = ({
         end: '',
         message: '',
         date: '',
+        username: '',
     });
 
     const resetForm = () => {
@@ -41,21 +45,45 @@ const TutoresHoverCardContainer: React.FC<TutoresHomeCardContainerProps> = ({
             end: '',
             message: '',
             date: '',
+            username: '',
         });
     };
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleInputChange = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
         const { name, value } = event.target;
         setRequestModalValues((prevState) => ({
             ...prevState,
             [name]: value,
         }));
     };
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
+        const { idTutor, start, end, message, date } = requestModalValues;
+        const requestValues = {
+            message: message,
+            schedule: date,
+            startDate: start,
+            endDate: end,
+        };
 
         console.log({ requestModalValues });
+        if (!idTutor) {
+            console.log('id de tutor vacio');
+            return;
+        }
+
+        try {
+            await meetingsForStudentsController.sendMeetingRequest(
+                requestValues,
+                idTutor
+            );
+            console.log('Solicitud enviada');
+        } catch (error) {
+            console.log({ error });
+        }
 
         resetForm();
 
@@ -73,6 +101,7 @@ const TutoresHoverCardContainer: React.FC<TutoresHomeCardContainerProps> = ({
                         skills={tutor.skills}
                         exchangesMade={tutor.exchangesMade}
                         score={tutor.score}
+                        username={tutor.username}
                         setModalState={setModalState}
                         setRequestModalValues={setRequestModalValues}
                     />
