@@ -19,6 +19,7 @@ export interface TutoresHomeCardViewProps {
     link_calendar?: string;
     meetings?: null;
     reviews?: null;
+    username?: string;
     setModalState: React.Dispatch<React.SetStateAction<boolean>>;
     setRequestModalValues: React.Dispatch<React.SetStateAction<any>>;
 }
@@ -29,6 +30,7 @@ const TutoresHoverCardView: React.FC<TutoresHomeCardViewProps> = ({
     skills,
     exchangesMade,
     score,
+    username,
     setModalState,
     setRequestModalValues,
 }) => {
@@ -54,6 +56,7 @@ const TutoresHoverCardView: React.FC<TutoresHomeCardViewProps> = ({
                                 setRequestModalValues((prevState: any) => ({
                                     ...prevState,
                                     idTutor: idTutor,
+                                    username: username,
                                 }));
                             }}
                             variant="secondary"

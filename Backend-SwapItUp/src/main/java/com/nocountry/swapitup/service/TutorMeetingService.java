@@ -50,24 +50,24 @@ public class TutorMeetingService {
 
     //TODO: Listado de Reuniones de los Tutores
 
-    public List<UpcomingMeetingDto> getUpcomingMeetingsByTutorId(Integer tutorId) {
-        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+    public List<UpcomingMeetingDto> getUpcomingMeetingsByTutorId(String username) {
+        List<Meeting> allMeetings = meetingRepository.findByTutor_UserUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PROXIMAS)
                 .map(MapInfoTemplates::mapToUpcomingMeetingDTO)
                 .collect(Collectors.toList());
     }
 
-    public List<PendingMeetingDto> getPendingMeetingsByTutorId(Integer tutorId) {
-        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+    public List<PendingMeetingDto> getPendingMeetingsByTutorId(String username) {
+        List<Meeting> allMeetings = meetingRepository.findByTutor_UserUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.PENDIENTES)
                 .map(MapInfoTemplates::mapToPendingMeetingDTO)
                 .collect(Collectors.toList());
     }
 
-    public List<HistoryMeetingDto> getHistoryMeetingsByTutorId(Integer tutorId) {
-        List<Meeting> allMeetings = meetingRepository.findByTutor_IdTutor(tutorId);
+    public List<HistoryMeetingDto> getHistoryMeetingsByTutorId(String username) {
+        List<Meeting> allMeetings = meetingRepository.findByTutor_UserUsername(username);
         return allMeetings.stream()
                 .filter(meeting -> meeting.getStatus() == StatusName.HISTORIAL)
                 .map(MapInfoTemplates::mapToHistoryMeetingDTO)

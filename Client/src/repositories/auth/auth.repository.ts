@@ -4,7 +4,7 @@ import HttpClient from '@/utils/HttpClient/HttpClient.utils';
 
 const apiURL = import.meta.env.VITE_API_URL;
 
-console.log(apiURL);
+// console.log(apiURL);
 //
 
 export class AuthRepository {

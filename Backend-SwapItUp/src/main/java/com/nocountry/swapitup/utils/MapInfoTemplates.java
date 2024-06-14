@@ -11,6 +11,7 @@ public class MapInfoTemplates {
         return TutorSearchDto.builder()
                 .idTutor(tutor.getIdTutor())
                 .fullname(tutor.getFullname())
+                .username(tutor.getUser().getUsername())
                 .image(tutor.getImage())
                 .skills(tutor.getSkills())
                 .industry(tutor.getIndustry())

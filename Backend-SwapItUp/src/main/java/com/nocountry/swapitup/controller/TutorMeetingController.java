@@ -32,25 +32,25 @@ public class TutorMeetingController {
 
     //Todo: Listados de reuniones de Tutores
 
-    @GetMapping(value = "/upcomings/{idTutor}")
+    @GetMapping(value = "/upcomings/{username}")
     @Operation(summary = "Obtener los Meetings por PROXIMOS del Tutor",
-            description = "Obtiene todos las reuniones del Tutor de estado PROXIMOS por el IdTutor")
-    public ResponseEntity<List<UpcomingMeetingDto>> getAllTutorMeetingUpcomings(@PathVariable(value = "idTutor") Integer idTutor) {
-        return ResponseEntity.ok(meetingService.getUpcomingMeetingsByTutorId(idTutor));
+            description = "Obtiene todos las reuniones del Tutor de estado PROXIMOS por el username")
+    public ResponseEntity<List<UpcomingMeetingDto>> getAllTutorMeetingUpcomings(@PathVariable(value = "username") String username) {
+        return ResponseEntity.ok(meetingService.getUpcomingMeetingsByTutorId(username));
     }
 
-    @GetMapping(value = "/pendings/{idTutor}")
+    @GetMapping(value = "/pendings/{username}")
     @Operation(summary = "Obtener los Meetings por PENDIENTES del Tutor",
-            description = "Obtiene todos las reuniones del tutor de estado PENDIENTES por el IdTutor")
-    public ResponseEntity<List<PendingMeetingDto>> getAllTutorMeetingPendings(@PathVariable(value = "idTutor") Integer idTutor) {
-        return ResponseEntity.ok(meetingService.getPendingMeetingsByTutorId(idTutor));
+            description = "Obtiene todos las reuniones del tutor de estado PENDIENTES por el username")
+    public ResponseEntity<List<PendingMeetingDto>> getAllTutorMeetingPendings(@PathVariable(value = "username") String username) {
+        return ResponseEntity.ok(meetingService.getPendingMeetingsByTutorId(username));
     }
 
-    @GetMapping(value = "/histories/{idTutor}")
+    @GetMapping(value = "/histories/{username}")
     @Operation(summary = "Obtener los Meetings por HISTORY del Tutor",
-            description = "Obtiene todos las reuniones del Tutor de estado HISTORY por el IdTutor")
-    public ResponseEntity<List<HistoryMeetingDto>> getAllTutorMeetingHistories(@PathVariable(value = "idTutor") Integer idTutor) {
-        return ResponseEntity.ok(meetingService.getHistoryMeetingsByTutorId(idTutor));
+            description = "Obtiene todos las reuniones del Tutor de estado HISTORY por el username")
+    public ResponseEntity<List<HistoryMeetingDto>> getAllTutorMeetingHistories(@PathVariable(value = "username") String username) {
+        return ResponseEntity.ok(meetingService.getHistoryMeetingsByTutorId(username));
     }
 
 }
