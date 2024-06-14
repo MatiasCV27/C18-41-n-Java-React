@@ -5,7 +5,7 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 export class MeetingsForStudentsRepository {
     private httpClient: HttpClient = new HttpClient(
-        `${apiURL}/api/v1/meeting`
+        `${apiURL}/api/v1/meeting/student`
     );
 
     constructor() {}
@@ -15,7 +15,7 @@ export class MeetingsForStudentsRepository {
         idTutor: string
     ) {
         const response = await this.httpClient.post(
-            `/student/send-request/${idTutor}`,
+            `/send-request/${idTutor}`,
             meetingRequest
         );
         return response.data;
