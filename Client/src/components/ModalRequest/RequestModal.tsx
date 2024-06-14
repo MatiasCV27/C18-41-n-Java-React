@@ -64,6 +64,7 @@ export const ModalRequest: React.FC<Props> = ({
                                 name="date"
                                 className="col-span-3 text-black placeholder:text-gray-300"
                                 placeholder="DD/MM/YYYY"
+                                type="date"
                             />
                         </div>
                         <div className="flex flex-col items-start  gap-2">
@@ -80,6 +81,7 @@ export const ModalRequest: React.FC<Props> = ({
                                 placeholder="hh:mm"
                                 name="start"
                                 onChange={onChange}
+                                type="time"
                             />
                         </div>
                         <div className="flex flex-col items-start gap-2">
@@ -96,6 +98,7 @@ export const ModalRequest: React.FC<Props> = ({
                                 onChange={onChange}
                                 className="col-span-3 text-black placeholder:text-gray-300"
                                 placeholder="hh:mm"
+                                type="time"
                             />
                         </div>
                         <div className="flex flex-col items-start  gap-2">
