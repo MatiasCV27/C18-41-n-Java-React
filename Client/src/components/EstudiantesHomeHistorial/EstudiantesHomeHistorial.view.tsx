@@ -88,7 +88,7 @@ const EstudiantesHomeHistorialView: React.FC = () => {
         Historial de calificaciones de los estudiantes.
       </TableCaption>
       <TableHeader>
-        <TableRow className="text-base font-medium">
+        <TableRow className="text-base font-bold hover:bg-secondary ">
           <TableHead>Estudiante</TableHead>
           <TableHead>Fecha</TableHead>
           <TableHead>Calificación</TableHead>
@@ -96,7 +96,7 @@ const EstudiantesHomeHistorialView: React.FC = () => {
       </TableHeader>
       <TableBody>
         {estudiantes.map((estudiante, index) => (
-          <TableRow key={index}>
+          <TableRow key={index} className="hover:bg-secondary text-semibold">
             <TableCell className="flex items-center space-x-3">
               <Avatar className="h-[50px] w-[50px] border-[2.2px] border-white shadow-md cursor-pointer">
                 <AvatarImage
