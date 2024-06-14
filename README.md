@@ -6,7 +6,30 @@
 
 ### Front-End
 
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+
+  <p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/320px-React-icon.svg.png" alt="React" width="60" height="60">
+    <img src="https://th.bing.com/th/id/R.848032d3e5b9ef45e5c8d3e5aea50f6b?rik=tM7Fhlr3nFOqRA&pid=ImgRaw&r=0" alt="Tailwind CSS" width="60" height="60">
+    <img src="https://th.bing.com/th/id/R.ea7caf8dee69786bafe9d919b5034595?rik=Af4u%2fwfvkijt7w&pid=ImgRaw&r=0" alt="Typescript" width="60" height="60">
+    <img src="https://th.bing.com/th/id/R.ca906d44331d890de570eec98090cdb6?rik=IBoafClTWsL1Cw&pid=ImgRaw&r=0" alt="Axios" width="60" height="60">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/320px-HTML5_Badge.svg.png" alt="HTML5" width="60" height="60">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/CSS3_logo.svg/800px-CSS3_logo.svg.png" alt="CSS3" width="60" height="60">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" width="60" height="60">
+  </p>
+
+
 ### Back-End
+
+  <p>
+    <img src="https://www.manualweb.net/img/logos/java.png" alt="" width="60" height="60">
+    <img src="https://miro.medium.com/v2/resize:fit:500/1*AbiX4LwtSNozoyfypcKvEg.png" alt="SpringBoot" width="60" height="60">
+    <img src="" alt="" width="60" height="60">
+    <img src="" alt="" width="60" height="60">
+    <img src="" alt="" width="60" height="60">
+    <img src="" alt="" width="60" height="60">
+
+  </p>
 
 ### Organización
 
