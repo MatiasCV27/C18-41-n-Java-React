@@ -2,43 +2,71 @@
 
 ## 🚀 Probar el proyecto
 
-### - Pasos para ejecutar el proyecto de Front-End
-
-##### 1.Clonar el Repositorio:
+##### Clonar el Repositorio:
 
 ```bash
 git clone https://github.com/MatiasCV27/C18-41-n-Java-React.git
 ```
 
-##### 2.Navegar a la Carpeta del Proyecto Frontend:
+### - Pasos para ejecutar el proyecto de Front-End
+
+##### 1.Navegar a la Carpeta del Proyecto Frontend:
 
 ```bash
 cd Client
 ```
 
-##### 3.Instalar Dependencias en la terminal:
+##### 2.Instalar Dependencias en la terminal:
 
 ```bash
 npm install
 ```
 
-##### 4.Crear variables de ambiente: Crea un nuevo archivo ".env" en la raiz del proyecto, luego copia y pega esta variable
+##### 3.Crear variables de ambiente: Crea un nuevo archivo ".env" en la raiz del proyecto, luego copia y pega esta variable
 
 ```bash
 VITE_API_URL=http://localhost:8080
 ```
 
-##### 5.Ejecutar el Servidor de Desarrollo:
+##### 4.Ejecutar el Servidor de Desarrollo:
 
 ```bash
 npm run dev
 ```
 
-##### 5.Abrir la Aplicación en el Navegador:
+##### 4.Abrir la Aplicación en el Navegador:
 
 _*La aplicación estará disponible en*_ http://localhost:3001/
 
 ### - Pasos para ejecutar el proyecto de Back-End
+
+##### 1.Navegar a la Carpeta del Proyecto Backend:
+
+```bash
+cd Backend-SwapItUp
+```
+
+##### 2.Abrir la app de Docker Desktop y ejecutar este comando en la terminal
+
+```bash
+docker compose up -d
+```
+
+##### 3.Comprobar que el docker compose se levanto:
+
+```bash
+docker ps -a
+```
+
+##### 4.Ejecutar el backend en diferentes editores
+
+##### 4.1. En intellij: Dirigirse al archivo principal del proyecto _*BackendSwapItUpApplication*_ y darle al boton de ejecutar.
+
+##### 4.2. En VS Code: Descargar las extenciones de SpringBoot par VS Code, después dirigirse al Spring Boot Dashboard y darle a ejecutar.
+
+##### 5.Abrir el navegador para probar los Endpoints del backend,
+
+_*La aplicación estará disponible en*_ http://localhost:8080/swagger-ui.html
 
 ## 🛠️ Tecnologías Utilizadas
 
