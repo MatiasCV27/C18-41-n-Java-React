@@ -1,6 +1,7 @@
 // TutoresHomeCard.view.tsx
 
 import React from 'react';
+import user from '../../assets/usersiu.png';
 import { useNavigate } from 'react-router-dom';
 import Maletin from '../icons/Maletin';
 import RayoCeleste from '../icons/RayoCeleste';
@@ -45,7 +46,7 @@ const TutoresHoverCardView: React.FC<TutoresHomeCardViewProps> = ({
             <div className="flex flex-col gap-4">
                 <div className="relative overflow-visible group/item">
                     <img
-                        src="https://img.freepik.com/premium-photo/photo-students-greeting-their-teacher-classroom-teacher-day-concept-generative-ai_742418-2059.jpg?w=826"
+                        src={user}
                         alt="Card Image"
                         className="w-[182px] h-auto rounded-lg z-10 transition-all duration-500 group-hover/item:blur-sm"
                     />

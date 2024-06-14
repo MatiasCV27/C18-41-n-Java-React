@@ -18,7 +18,7 @@ const EstudianteHomeSolicitudView: React.FC = () => {
   const [isRejectModalOpen, setRejectModalOpen] = useState(false);
 
   return (
-    <div className="w-full h-full shadow-sm shadow-muted">
+    <div className="w-full h-full rounded-lg shadow-lg">
       <div className="rounded-lg p-4 flex w-full h-full gap-4">
         {/* Contenedor Izquierdo - 25% */}
         <div className="w-1/5 flex items-start justify-center">

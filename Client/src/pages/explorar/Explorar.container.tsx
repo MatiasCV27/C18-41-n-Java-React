@@ -48,6 +48,7 @@ export const dataLoader = async (query: Filter) => {
         try {
             const tutors = await getTutors(query);
             return tutors;
+            // console.log(tutors);
         } catch (error) {
             console.log(error);
         }
