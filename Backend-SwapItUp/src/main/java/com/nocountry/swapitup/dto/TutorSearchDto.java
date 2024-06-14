@@ -14,6 +14,7 @@ public class TutorSearchDto {
 
     Integer idTutor;
     String fullname;
+    String username;
     @Lob
     byte[] image;
     String skills;
