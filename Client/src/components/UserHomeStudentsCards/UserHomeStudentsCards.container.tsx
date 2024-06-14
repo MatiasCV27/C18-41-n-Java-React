@@ -1,6 +1,6 @@
 import UserHomeStudentsCardsView from "@/components/UserHomeStudentsCards/UserHomeStudentsCardsview";
 
-const UserHomeStudentsCardsContainer: React.FC = () => {
+const UserHomeStudentsCardsContainer: React.FC = ( ) => {
   return (
     <>
       <UserHomeStudentsCardsView />
