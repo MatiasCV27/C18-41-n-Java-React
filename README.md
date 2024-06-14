@@ -1,5 +1,28 @@
 # C18-41-n-Java-React
 
+## 🚀 Probar el proyecto
+
+## 🛠️ Tecnologías Utilizadas
+
+### Front-End
+
+### Back-End
+
+### Organización
+
+  <a href='https://figma.com/'>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Logo" width="60" height="60">
+  </a>
+  <a href='https://slack.com/'>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" alt="Logo" width="60" height="60">
+  </a>
+  <a href='https://www.discord.gg/'>
+    <img src="https://img.icons8.com/color/480/discord-new-logo.png" alt="Logo" width="70" height="65">
+  </a>
+   <a href='https://trello.com/'>
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/trello/trello-original.svg" alt="Logo" width="60" height="60">
+  </a>
+
 ## 👥 Equipo de Trabajo
 
 <div style="display: flex; justify-content: center; gap: 20px">
@@ -51,6 +74,13 @@
 <hr/>
 </div>
 </div>
-<div align="center">
+
+## 🤝 Agradecimientos
+
+<div align='center'>
+  <a href="https://www.nocountry.tech/" target="_blank">
+    <img style='background-color:black;' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsukYB3HL90LSwYv_RIR2O2OlCV8Sbkx2eNHv8nRvOu8L16FxLQ0nPzY02wQ_BJOfQZw&usqp=CAU" width="200">
+  </a>
+</div>
 
 
