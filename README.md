@@ -1,44 +1,23 @@
-# C18-41-n-Java-React
+<div align="center">
+  <h2>☕️ SwapItUp |  C18-41-n-Java-React ⚛️</h2>
+</div>
 
-## 🚀 Probar el proyecto
+<div align="center">
+  ¿Te imaginas un lugar donde puedas aprender a tocar la guitarra a cambio de clases de cocina, o mejorar tus habilidades en diseño gráfico enseñando programación? 
+</div>
 
-### - Pasos para ejecutar el proyecto de Front-End
+## 📕 Descripción del proyecto
 
-##### 1.Clonar el Repositorio:
+  SwapItUp es una plataforma en línea que conecta a personas con intereses variados para compartir sus talentos y conocimientos. Nuestra plataforma permite a los usuarios intercambiar habilidades directamente. Aquí, el valor está en el aprendizaje y la colaboración. 
+  
+  Nosotros creemos que cada persona tiene algo valioso que compartir y que el conocimiento no debe estar limitado por barreras económicas. Nuestro objetivo es crear un entorno inclusivo y enriquecedor donde todos puedan crecer y aprender juntos.
 
-```bash
-git clone https://github.com/MatiasCV27/C18-41-n-Java-React.git
-```
+## 🚀 Características y Funcionalidades:
 
-##### 2.Navegar a la Carpeta del Proyecto Frontend:
-
-```bash
-cd Client
-```
-
-##### 3.Instalar Dependencias en la terminal:
-
-```bash
-npm install
-```
-
-##### 4.Crear variables de ambiente: Crea un nuevo archivo ".env" en la raiz del proyecto, luego copia y pega esta variable
-
-```bash
-VITE_API_URL=http://localhost:8080
-```
-
-##### 5.Ejecutar el Servidor de Desarrollo:
-
-```bash
-npm run dev
-```
-
-##### 5.Abrir la Aplicación en el Navegador:
-
-_*La aplicación estará disponible en*_ http://localhost:3001/
-
-### - Pasos para ejecutar el proyecto de Back-End
+* <strong>Crea tu Perfil</strong>: Comparte quién eres, tus intereses y las habilidades que deseas aprender o enseñar.
+* <strong>Explora las Oportunidades:</strong> Navega por una amplia gama de ofertas de intercambio. Desde idiomas y música hasta tecnología y arte, hay algo para todos.
+* <strong>Conecta y Acuerda:</strong> Encuentra a alguien con las habilidades que buscas y ofrécele las tuyas a cambio. Establezcan los términos del intercambio y empiecen a aprender juntos.
+* <strong>Aprende y Comparte:</strong> Disfruta del proceso de aprendizaje mutuo, haz nuevas conexiones y expande tus horizontes.
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -129,11 +108,79 @@ _*La aplicación estará disponible en*_ http://localhost:3001/
 |                                                                                                                                                 <img src="https://media.licdn.com/dms/image/C4E03AQEh1u53n6w73w/profile-displayphoto-shrink_400_400/0/1660171214240?e=1723680000&v=beta&t=ag7o-EO5KvrOxl4T20lAiwJOC9iU0EfJmEBkwMCJB_o" width=50>                                                                                                                                                 |                                                                                                                                            <img src="" width=50>                                                                                                                                             |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                                                                                                                                                                    **Matias Criollo**                                                                                                                                                                     |                                                                                                                                                            **David Garcia**                                                                                                                                                             |
-| <a href="https://github.com/MatiasCV27" target="_blank"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/matias-criollo-vigo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/David971015"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/german-ravarotto" target="_blank"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="https://github.com/MatiasCV27" target="_blank"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/matias-criollo-vigo/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/David971015"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://github.com/David971015" target="_blank"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 <hr/>
 </div>
 </div>
+
+## 🚀 Probar el proyecto
+
+##### Clonar el Repositorio:
+
+```bash
+git clone https://github.com/MatiasCV27/C18-41-n-Java-React.git
+```
+
+### - Pasos para ejecutar el proyecto de Front-End
+
+##### 1.Navegar a la Carpeta del Proyecto Frontend:
+
+```bash
+cd Client
+```
+
+##### 2.Instalar Dependencias en la terminal:
+
+```bash
+npm install
+```
+
+##### 3.Crear variables de ambiente: Crea un nuevo archivo ".env" en la raiz del proyecto, luego copia y pega esta variable
+
+```bash
+VITE_API_URL=http://localhost:8080
+```
+
+##### 4.Ejecutar el Servidor de Desarrollo:
+
+```bash
+npm run dev
+```
+
+##### 4.Abrir la Aplicación en el Navegador:
+
+* _*La aplicación estará disponible en*_ http://localhost:3001/
+
+### - Pasos para ejecutar el proyecto de Back-End
+
+##### 1.Navegar a la Carpeta del Proyecto Backend:
+
+```bash
+cd Backend-SwapItUp
+```
+
+##### 2.Abrir la app de Docker Desktop y ejecutar este comando en la terminal
+
+```bash
+docker compose up -d
+```
+
+##### 3.Comprobar que el docker compose se levanto:
+
+```bash
+docker ps -a
+```
+
+##### 4.Ejecutar el backend en diferentes editores
+
+* ##### 4.1. En intellij: Dirigirse al archivo principal del proyecto _*BackendSwapItUpApplication*_ y darle al boton de ejecutar.
+
+* ##### 4.2. En VS Code: Descargar las extenciones de SpringBoot par VS Code, después dirigirse al Spring Boot Dashboard y darle a ejecutar.
+
+##### 5.Abrir el navegador para probar los Endpoints del backend,
+
+_*La aplicación estará disponible en*_ http://localhost:8080/swagger-ui.html
 
 ## 🤝 Agradecimientos
 
