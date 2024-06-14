@@ -11,4 +11,6 @@ public interface MeetingRepository extends JpaRepository<Meeting, Integer> {
 
     List<Meeting> findByTutor_IdTutor(Integer tutorId);
 
+    List<Meeting> findByTutor_UserUsername(String username);
+
 }
