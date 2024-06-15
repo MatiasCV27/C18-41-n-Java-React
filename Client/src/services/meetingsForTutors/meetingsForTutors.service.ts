@@ -11,4 +11,16 @@ export class MeetingsForTutorsService {
             username
         );
     }
+
+    async getUpcomingMeetings(username: string): Promise<any> {
+        return await this.meetingsForTutorsRepository.getUpcomingMeetings(
+            username
+        );
+    }
+
+    async getMeetingHistory(username: string): Promise<any> {
+        return await this.meetingsForTutorsRepository.getMeetingHistory(
+            username
+        );
+    }
 }

@@ -11,7 +11,23 @@ export class MeetingsForTutorsRepository {
 
     async getPendingMeetings(username: string) {
         const getAllResponse = await this.httpClient.get(
-            `/pending/${username}`
+            `/pendings/${username}`
+        );
+
+        return getAllResponse.data;
+    }
+
+    async getUpcomingMeetings(username: string) {
+        const getAllResponse = await this.httpClient.get(
+            `/upcomings/${username}`
+        );
+
+        return getAllResponse.data;
+    }
+
+    async getMeetingHistory(username: string) {
+        const getAllResponse = await this.httpClient.get(
+            `/histories/${username}`
         );
 
         return getAllResponse.data;

@@ -9,4 +9,14 @@ export class MeetingsForTutorsController {
     async getPendingMeetings(username: string): Promise<any> {
         return await this.meetingsForTutorsService.getPendingMeetings(username);
     }
+
+    async getUpcomingMeetings(username: string): Promise<any> {
+        return await this.meetingsForTutorsService.getUpcomingMeetings(
+            username
+        );
+    }
+
+    async getMeetingHistory(username: string): Promise<any> {
+        return await this.meetingsForTutorsService.getMeetingHistory(username);
+    }
 }
