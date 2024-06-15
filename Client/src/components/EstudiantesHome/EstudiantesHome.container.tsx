@@ -1,18 +1,20 @@
 // EstudiantesHome.container.tsx
 import React from "react";
 import EstudiantesHomeView from "./EstudiantesHome.view";
+import { useNavigate } from "react-router-dom";
 
 const EstudiantesHomeContainer: React.FC = () => {
-  const calendarios = ["Google Calendar"];
+  const navigate = useNavigate();
+ 
 
   const handleExploreMentoresClick = () => {
-    console.log("Explorar mentores");
+    navigate("/explorar");
   };
 
   return (
     <div className="w-full mx-auto ">
       <EstudiantesHomeView
-        calendarios={calendarios}
+        
         onExploreMentoresClick={handleExploreMentoresClick}
       />
     </div>
